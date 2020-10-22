@@ -4,7 +4,6 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTick
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
 import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
-import com.example.demo.c04cinema.common.DateTime;
 import java.time.LocalDateTime;
 
 public class BookingTicketDTO {
@@ -18,7 +17,7 @@ public class BookingTicketDTO {
 
     public BookingTicketDTO(BookingTicket bookingTicket, Customer customer, Show show, Movie movie){
         this.bookingCode= bookingTicket.getCode().get();
-        this.bookingDate=  DateTime.ConvertToLocalDateTime(bookingTicket.getBookingDate().get());
+        this.bookingDate=  bookingTicket.getBookingDate().get();
         this.codeCustomer= customer.getCode().get();
         this.nameCustomer= customer.getName().get();
         this.cardIdCustomer= customer.getCardid().get();

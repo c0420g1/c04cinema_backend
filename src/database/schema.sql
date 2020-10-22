@@ -67,7 +67,7 @@ CREATE TABLE `booking_ticket` (
   `status` tinyint DEFAULT NULL,
   `price` double DEFAULT NULL,
   `iscancel` tinyint DEFAULT '0',
-  `booking_date` timestamp NULL DEFAULT NULL,
+  `booking_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_booking_ticket_payment1_idx` (`payment_id`),
   KEY `fk_booking_ticket_promotion1_idx` (`promotion_id`),
@@ -524,9 +524,9 @@ DROP TABLE IF EXISTS `show`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `show` (
-  `id` int NOT NULL DEFAULT '0',
-  `start_time` timestamp NULL DEFAULT NULL,
-  `hall_id` int DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `start_time` datetime DEFAULT NULL,
+  `hall_id` int NOT NULL,
   `movie_id` int DEFAULT NULL,
   `price` double DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL,
@@ -536,7 +536,7 @@ CREATE TABLE `show` (
   KEY `fk_show_movie1_idx` (`movie_id`),
   CONSTRAINT `fk_show_hall1` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
   CONSTRAINT `fk_show_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -614,4 +614,4 @@ CREATE TABLE `ticket_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-22 21:45:15
+-- Dump completed on 2020-10-22 23:20:08

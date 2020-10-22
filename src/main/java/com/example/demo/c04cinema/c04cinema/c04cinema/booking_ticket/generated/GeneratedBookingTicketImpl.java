@@ -11,7 +11,7 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -43,7 +43,7 @@ public abstract class GeneratedBookingTicketImpl implements BookingTicket {
     private Byte status;
     private Double price;
     private Byte iscancel;
-    private Timestamp bookingDate;
+    private LocalDateTime bookingDate;
     
     protected GeneratedBookingTicketImpl() {}
     
@@ -113,7 +113,7 @@ public abstract class GeneratedBookingTicketImpl implements BookingTicket {
     }
     
     @Override
-    public Optional<Timestamp> getBookingDate() {
+    public Optional<LocalDateTime> getBookingDate() {
         return Optional.ofNullable(bookingDate);
     }
     
@@ -196,7 +196,7 @@ public abstract class GeneratedBookingTicketImpl implements BookingTicket {
     }
     
     @Override
-    public BookingTicket setBookingDate(Timestamp bookingDate) {
+    public BookingTicket setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;
         return this;
     }

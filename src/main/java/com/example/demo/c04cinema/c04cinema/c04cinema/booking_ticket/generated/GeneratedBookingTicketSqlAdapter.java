@@ -3,12 +3,18 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.generated;
 import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicket;
 import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicketImpl;
 import com.speedment.common.annotation.GeneratedCode;
+import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.runtime.config.Project;
 import com.speedment.runtime.config.identifier.TableIdentifier;
+import com.speedment.runtime.core.component.ProjectComponent;
 import com.speedment.runtime.core.component.SqlAdapter;
+import com.speedment.runtime.core.component.sql.SqlTypeMapperHelper;
 import com.speedment.runtime.core.db.SqlFunction;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import static com.speedment.common.injector.State.RESOLVED;
 import static com.speedment.runtime.core.util.ResultSetUtil.*;
@@ -27,6 +33,7 @@ import static com.speedment.runtime.core.util.ResultSetUtil.*;
 public abstract class GeneratedBookingTicketSqlAdapter implements SqlAdapter<BookingTicket> {
     
     private final TableIdentifier<BookingTicket> tableIdentifier;
+    private SqlTypeMapperHelper<Timestamp, LocalDateTime> bookingDateHelper;
     
     protected GeneratedBookingTicketSqlAdapter() {
         this.tableIdentifier = TableIdentifier.of("c04cinema", "c04cinema", "booking_ticket");
@@ -47,7 +54,7 @@ public abstract class GeneratedBookingTicketSqlAdapter implements SqlAdapter<Boo
             .setStatus(       getByte(resultSet, 11 + offset))
             .setPrice(        getDouble(resultSet, 12 + offset))
             .setIscancel(     getByte(resultSet, 13 + offset))
-            .setBookingDate(  resultSet.getTimestamp(14 + offset))
+            .setBookingDate(  bookingDateHelper.apply(resultSet.getTimestamp(14 + offset)))
             ;
     }
     
@@ -68,5 +75,11 @@ public abstract class GeneratedBookingTicketSqlAdapter implements SqlAdapter<Boo
     @Override
     public SqlFunction<ResultSet, BookingTicket> entityMapper(int offset) {
         return rs -> apply(rs, offset);
+    }
+    
+    @ExecuteBefore(RESOLVED)
+    public void createHelpers(ProjectComponent projectComponent) {
+        final Project project = projectComponent.getProject();
+        bookingDateHelper = SqlTypeMapperHelper.create(project, BookingTicket.BOOKING_DATE, BookingTicket.class);
     }
 }

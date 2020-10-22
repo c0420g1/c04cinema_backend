@@ -7,7 +7,7 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -27,8 +27,8 @@ import java.util.StringJoiner;
 public abstract class GeneratedShowImpl implements Show {
     
     private int id;
-    private Timestamp startTime;
-    private Integer hallId;
+    private LocalDateTime startTime;
+    private int hallId;
     private Integer movieId;
     private Double price;
     private String description;
@@ -42,13 +42,13 @@ public abstract class GeneratedShowImpl implements Show {
     }
     
     @Override
-    public Optional<Timestamp> getStartTime() {
+    public Optional<LocalDateTime> getStartTime() {
         return Optional.ofNullable(startTime);
     }
     
     @Override
-    public OptionalInt getHallId() {
-        return OptionalUtil.ofNullable(hallId);
+    public int getHallId() {
+        return hallId;
     }
     
     @Override
@@ -78,13 +78,13 @@ public abstract class GeneratedShowImpl implements Show {
     }
     
     @Override
-    public Show setStartTime(Timestamp startTime) {
+    public Show setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
         return this;
     }
     
     @Override
-    public Show setHallId(Integer hallId) {
+    public Show setHallId(int hallId) {
         this.hallId = hallId;
         return this;
     }
@@ -114,12 +114,8 @@ public abstract class GeneratedShowImpl implements Show {
     }
     
     @Override
-    public Optional<Hall> findHallId(Manager<Hall> foreignManager) {
-        if (getHallId().isPresent()) {
-            return foreignManager.stream().filter(Hall.ID.equal(getHallId().getAsInt())).findAny();
-        } else {
-            return Optional.empty();
-        }
+    public Hall findHallId(Manager<Hall> foreignManager) {
+        return foreignManager.stream().filter(Hall.ID.equal(getHallId())).findAny().orElse(null);
     }
     
     @Override
@@ -136,7 +132,7 @@ public abstract class GeneratedShowImpl implements Show {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "          + Objects.toString(getId()));
         sj.add("startTime = "   + Objects.toString(OptionalUtil.unwrap(getStartTime())));
-        sj.add("hallId = "      + Objects.toString(OptionalUtil.unwrap(getHallId())));
+        sj.add("hallId = "      + Objects.toString(getHallId()));
         sj.add("movieId = "     + Objects.toString(OptionalUtil.unwrap(getMovieId())));
         sj.add("price = "       + Objects.toString(OptionalUtil.unwrap(getPrice())));
         sj.add("description = " + Objects.toString(OptionalUtil.unwrap(getDescription())));
@@ -151,7 +147,7 @@ public abstract class GeneratedShowImpl implements Show {
         final Show thatShow = (Show)that;
         if (this.getId() != thatShow.getId()) { return false; }
         if (!Objects.equals(this.getStartTime(), thatShow.getStartTime())) { return false; }
-        if (!Objects.equals(this.getHallId(), thatShow.getHallId())) { return false; }
+        if (this.getHallId() != thatShow.getHallId()) { return false; }
         if (!Objects.equals(this.getMovieId(), thatShow.getMovieId())) { return false; }
         if (!Objects.equals(this.getPrice(), thatShow.getPrice())) { return false; }
         if (!Objects.equals(this.getDescription(), thatShow.getDescription())) { return false; }
@@ -164,7 +160,7 @@ public abstract class GeneratedShowImpl implements Show {
         int hash = 7;
         hash = 31 * hash + Integer.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getStartTime()));
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getHallId()));
+        hash = 31 * hash + Integer.hashCode(getHallId());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getMovieId()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getPrice()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getDescription()));

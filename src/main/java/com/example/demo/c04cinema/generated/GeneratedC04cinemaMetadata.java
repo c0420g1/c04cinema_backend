@@ -139,7 +139,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  }",
             "                ],",
             "                \"enabled\" : true,",
-            "                \"expanded\" : true,",
+            "                \"expanded\" : false,",
             "                \"id\" : \"account\",",
             "                \"indexes\" : [",
             "                  {",
@@ -233,7 +233,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  }",
             "                ],",
             "                \"enabled\" : true,",
-            "                \"expanded\" : true,",
+            "                \"expanded\" : false,",
             "                \"id\" : \"banner\",",
             "                \"indexes\" : [",
             "                  {",
@@ -412,13 +412,22 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 13",
             "                  },",
             "                  {",
+            "                    \"autoIncrement\" : false,",
             "                    \"databaseType\" : \"java.sql.Timestamp\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"booking_date\",",
             "                    \"name\" : \"booking_date\",",
+            "                    \"nameProtected\" : true,",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 14",
+            "                    \"nullableImplementation\" : \"OPTIONAL\",",
+            "                    \"ordinalPosition\" : 14,",
+            "                    \"restCreateBodyInclude\" : true,",
+            "                    \"restCreateBodyRequired\" : true,",
+            "                    \"restUpdateBodyInclude\" : true,",
+            "                    \"restUpdateBodyRequired\" : true,",
+            "                    \"restVisible\" : true,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper\"",
             "                  }",
             "                ],",
             "                \"enabled\" : true,",
@@ -485,7 +494,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"foreignColumnName\" : \"id\",",
-            "                        \"foreignDatabaseName\" : \"c04cinema\",",
+            "                        \"foreignDatabaseName\" : \"c04cinema\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart4(StringBuilder sb) {
+        Stream.of(
             "                        \"foreignSchemaName\" : \"c04cinema\",",
             "                        \"foreignTableName\" : \"seat\",",
             "                        \"id\" : \"seat_id\",",
@@ -494,12 +508,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                      }",
             "                    ],",
             "                    \"id\" : \"fk_booking_ticket_seat1\",",
-            "                    \"name\" : \"fk_booking_ticket_seat1\""
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart4(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"fk_booking_ticket_seat1\"",
             "                  },",
             "                  {",
             "                    \"enabled\" : true,",
@@ -591,7 +600,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
-            "                    \"id\" : \"fk_booking_ticket_promotion1_idx\",",
+            "                    \"id\" : \"fk_booking_ticket_promotion1_idx\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart5(StringBuilder sb) {
+        Stream.of(
             "                    \"indexColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
@@ -600,12 +614,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
-            "                    ],"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart5(StringBuilder sb) {
-        Stream.of(
+            "                    ],",
             "                    \"name\" : \"fk_booking_ticket_promotion1_idx\",",
             "                    \"unique\" : false",
             "                  },",
@@ -697,7 +706,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"restUpdateBodyRequired\" : true,",
             "                    \"restVisible\" : true,",
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
-            "                  },",
+            "                  },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart6(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
@@ -706,12 +720,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"name\" : \"combo_id\",",
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 2",
-            "                  },"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart6(StringBuilder sb) {
-        Stream.of(
+            "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
@@ -803,7 +812,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                \"columns\" : [",
             "                  {",
             "                    \"autoIncrement\" : true,",
-            "                    \"databaseType\" : \"java.lang.Integer\",",
+            "                    \"databaseType\" : \"java.lang.Integer\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart7(StringBuilder sb) {
+        Stream.of(
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"id\",",
@@ -812,12 +826,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : false,",
             "                    \"nullableImplementation\" : \"OPTIONAL\",",
             "                    \"ordinalPosition\" : 1,",
-            "                    \"restCreateBodyInclude\" : false,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart7(StringBuilder sb) {
-        Stream.of(
+            "                    \"restCreateBodyInclude\" : false,",
             "                    \"restCreateBodyRequired\" : true,",
             "                    \"restUpdateBodyInclude\" : false,",
             "                    \"restUpdateBodyRequired\" : true,",
@@ -909,7 +918,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    ],",
             "                    \"name\" : \"PRIMARY\",",
             "                    \"unique\" : true",
-            "                  },",
+            "                  },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart8(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
@@ -918,12 +932,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"id\" : \"customer_id\",",
-            "                        \"name\" : \"customer_id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart8(StringBuilder sb) {
-        Stream.of(
+            "                        \"name\" : \"customer_id\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
@@ -1015,7 +1024,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 4",
             "                  },",
-            "                  {",
+            "                  {"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart9(StringBuilder sb) {
+        Stream.of(
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
@@ -1024,12 +1038,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 5",
             "                  }",
-            "                ],"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart9(StringBuilder sb) {
-        Stream.of(
+            "                ],",
             "                \"enabled\" : true,",
             "                \"expanded\" : true,",
             "                \"id\" : \"combo\",",
@@ -1121,7 +1130,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
+            "                    \"expanded\" : true,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart10(StringBuilder sb) {
+        Stream.of(
             "                    \"id\" : \"current_bonus_point\",",
             "                    \"name\" : \"current_bonus_point\",",
             "                    \"nullable\" : true,",
@@ -1130,12 +1144,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart10(StringBuilder sb) {
-        Stream.of(
+            "                    \"expanded\" : true,",
             "                    \"id\" : \"account_id\",",
             "                    \"name\" : \"account_id\",",
             "                    \"nullable\" : true,",
@@ -1227,7 +1236,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"name\" : \"fk_customer_account1\"",
             "                  },",
             "                  {",
-            "                    \"enabled\" : true,",
+            "                    \"enabled\" : true,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart11(StringBuilder sb) {
+        Stream.of(
             "                    \"expanded\" : false,",
             "                    \"foreignKeyColumns\" : [",
             "                      {",
@@ -1236,12 +1250,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"foreignDatabaseName\" : \"c04cinema\",",
             "                        \"foreignSchemaName\" : \"c04cinema\",",
             "                        \"foreignTableName\" : \"customer_type\",",
-            "                        \"id\" : \"customer_type_id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart11(StringBuilder sb) {
-        Stream.of(
+            "                        \"id\" : \"customer_type_id\",",
             "                        \"name\" : \"customer_type_id\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
@@ -1333,7 +1342,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"nameProtected\" : true,",
             "                    \"nullable\" : false,",
             "                    \"nullableImplementation\" : \"OPTIONAL\",",
-            "                    \"ordinalPosition\" : 1,",
+            "                    \"ordinalPosition\" : 1,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart12(StringBuilder sb) {
+        Stream.of(
             "                    \"restCreateBodyInclude\" : false,",
             "                    \"restCreateBodyRequired\" : true,",
             "                    \"restUpdateBodyInclude\" : false,",
@@ -1342,12 +1356,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  },",
             "                  {",
-            "                    \"databaseType\" : \"java.lang.String\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart12(StringBuilder sb) {
-        Stream.of(
+            "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"name\",",
@@ -1439,7 +1448,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"description\",",
+            "                    \"id\" : \"description\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart13(StringBuilder sb) {
+        Stream.of(
             "                    \"name\" : \"description\",",
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 4",
@@ -1448,12 +1462,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"image_url\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart13(StringBuilder sb) {
-        Stream.of(
+            "                    \"id\" : \"image_url\",",
             "                    \"name\" : \"image_url\",",
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 5",
@@ -1545,7 +1554,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"hall_type_id\",",
             "                    \"name\" : \"hall_type_id\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 4",
+            "                    \"ordinalPosition\" : 4"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart14(StringBuilder sb) {
+        Stream.of(
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
@@ -1554,12 +1568,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"theatre_id\",",
             "                    \"name\" : \"theatre_id\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 5"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart14(StringBuilder sb) {
-        Stream.of(
+            "                    \"ordinalPosition\" : 5",
             "                  }",
             "                ],",
             "                \"enabled\" : true,",
@@ -1651,7 +1660,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    ],",
             "                    \"name\" : \"fk_hall_theatre1_idx\",",
             "                    \"unique\" : false",
-            "                  }",
+            "                  }"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart15(StringBuilder sb) {
+        Stream.of(
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"hall\",",
@@ -1660,12 +1674,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart15(StringBuilder sb) {
-        Stream.of(
+            "                    \"id\" : \"id\",",
             "                    \"name\" : \"id\",",
             "                    \"ordinalPosition\" : 1",
             "                  }",
@@ -1757,7 +1766,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                \"restEnableSorters\" : true,",
             "                \"restEnableTotal\" : false,",
             "                \"restEnabled\" : true",
-            "              },",
+            "              },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart16(StringBuilder sb) {
+        Stream.of(
             "              {",
             "                \"columns\" : [",
             "                  {",
@@ -1766,12 +1780,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"id\",",
-            "                    \"name\" : \"id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart16(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"id\",",
             "                    \"nameProtected\" : true,",
             "                    \"nullable\" : false,",
             "                    \"nullableImplementation\" : \"OPTIONAL\",",
@@ -1863,7 +1872,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 2",
             "                  },",
-            "                  {",
+            "                  {"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart17(StringBuilder sb) {
+        Stream.of(
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
@@ -1872,12 +1886,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 3",
             "                  },",
-            "                  {"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart17(StringBuilder sb) {
-        Stream.of(
+            "                  {",
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
@@ -1969,7 +1978,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.String\",",
-            "                    \"enabled\" : true,",
+            "                    \"enabled\" : true,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart18(StringBuilder sb) {
+        Stream.of(
             "                    \"expanded\" : true,",
             "                    \"id\" : \"description\",",
             "                    \"name\" : \"description\",",
@@ -1978,12 +1992,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.String\",",
-            "                    \"enabled\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart18(StringBuilder sb) {
-        Stream.of(
+            "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"entertainment\",",
             "                    \"name\" : \"entertainment\",",
@@ -2075,7 +2084,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"id\",",
+            "                    \"id\" : \"id\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart19(StringBuilder sb) {
+        Stream.of(
             "                    \"name\" : \"id\",",
             "                    \"nameProtected\" : true,",
             "                    \"nullable\" : false,",
@@ -2084,12 +2098,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"restCreateBodyInclude\" : false,",
             "                    \"restCreateBodyRequired\" : true,",
             "                    \"restUpdateBodyInclude\" : false,",
-            "                    \"restUpdateBodyRequired\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart19(StringBuilder sb) {
-        Stream.of(
+            "                    \"restUpdateBodyRequired\" : true,",
             "                    \"restVisible\" : true,",
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  },",
@@ -2181,7 +2190,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"name\" : \"movie_id\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
-            "                      }",
+            "                      }"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart20(StringBuilder sb) {
+        Stream.of(
             "                    ],",
             "                    \"name\" : \"fk_movie_genre_associate_movie1_idx\",",
             "                    \"unique\" : false",
@@ -2190,12 +2204,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
             "                    \"id\" : \"fk_movie_genre_associate_movie_genre_type1_idx\",",
-            "                    \"indexColumns\" : ["
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart20(StringBuilder sb) {
-        Stream.of(
+            "                    \"indexColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"id\" : \"movie_genre_type_id\",",
@@ -2287,7 +2296,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"name\" : \"PRIMARY\",",
             "                    \"unique\" : true",
             "                  }",
-            "                ],",
+            "                ],"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart21(StringBuilder sb) {
+        Stream.of(
             "                \"isView\" : false,",
             "                \"name\" : \"movie_genre_type\",",
             "                \"nameProtected\" : true,",
@@ -2296,12 +2310,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"id\",",
-            "                    \"name\" : \"id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart21(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"id\",",
             "                    \"ordinalPosition\" : 1",
             "                  }",
             "                ],",
@@ -2393,7 +2402,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                \"restEnableTotal\" : false,",
             "                \"restEnabled\" : true",
             "              },",
-            "              {",
+            "              {"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart22(StringBuilder sb) {
+        Stream.of(
             "                \"columns\" : [",
             "                  {",
             "                    \"autoIncrement\" : true,",
@@ -2402,12 +2416,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"id\" : \"id\",",
             "                    \"name\" : \"id\",",
-            "                    \"nameProtected\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart22(StringBuilder sb) {
-        Stream.of(
+            "                    \"nameProtected\" : true,",
             "                    \"nullable\" : false,",
             "                    \"nullableImplementation\" : \"OPTIONAL\",",
             "                    \"ordinalPosition\" : 1,",
@@ -2499,7 +2508,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"nameProtected\" : true,",
             "                    \"nullable\" : false,",
             "                    \"nullableImplementation\" : \"OPTIONAL\",",
-            "                    \"ordinalPosition\" : 1,",
+            "                    \"ordinalPosition\" : 1,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart23(StringBuilder sb) {
+        Stream.of(
             "                    \"restCreateBodyInclude\" : false,",
             "                    \"restCreateBodyRequired\" : true,",
             "                    \"restUpdateBodyInclude\" : false,",
@@ -2508,12 +2522,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  },",
             "                  {",
-            "                    \"databaseType\" : \"java.lang.String\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart23(StringBuilder sb) {
-        Stream.of(
+            "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"name\",",
@@ -2605,7 +2614,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                \"enabled\" : true,",
             "                \"expanded\" : true,",
             "                \"id\" : \"position\",",
-            "                \"indexes\" : [",
+            "                \"indexes\" : ["
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart24(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
@@ -2614,12 +2628,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"id\" : \"id\",",
-            "                        \"name\" : \"id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart24(StringBuilder sb) {
-        Stream.of(
+            "                        \"name\" : \"id\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
@@ -2711,7 +2720,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"name\" : \"id\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
-            "                      }",
+            "                      }"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart25(StringBuilder sb) {
+        Stream.of(
             "                    ],",
             "                    \"name\" : \"PRIMARY\",",
             "                    \"unique\" : true",
@@ -2720,12 +2734,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                \"isView\" : false,",
             "                \"name\" : \"promo_point\",",
             "                \"nameProtected\" : true,",
-            "                \"primaryKeyColumns\" : ["
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart25(StringBuilder sb) {
-        Stream.of(
+            "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
@@ -2817,7 +2826,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 7",
             "                  },",
             "                  {",
-            "                    \"databaseType\" : \"java.lang.Integer\",",
+            "                    \"databaseType\" : \"java.lang.Integer\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart26(StringBuilder sb) {
+        Stream.of(
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"show_id\",",
@@ -2826,12 +2840,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 8",
             "                  },",
             "                  {",
-            "                    \"databaseType\" : \"java.lang.Integer\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart26(StringBuilder sb) {
-        Stream.of(
+            "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"move_id\",",
@@ -2923,7 +2932,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    ],",
             "                    \"id\" : \"fk_promotion_movie1\",",
             "                    \"name\" : \"fk_promotion_movie1\"",
-            "                  },",
+            "                  },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart27(StringBuilder sb) {
+        Stream.of(
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
@@ -2932,12 +2946,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"expanded\" : true,",
             "                        \"foreignColumnName\" : \"id\",",
             "                        \"foreignDatabaseName\" : \"c04cinema\",",
-            "                        \"foreignSchemaName\" : \"c04cinema\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart27(StringBuilder sb) {
-        Stream.of(
+            "                        \"foreignSchemaName\" : \"c04cinema\",",
             "                        \"foreignTableName\" : \"show\",",
             "                        \"id\" : \"show_id\",",
             "                        \"name\" : \"show_id\",",
@@ -3029,7 +3038,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"name\" : \"move_id\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
-            "                      }",
+            "                      }"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart28(StringBuilder sb) {
+        Stream.of(
             "                    ],",
             "                    \"name\" : \"fk_promotion_movie1_idx\",",
             "                    \"unique\" : false",
@@ -3038,12 +3052,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
             "                    \"id\" : \"fk_promotion_show1_idx\",",
-            "                    \"indexColumns\" : ["
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart28(StringBuilder sb) {
-        Stream.of(
+            "                    \"indexColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"id\" : \"show_id\",",
@@ -3135,7 +3144,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"promotion_id\",",
             "                    \"name\" : \"promotion_id\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 2",
+            "                    \"ordinalPosition\" : 2"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart29(StringBuilder sb) {
+        Stream.of(
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
@@ -3144,12 +3158,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"customer_id\",",
             "                    \"name\" : \"customer_id\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 3"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart29(StringBuilder sb) {
-        Stream.of(
+            "                    \"ordinalPosition\" : 3",
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.String\",",
@@ -3241,7 +3250,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"fk_promotion_customer_promotion1_idx\",",
             "                    \"indexColumns\" : [",
             "                      {",
-            "                        \"expanded\" : true,",
+            "                        \"expanded\" : true,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart30(StringBuilder sb) {
+        Stream.of(
             "                        \"id\" : \"promotion_id\",",
             "                        \"name\" : \"promotion_id\",",
             "                        \"orderType\" : \"ASC\",",
@@ -3250,12 +3264,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    ],",
             "                    \"name\" : \"fk_promotion_customer_promotion1_idx\",",
             "                    \"unique\" : false",
-            "                  }"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart30(StringBuilder sb) {
-        Stream.of(
+            "                  }",
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"promotion_customer\",",
@@ -3347,7 +3356,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                \"restEnableSorters\" : true,",
             "                \"restEnableTotal\" : false,",
             "                \"restEnabled\" : true",
-            "              },",
+            "              },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart31(StringBuilder sb) {
+        Stream.of(
             "              {",
             "                \"columns\" : [",
             "                  {",
@@ -3356,12 +3370,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"id\",",
-            "                    \"name\" : \"id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart31(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"id\",",
             "                    \"nameProtected\" : true,",
             "                    \"nullable\" : false,",
             "                    \"nullableImplementation\" : \"OPTIONAL\",",
@@ -3453,7 +3462,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
-            "                    \"id\" : \"fk_role_account_account1_idx\",",
+            "                    \"id\" : \"fk_role_account_account1_idx\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart32(StringBuilder sb) {
+        Stream.of(
             "                    \"indexColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
@@ -3462,12 +3476,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
-            "                    ],"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart32(StringBuilder sb) {
-        Stream.of(
+            "                    ],",
             "                    \"name\" : \"fk_role_account_account1_idx\",",
             "                    \"unique\" : false",
             "                  },",
@@ -3559,7 +3568,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"seat_type_id\",",
+            "                    \"id\" : \"seat_type_id\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart33(StringBuilder sb) {
+        Stream.of(
             "                    \"name\" : \"seat_type_id\",",
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 5",
@@ -3568,12 +3582,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                \"enabled\" : true,",
             "                \"expanded\" : true,",
             "                \"foreignKeys\" : [",
-            "                  {"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart33(StringBuilder sb) {
-        Stream.of(
+            "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
             "                    \"foreignKeyColumns\" : [",
@@ -3665,7 +3674,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
-            "                    \"id\" : \"fk_seat_seat_type1_idx\",",
+            "                    \"id\" : \"fk_seat_seat_type1_idx\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart34(StringBuilder sb) {
+        Stream.of(
             "                    \"indexColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
@@ -3674,12 +3688,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
-            "                    ],"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart34(StringBuilder sb) {
-        Stream.of(
+            "                    ],",
             "                    \"name\" : \"fk_seat_seat_type1_idx\",",
             "                    \"unique\" : false",
             "                  },",
@@ -3771,7 +3780,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"foreignColumnName\" : \"id\",",
             "                        \"foreignDatabaseName\" : \"c04cinema\",",
             "                        \"foreignSchemaName\" : \"c04cinema\",",
-            "                        \"foreignTableName\" : \"promo_point\",",
+            "                        \"foreignTableName\" : \"promo_point\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart35(StringBuilder sb) {
+        Stream.of(
             "                        \"id\" : \"promo_point_id\",",
             "                        \"name\" : \"promo_point_id\",",
             "                        \"ordinalPosition\" : 1",
@@ -3780,12 +3794,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"fk_seat_type_promo_point1\",",
             "                    \"name\" : \"fk_seat_type_promo_point1\"",
             "                  }",
-            "                ],"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart35(StringBuilder sb) {
-        Stream.of(
+            "                ],",
             "                \"id\" : \"seat_type\",",
             "                \"indexes\" : [",
             "                  {",
@@ -3844,7 +3853,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "              {",
             "                \"columns\" : [",
             "                  {",
-            "                    \"autoIncrement\" : false,",
+            "                    \"autoIncrement\" : true,",
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
@@ -3862,13 +3871,27 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  },",
             "                  {",
+            "                    \"autoIncrement\" : false,",
             "                    \"databaseType\" : \"java.sql.Timestamp\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"start_time\",",
             "                    \"name\" : \"start_time\",",
+            "                    \"nameProtected\" : true,",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 2",
+            "                    \"nullableImplementation\" : \"OPTIONAL\",",
+            "                    \"ordinalPosition\" : 2,",
+            "                    \"restCreateBodyInclude\" : true,",
+            "                    \"restCreateBodyRequired\" : true,",
+            "                    \"restUpdateBodyInclude\" : true,",
+            "                    \"restUpdateBodyRequired\" : true,",
+            "                    \"restVisible\" : true,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper\""
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart36(StringBuilder sb) {
+        Stream.of(
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
@@ -3876,8 +3899,9 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"id\" : \"hall_id\",",
             "                    \"name\" : \"hall_id\",",
-            "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 3",
+            "                    \"nullable\" : false,",
+            "                    \"ordinalPosition\" : 3,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
@@ -3886,12 +3910,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"movie_id\",",
             "                    \"name\" : \"movie_id\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 4"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart36(StringBuilder sb) {
-        Stream.of(
+            "                    \"ordinalPosition\" : 4",
             "                  },",
             "                  {",
             "                    \"databaseType\" : \"java.lang.Double\",",
@@ -3973,7 +3992,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"id\" : \"id\",",
             "                        \"name\" : \"id\",",
             "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
+            "                        \"ordinalPosition\" : 1"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart37(StringBuilder sb) {
+        Stream.of(
             "                      }",
             "                    ],",
             "                    \"name\" : \"PRIMARY\",",
@@ -3992,12 +4016,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
-            "                    \"name\" : \"fk_show_hall1_idx\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart37(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"fk_show_hall1_idx\",",
             "                    \"unique\" : false",
             "                  },",
             "                  {",
@@ -4079,7 +4098,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"account_id\",",
+            "                    \"id\" : \"account_id\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart38(StringBuilder sb) {
+        Stream.of(
             "                    \"name\" : \"account_id\",",
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 4",
@@ -4098,12 +4122,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"email\",",
-            "                    \"name\" : \"email\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart38(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"email\",",
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 6",
             "                  },",
@@ -4185,7 +4204,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"foreignSchemaName\" : \"c04cinema\",",
             "                        \"foreignTableName\" : \"account\",",
             "                        \"id\" : \"account_id\",",
-            "                        \"name\" : \"account_id\",",
+            "                        \"name\" : \"account_id\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart39(StringBuilder sb) {
+        Stream.of(
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
@@ -4204,12 +4228,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                        \"foreignTableName\" : \"position\",",
             "                        \"id\" : \"position_id\",",
             "                        \"name\" : \"position_id\",",
-            "                        \"ordinalPosition\" : 1"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart39(StringBuilder sb) {
-        Stream.of(
+            "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
             "                    \"id\" : \"fk_staff_position1\",",
@@ -4291,7 +4310,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : false,",
             "                    \"id\" : \"fk_staff_position1_idx\",",
             "                    \"indexColumns\" : [",
-            "                      {",
+            "                      {"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart40(StringBuilder sb) {
+        Stream.of(
             "                        \"expanded\" : true,",
             "                        \"id\" : \"position_id\",",
             "                        \"name\" : \"position_id\",",
@@ -4310,12 +4334,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"id\" : \"theatre_id\",",
-            "                        \"name\" : \"theatre_id\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart40(StringBuilder sb) {
-        Stream.of(
+            "                        \"name\" : \"theatre_id\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
@@ -4397,7 +4416,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                \"foreignKeys\" : [",
             "                  {",
             "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
+            "                    \"expanded\" : false,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart41(StringBuilder sb) {
+        Stream.of(
             "                    \"foreignKeyColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
@@ -4416,12 +4440,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"id\" : \"theatre\",",
             "                \"indexes\" : [",
-            "                  {"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart41(StringBuilder sb) {
-        Stream.of(
+            "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
             "                    \"id\" : \"PRIMARY\",",
@@ -4503,7 +4522,12 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : true,",
             "                    \"ordinalPosition\" : 2",
             "                  },",
-            "                  {",
+            "                  {"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart42(StringBuilder sb) {
+        Stream.of(
             "                    \"databaseType\" : \"java.lang.Double\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
@@ -4522,12 +4546,7 @@ public class GeneratedC04cinemaMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 4",
             "                  }",
             "                ],",
-            "                \"enabled\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart42(StringBuilder sb) {
-        Stream.of(
+            "                \"enabled\" : true,",
             "                \"expanded\" : true,",
             "                \"id\" : \"ticket_type\",",
             "                \"indexes\" : [",

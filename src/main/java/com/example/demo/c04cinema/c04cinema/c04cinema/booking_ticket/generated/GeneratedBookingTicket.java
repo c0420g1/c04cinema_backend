@@ -17,8 +17,10 @@ import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
+import com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -189,11 +191,11 @@ public interface GeneratedBookingTicket {
      * This Field corresponds to the {@link BookingTicket} field that can be
      * obtained using the {@link BookingTicket#getBookingDate()} method.
      */
-    ComparableField<BookingTicket, Timestamp, Timestamp> BOOKING_DATE = ComparableField.create(
+    ComparableField<BookingTicket, Timestamp, LocalDateTime> BOOKING_DATE = ComparableField.create(
         Identifier.BOOKING_DATE,
         o -> OptionalUtil.unwrap(o.getBookingDate()),
         BookingTicket::setBookingDate,
-        TypeMapper.identity(),
+        new TimestampToLocalDateTimeMapper(),
         false
     );
     
@@ -315,7 +317,7 @@ public interface GeneratedBookingTicket {
      * 
      * @return the bookingDate of this BookingTicket
      */
-    Optional<Timestamp> getBookingDate();
+    Optional<LocalDateTime> getBookingDate();
     
     /**
      * Sets the id of this BookingTicket. The id field corresponds to the
@@ -446,7 +448,7 @@ public interface GeneratedBookingTicket {
      * @param bookingDate to set of this BookingTicket
      * @return            this BookingTicket instance
      */
-    BookingTicket setBookingDate(Timestamp bookingDate);
+    BookingTicket setBookingDate(LocalDateTime bookingDate);
     
     /**
      * Queries the specified manager for the referenced Show. If no such Show

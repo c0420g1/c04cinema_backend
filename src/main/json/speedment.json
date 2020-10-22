@@ -17,6 +17,8 @@
         "schemas" : [
           {
             "nameProtected" : true,
+            "expanded" : true,
+            "restEnabled" : true,
             "tables" : [
               {
                 "nameProtected" : true,
@@ -62,7 +64,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -151,7 +153,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -429,13 +431,22 @@
                     "enabled" : true
                   },
                   {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "autoIncrement" : false,
+                    "restUpdateBodyInclude" : true,
+                    "ordinalPosition" : 14,
+                    "enabled" : true,
                     "databaseType" : "java.sql.Timestamp",
                     "expanded" : true,
-                    "nullable" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper",
                     "name" : "booking_date",
+                    "restCreateBodyInclude" : true,
+                    "nullableImplementation" : "OPTIONAL",
+                    "restUpdateBodyRequired" : true,
+                    "restCreateBodyRequired" : true,
                     "id" : "booking_date",
-                    "ordinalPosition" : 14,
-                    "enabled" : true
+                    "restVisible" : true
                   }
                 ],
                 "enabled" : true,
@@ -3631,7 +3642,7 @@
                   {
                     "nameProtected" : true,
                     "nullable" : false,
-                    "autoIncrement" : false,
+                    "autoIncrement" : true,
                     "restUpdateBodyInclude" : false,
                     "ordinalPosition" : 1,
                     "enabled" : true,
@@ -3647,18 +3658,28 @@
                     "restVisible" : true
                   },
                   {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "autoIncrement" : false,
+                    "restUpdateBodyInclude" : true,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
                     "databaseType" : "java.sql.Timestamp",
                     "expanded" : true,
-                    "nullable" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper",
                     "name" : "start_time",
+                    "restCreateBodyInclude" : true,
+                    "nullableImplementation" : "OPTIONAL",
+                    "restUpdateBodyRequired" : true,
+                    "restCreateBodyRequired" : true,
                     "id" : "start_time",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "restVisible" : true
                   },
                   {
                     "databaseType" : "java.lang.Integer",
                     "expanded" : true,
-                    "nullable" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "nullable" : false,
                     "name" : "hall_id",
                     "id" : "hall_id",
                     "ordinalPosition" : 3,
@@ -4278,8 +4299,6 @@
                 "restEnableTotal" : false
               }
             ],
-            "expanded" : true,
-            "restEnabled" : true,
             "name" : "c04cinema",
             "restPath" : "",
             "id" : "c04cinema",
