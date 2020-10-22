@@ -7,13 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * The spring configuration file
- * <p>
- * This file is safe to edit. It will not be overwritten by the code generator.
- * 
- * @author company
- */
 @Configuration
 public class C04cinemaConfiguration extends GeneratedC04cinemaConfiguration {
     private @Value("${c04.host}") String host;
