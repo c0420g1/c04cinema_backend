@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -254,7 +254,7 @@ public abstract class GeneratedShowController {
                     }
                 }
                 case "startTime" : {
-                    final Timestamp v = Timestamp.valueOf(value());
+                    final LocalDateTime v = LocalDateTime.parse(value());
                     switch (operator()) {
                         case "eq"   : return Show.START_TIME.equal(v);
                         case "ne"   : return Show.START_TIME.notEqual(v);
@@ -270,7 +270,7 @@ public abstract class GeneratedShowController {
                     }
                 }
                 case "hallId" : {
-                    final Integer v = Integer.parseInt(value());
+                    final int v = Integer.parseInt(value());
                     switch (operator()) {
                         case "eq"   : return Show.HALL_ID.equal(v);
                         case "ne"   : return Show.HALL_ID.notEqual(v);
@@ -397,8 +397,8 @@ public abstract class GeneratedShowController {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class CreateBody {
         
-        private final Timestamp startTime;
-        private final Integer hallId;
+        private final LocalDateTime startTime;
+        private final int hallId;
         private final Integer movieId;
         private final Double price;
         private final String description;
@@ -406,7 +406,7 @@ public abstract class GeneratedShowController {
         
         @JsonCreator
         public CreateBody(
-                @JsonProperty("startTime") Timestamp startTime,
+                @JsonProperty("startTime") LocalDateTime startTime,
                 @JsonProperty("hallId") Integer hallId,
                 @JsonProperty("movieId") Integer movieId,
                 @JsonProperty("price") Double price,
@@ -420,11 +420,11 @@ public abstract class GeneratedShowController {
             this.isearly = Objects.requireNonNull(isearly, "`isearly` is required");
         }
         
-        public Timestamp getStartTime() {
+        public LocalDateTime getStartTime() {
             return this.startTime;
         }
         
-        public Integer getHallId() {
+        public int getHallId() {
             return this.hallId;
         }
         
@@ -449,8 +449,8 @@ public abstract class GeneratedShowController {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class UpdateBody {
         
-        private final Timestamp startTime;
-        private final Integer hallId;
+        private final LocalDateTime startTime;
+        private final int hallId;
         private final Integer movieId;
         private final Double price;
         private final String description;
@@ -458,7 +458,7 @@ public abstract class GeneratedShowController {
         
         @JsonCreator
         public UpdateBody(
-                @JsonProperty("startTime") Timestamp startTime,
+                @JsonProperty("startTime") LocalDateTime startTime,
                 @JsonProperty("hallId") Integer hallId,
                 @JsonProperty("movieId") Integer movieId,
                 @JsonProperty("price") Double price,
@@ -472,11 +472,11 @@ public abstract class GeneratedShowController {
             this.isearly = Objects.requireNonNull(isearly, "`isearly` is required");
         }
         
-        public Timestamp getStartTime() {
+        public LocalDateTime getStartTime() {
             return this.startTime;
         }
         
-        public Integer getHallId() {
+        public int getHallId() {
             return this.hallId;
         }
         

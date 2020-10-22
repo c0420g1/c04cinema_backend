@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -481,7 +481,7 @@ public abstract class GeneratedBookingTicketController {
                     }
                 }
                 case "bookingDate" : {
-                    final Timestamp v = Timestamp.valueOf(value());
+                    final LocalDateTime v = LocalDateTime.parse(value());
                     switch (operator()) {
                         case "eq"   : return BookingTicket.BOOKING_DATE.equal(v);
                         case "ne"   : return BookingTicket.BOOKING_DATE.notEqual(v);
@@ -563,7 +563,7 @@ public abstract class GeneratedBookingTicketController {
         private final Byte status;
         private final Double price;
         private final Byte iscancel;
-        private final Timestamp bookingDate;
+        private final LocalDateTime bookingDate;
         
         @JsonCreator
         public CreateBody(
@@ -579,7 +579,7 @@ public abstract class GeneratedBookingTicketController {
                 @JsonProperty("status") Byte status,
                 @JsonProperty("price") Double price,
                 @JsonProperty("iscancel") Byte iscancel,
-                @JsonProperty("bookingDate") Timestamp bookingDate) {
+                @JsonProperty("bookingDate") LocalDateTime bookingDate) {
             this.code = Objects.requireNonNull(code, "`code` is required");
             this.showId = Objects.requireNonNull(showId, "`showId` is required");
             this.ticketTypeId = Objects.requireNonNull(ticketTypeId, "`ticketTypeId` is required");
@@ -643,7 +643,7 @@ public abstract class GeneratedBookingTicketController {
             return this.iscancel;
         }
         
-        public Timestamp getBookingDate() {
+        public LocalDateTime getBookingDate() {
             return this.bookingDate;
         }
     }
@@ -664,7 +664,7 @@ public abstract class GeneratedBookingTicketController {
         private final Byte status;
         private final Double price;
         private final Byte iscancel;
-        private final Timestamp bookingDate;
+        private final LocalDateTime bookingDate;
         
         @JsonCreator
         public UpdateBody(
@@ -680,7 +680,7 @@ public abstract class GeneratedBookingTicketController {
                 @JsonProperty("status") Byte status,
                 @JsonProperty("price") Double price,
                 @JsonProperty("iscancel") Byte iscancel,
-                @JsonProperty("bookingDate") Timestamp bookingDate) {
+                @JsonProperty("bookingDate") LocalDateTime bookingDate) {
             this.code = Objects.requireNonNull(code, "`code` is required");
             this.showId = Objects.requireNonNull(showId, "`showId` is required");
             this.ticketTypeId = Objects.requireNonNull(ticketTypeId, "`ticketTypeId` is required");
@@ -744,7 +744,7 @@ public abstract class GeneratedBookingTicketController {
             return this.iscancel;
         }
         
-        public Timestamp getBookingDate() {
+        public LocalDateTime getBookingDate() {
             return this.bookingDate;
         }
     }

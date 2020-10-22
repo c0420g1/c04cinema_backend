@@ -11,10 +11,13 @@ import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
+import com.speedment.runtime.field.IntForeignKeyField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
+import com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
@@ -47,23 +50,23 @@ public interface GeneratedShow {
      * This Field corresponds to the {@link Show} field that can be obtained
      * using the {@link Show#getStartTime()} method.
      */
-    ComparableField<Show, Timestamp, Timestamp> START_TIME = ComparableField.create(
+    ComparableField<Show, Timestamp, LocalDateTime> START_TIME = ComparableField.create(
         Identifier.START_TIME,
         o -> OptionalUtil.unwrap(o.getStartTime()),
         Show::setStartTime,
-        TypeMapper.identity(),
+        new TimestampToLocalDateTimeMapper(),
         false
     );
     /**
      * This Field corresponds to the {@link Show} field that can be obtained
      * using the {@link Show#getHallId()} method.
      */
-    ComparableForeignKeyField<Show, Integer, Integer, Hall> HALL_ID = ComparableForeignKeyField.create(
+    IntForeignKeyField<Show, Integer, Hall> HALL_ID = IntForeignKeyField.create(
         Identifier.HALL_ID,
-        o -> OptionalUtil.unwrap(o.getHallId()),
+        Show::getHallId,
         Show::setHallId,
         Hall.ID,
-        TypeMapper.identity(),
+        TypeMapper.primitive(),
         false
     );
     /**
@@ -126,7 +129,7 @@ public interface GeneratedShow {
      * 
      * @return the startTime of this Show
      */
-    Optional<Timestamp> getStartTime();
+    Optional<LocalDateTime> getStartTime();
     
     /**
      * Returns the hallId of this Show. The hallId field corresponds to the
@@ -134,7 +137,7 @@ public interface GeneratedShow {
      * 
      * @return the hallId of this Show
      */
-    OptionalInt getHallId();
+    int getHallId();
     
     /**
      * Returns the movieId of this Show. The movieId field corresponds to the
@@ -184,7 +187,7 @@ public interface GeneratedShow {
      * @param startTime to set of this Show
      * @return          this Show instance
      */
-    Show setStartTime(Timestamp startTime);
+    Show setStartTime(LocalDateTime startTime);
     
     /**
      * Sets the hallId of this Show. The hallId field corresponds to the
@@ -193,7 +196,7 @@ public interface GeneratedShow {
      * @param hallId to set of this Show
      * @return       this Show instance
      */
-    Show setHallId(Integer hallId);
+    Show setHallId(int hallId);
     
     /**
      * Sets the movieId of this Show. The movieId field corresponds to the
@@ -238,7 +241,7 @@ public interface GeneratedShow {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Optional<Hall> findHallId(Manager<Hall> foreignManager);
+    Hall findHallId(Manager<Hall> foreignManager);
     
     /**
      * Queries the specified manager for the referenced Movie. If no such Movie
