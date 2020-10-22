@@ -1,0 +1,13 @@
+package com.example.demo.c04cinema.c04cinema.c04cinema.seat_type;
+
+import com.example.demo.c04cinema.c04cinema.c04cinema.seat_type.generated.GeneratedSeatTypeSqlAdapter;
+
+/**
+ * The SqlAdapter for every {@link
+ * com.example.demo.c04cinema.c04cinema.c04cinema.seat_type.SeatType} entity.
+ * <p>
+ * This file is safe to edit. It will not be overwritten by the code generator.
+ * 
+ * @author company
+ */
+public class SeatTypeSqlAdapter extends GeneratedSeatTypeSqlAdapter {}
