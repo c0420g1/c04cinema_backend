@@ -16,6 +16,7 @@ public class BookingTicketDTO {
     private final String movieName;
     private final String phoneCustomer;
     private final Byte status;
+    private final String posterUrl;
 
 
     public BookingTicketDTO(BookingTicket bookingTicket, Customer customer, Show show, Movie movie){
@@ -28,6 +29,11 @@ public class BookingTicketDTO {
         this.movieName= movie.getName().get();
         this.phoneCustomer= customer.getPhone().get();
         this.status= bookingTicket.getStatus().get();
+        this.posterUrl= movie.getPosterUrl().get();
+    }
+
+    public String getPosterUrl() {
+        return posterUrl;
     }
 
     public int getIdBookingTicket() {
