@@ -8,12 +8,14 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTick
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.generated.GeneratedCustomerController;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
 import com.example.demo.c04cinema.c04cinema.c04cinema.promo_point.PromoPoint;
+import com.example.demo.c04cinema.c04cinema.c04cinema.promotion.Promotion;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat_type.SeatType;
 import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
 import com.example.demo.c04cinema.model_dto.BookingTicketDTO;
 import com.example.demo.c04cinema.model_dto.CustomerDTO;
 import com.example.demo.c04cinema.model_dto.CustomerPointDTO;
+import com.example.demo.c04cinema.model_dto.CustomerPointUseDTO;
 import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +48,8 @@ public class CustomerController extends GeneratedCustomerController {
         return join.stream().skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
     }
 
-    @GetMapping("/showPointList/page/{pageNum}")
-    public List<CustomerPointDTO> getPoint(
+    @GetMapping("/showPointPlusList/page/{pageNum}")
+    public List<CustomerPointDTO> getPlusPoint(
             @RequestParam("star_date")
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime star_date,
             @RequestParam("end_date")
@@ -64,6 +66,29 @@ public class CustomerController extends GeneratedCustomerController {
                 .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID)
                 .innerJoinOn(Movie.ID).equal(Show.MOVIE_ID)
                 .build(CustomerPointDTO::new);
+
+        return join.stream().skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
+    }
+
+    @GetMapping("/showPointUseList/page/{pageNum}")
+    public List<CustomerPointUseDTO> getUsePoint(
+            @RequestParam("star_date")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime star_date,
+            @RequestParam("end_date")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end_date
+            , @PathVariable int pageNum
+            , @RequestParam int id) {
+        int pageSize = 5;
+        Join<CustomerPointUseDTO> join = joinComponent.from(AccountManager.IDENTIFIER)
+                .innerJoinOn(BookingTicket.ACCOUNT_ID).equal(Account.ID).where(BookingTicket.BOOKING_DATE.between(star_date, end_date))
+                .innerJoinOn(Seat.ID).equal(BookingTicket.SEAT_ID)
+                .innerJoinOn(SeatType.ID).equal(Seat.SEAT_TYPE_ID)
+                .innerJoinOn(PromoPoint.ID).equal(SeatType.PROMO_POINT_ID)
+                .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID)
+                .innerJoinOn(Movie.ID).equal(Show.MOVIE_ID)
+                .innerJoinOn(Customer.ACCOUNT_ID).equal(Account.ID)
+                .innerJoinOn(Promotion.CUSTOMER_ID).equal(Customer.ID).where(Promotion.CUSTOMER_ID.equal(id))
+                .build(CustomerPointUseDTO::new);
 
         return join.stream().skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
     }
