@@ -681,19 +681,19 @@ public abstract class GeneratedBookingTicketController {
                 @JsonProperty("price") Double price,
                 @JsonProperty("iscancel") Byte iscancel,
                 @JsonProperty("bookingDate") LocalDateTime bookingDate) {
-            this.code = Objects.requireNonNull(code, "`code` is required");
-            this.showId = Objects.requireNonNull(showId, "`showId` is required");
-            this.ticketTypeId = Objects.requireNonNull(ticketTypeId, "`ticketTypeId` is required");
-            this.seatId = Objects.requireNonNull(seatId, "`seatId` is required");
-            this.promotionId = Objects.requireNonNull(promotionId, "`promotionId` is required");
-            this.accountId = Objects.requireNonNull(accountId, "`accountId` is required");
-            this.paymentId = Objects.requireNonNull(paymentId, "`paymentId` is required");
-            this.contactEmail = Objects.requireNonNull(contactEmail, "`contactEmail` is required");
-            this.contactPhone = Objects.requireNonNull(contactPhone, "`contactPhone` is required");
-            this.status = Objects.requireNonNull(status, "`status` is required");
-            this.price = Objects.requireNonNull(price, "`price` is required");
-            this.iscancel = Objects.requireNonNull(iscancel, "`iscancel` is required");
-            this.bookingDate = Objects.requireNonNull(bookingDate, "`bookingDate` is required");
+            this.code = code;
+            this.showId = showId;
+            this.ticketTypeId = ticketTypeId;
+            this.seatId = seatId;
+            this.promotionId = promotionId;
+            this.accountId = accountId;
+            this.paymentId = paymentId;
+            this.contactEmail = contactEmail;
+            this.contactPhone = contactPhone;
+            this.status = status;
+            this.price = price;
+            this.iscancel = iscancel;
+            this.bookingDate = bookingDate;
         }
         
         public String getCode() {
