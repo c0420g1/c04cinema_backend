@@ -23,12 +23,12 @@ public class TokenAuthenticator {
     private static final String SECRET = "OurSecret";
     private static final String PG_CLAIM_LABEL = "PG";
 
-    static String secret = "asdfSFS34wfsdfsdfSDSD32dfsddDDerQSNCK34SOWEK5354fdgdf4";
+    static String secret = "asdfSFS34wfsdfsdfSDSD32dfsddDddfdfdDerQSNCK34SOWEK5354fdgdf4";
 
     static Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secret),
             SignatureAlgorithm.HS256.getJcaName());
 
-    static String addAuthentication(HttpServletResponse res, String userName, String autorizations) {
+    static String addAuthentication(HttpServletResponse res,int accountId, String userName, String autorizations) {
 
 //        List<String> pgRatings = autorizations.stream()
 //                .filter(s -> s.startsWith(PG_CLAIM_LABEL))
@@ -41,7 +41,7 @@ public class TokenAuthenticator {
                 .signWith(hmacKey)
                 .compact();
 
-        res.addHeader(AUTH_HEADER_STRING, jwt);
+//        res.addHeader(AUTH_HEADER_STRING, jwt);
         return jwt;
     }
 
