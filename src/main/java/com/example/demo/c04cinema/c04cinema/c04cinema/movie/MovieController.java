@@ -4,6 +4,7 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.movie.generated.GeneratedM
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie_genre_associate.MovieGenreAssociate;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie_genre_associate.MovieGenreAssociateManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,5 +34,10 @@ public class MovieController extends GeneratedMovieController {
     public List<Movie> searchByDate(@PathVariable Date date) {
         LocalDate a= date.toLocalDate().plusDays(1);
        return  movieManager.stream().filter(Movie.START_DATE.equal(Date.valueOf(a))).collect(Collectors.toList());
+    }
+    @DeleteMapping("/movieGenreAssociate/{movieId}")
+    public void deleteMovieGenreAssociateByMovieId(@PathVariable int movieId){
+       movieGenreAssociateManager.stream().filter(MovieGenreAssociate.MOVIE_ID.equal(movieId)).forEach(e->
+             movieGenreAssociateManager.remove(e));
     }
 }
