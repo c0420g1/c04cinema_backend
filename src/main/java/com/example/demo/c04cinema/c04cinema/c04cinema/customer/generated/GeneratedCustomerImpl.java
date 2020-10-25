@@ -7,6 +7,8 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,8 +26,9 @@ import java.util.StringJoiner;
  */
 @GeneratedCode("Speedment")
 public abstract class GeneratedCustomerImpl implements Customer {
-    
+
     private int id;
+
     private String name;
     private String address;
     private Integer customerTypeId;

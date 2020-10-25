@@ -651,6 +651,7 @@ public abstract class GeneratedCustomerController {
                 @JsonProperty("cardid") String cardid,
                 @JsonProperty("code") String code) {
             this.name = Objects.requireNonNull(name, "`name` is required");
+
             this.address = Objects.requireNonNull(address, "`address` is required");
             this.customerTypeId = Objects.requireNonNull(customerTypeId, "`customerTypeId` is required");
             this.currentBonusPoint = Objects.requireNonNull(currentBonusPoint, "`currentBonusPoint` is required");
