@@ -14,6 +14,8 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
 import com.example.demo.c04cinema.common.Error;
 import com.example.demo.c04cinema.common.Regex;
 import com.example.demo.c04cinema.model_dto.*;
+import com.example.demo.c04cinema.model_dto.CustomerDTO;
+import com.example.demo.c04cinema.model_dto.CustomerPointDTO;
 import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.beans.factory.annotation.Autowired;
