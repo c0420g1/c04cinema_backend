@@ -36,26 +36,26 @@ public class TheatreController extends GeneratedTheatreController {
     @Autowired
     BookingTicketManager bookingTicketManager;
 
-    @GetMapping("/a")
-    public List<BookingTicketDTO> test(@RequestParam int id){
-        List<Theatre> res= theatreManager.stream().filter(Theatre.LOCATION_ID.equal(2)).collect(toList());
-
-        Join<BookingTicketDTO> join=    joinComponent.from(BookingTicketManager.IDENTIFIER).where(BookingTicket.ACCOUNT_ID.equal(id))
-                .innerJoinOn(Customer.ID).equal(BookingTicket.ACCOUNT_ID).innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID).innerJoinOn(Movie.ID).equal(Show.MOVIE_ID)
-                .build(BookingTicketDTO::new);
-
-        List<BookingTicketDTO> res1= join.stream().collect(toList());
-
-        return res1;
-    }
-    @GetMapping("/b/page/{pageNum}")
-    public List<BookingTicketDTO> test1(@PathVariable int pageNum){
-        int pageSize= 10;
-       Join<BookingTicketDTO> join= joinComponent.from(BookingTicketManager.IDENTIFIER).innerJoinOn(Customer.ID).equal(BookingTicket.ACCOUNT_ID)
-                .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID).innerJoinOn(Movie.ID).equal(Show.MOVIE_ID).build(BookingTicketDTO::new);
-
-       return join.stream().skip(pageNum*pageSize).limit(pageSize).collect(toList());
-    }
+//    @GetMapping("/a")
+//    public List<BookingTicketDTO> test(@RequestParam int id){
+//        List<Theatre> res= theatreManager.stream().filter(Theatre.LOCATION_ID.equal(2)).collect(toList());
+//
+//        Join<BookingTicketDTO> join=    joinComponent.from(BookingTicketManager.IDENTIFIER).where(BookingTicket.ACCOUNT_ID.equal(id))
+//                .innerJoinOn(Customer.ID).equal(BookingTicket.ACCOUNT_ID).innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID).innerJoinOn(Movie.ID).equal(Show.MOVIE_ID)
+//                .build(BookingTicketDTO::new);
+//
+//        List<BookingTicketDTO> res1= join.stream().collect(toList());
+//
+//        return res1;
+//    }
+//    @GetMapping("/b/page/{pageNum}")
+//    public List<BookingTicketDTO> test1(@PathVariable int pageNum){
+//        int pageSize= 10;
+//       Join<BookingTicketDTO> join= joinComponent.from(BookingTicketManager.IDENTIFIER).innerJoinOn(Customer.ID).equal(BookingTicket.ACCOUNT_ID)
+//                .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID).innerJoinOn(Movie.ID).equal(Show.MOVIE_ID).build(BookingTicketDTO::new);
+//
+//       return join.stream().skip(pageNum*pageSize).limit(pageSize).collect(toList());
+//    }
 
     @PostMapping("/c")
     public String checkValid(@RequestBody Combo combo){
