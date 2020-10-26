@@ -103,17 +103,6 @@ public class MovieController extends GeneratedMovieController {
 
     }
 
-    // creator Vu Le Tuong
-    // lay ve mot list movie, co tim kiem, nhung khong co phan trang
-
-    
-//    @GetMapping("/movies")
-//    public List<Movie> getListMovie(@RequestParam(defaultValue = "") String search) {
-//
-//    }
-//
-
-
     //creator Hieu
     @GetMapping("/movie/date/{date}")
     public List<Movie> searchByDate (@PathVariable Date date){
