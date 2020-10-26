@@ -3,10 +3,14 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket;
 import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.generated.GeneratedBookingTicketController;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.generated.GeneratedCustomerController;
+import com.example.demo.c04cinema.c04cinema.c04cinema.hall.Hall;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
 import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
+import com.example.demo.c04cinema.c04cinema.c04cinema.theatre.Theatre;
+import com.example.demo.c04cinema.c04cinema.c04cinema.theatre.TheatreManager;
 import com.example.demo.c04cinema.model_dto.BookingTicketDTO;
+import com.example.demo.c04cinema.model_dto.BookingTimeDTO;
 import com.example.demo.c04cinema.model_dto.ConfirmTicketDTO;
 import com.speedment.enterprise.plugins.json.JsonCollectors;
 import com.speedment.enterprise.plugins.spring.runtime.ControllerUtil;
@@ -72,10 +76,13 @@ public class BookingTicketController extends GeneratedBookingTicketController {
        bookingTicket.setStatus(confirmTicketDTO.getStatus());
        bookingTicketManager.update(bookingTicket);
     }
-//    @GetMapping(path = "/booking_ticket_dto", produces = "application/json")
-//    public String get(@RequestParam(name = "filter", defaultValue = "[]") String filters) {
-//
-//        return getHelper(ControllerUtil.parseFilters(filters, GeneratedCustomerController.CustomerFilter::new).collect(toList()));
-//    }
+
+    @GetMapping("/bookingTime")
+    public List<BookingTimeDTO> getBookingTime(@RequestParam int theatreId){
+        Join<BookingTimeDTO> join = joinComponent.from(TheatreManager.IDENTIFIER).where(Theatre.ID.equal(theatreId)).innerJoinOn(Hall.THEATRE_ID).equal(Theatre.ID)
+                .innerJoinOn(Show.HALL_ID).equal(Show.ID).build(BookingTimeDTO::new);
+
+        return join.stream().collect(Collectors.toList());
+    }
 
 }

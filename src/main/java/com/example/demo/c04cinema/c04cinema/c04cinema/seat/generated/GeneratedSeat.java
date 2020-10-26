@@ -32,6 +32,18 @@ public interface GeneratedSeat {
     
     /**
      * This Field corresponds to the {@link Seat} field that can be obtained
+     * using the {@link Seat#getTheatreId()} method.
+     */
+    ComparableForeignKeyField<Seat, Integer, Integer, Theatre> THEATRE_ID = ComparableForeignKeyField.create(
+        Identifier.THEATRE_ID,
+        o -> OptionalUtil.unwrap(o.getTheatreId()),
+        Seat::setTheatreId,
+        Theatre.ID,
+        TypeMapper.identity(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link Seat} field that can be obtained
      * using the {@link Seat#getId()} method.
      */
     IntField<Seat, Integer> ID = IntField.create(
@@ -49,18 +61,6 @@ public interface GeneratedSeat {
         Identifier.NAME,
         o -> OptionalUtil.unwrap(o.getName()),
         Seat::setName,
-        TypeMapper.identity(),
-        false
-    );
-    /**
-     * This Field corresponds to the {@link Seat} field that can be obtained
-     * using the {@link Seat#getTheatreId()} method.
-     */
-    ComparableForeignKeyField<Seat, Integer, Integer, Theatre> THEATRE_ID = ComparableForeignKeyField.create(
-        Identifier.THEATRE_ID,
-        o -> OptionalUtil.unwrap(o.getTheatreId()),
-        Seat::setTheatreId,
-        Theatre.ID,
         TypeMapper.identity(),
         false
     );
@@ -90,6 +90,14 @@ public interface GeneratedSeat {
     );
     
     /**
+     * Returns the theatreId of this Seat. The theatreId field corresponds to
+     * the database column c04cinema.c04cinema.seat.theatre_id.
+     * 
+     * @return the theatreId of this Seat
+     */
+    OptionalInt getTheatreId();
+    
+    /**
      * Returns the id of this Seat. The id field corresponds to the database
      * column c04cinema.c04cinema.seat.id.
      * 
@@ -104,14 +112,6 @@ public interface GeneratedSeat {
      * @return the name of this Seat
      */
     Optional<String> getName();
-    
-    /**
-     * Returns the theatreId of this Seat. The theatreId field corresponds to
-     * the database column c04cinema.c04cinema.seat.theatre_id.
-     * 
-     * @return the theatreId of this Seat
-     */
-    OptionalInt getTheatreId();
     
     /**
      * Returns the hallId of this Seat. The hallId field corresponds to the
@@ -130,6 +130,15 @@ public interface GeneratedSeat {
     OptionalInt getSeatTypeId();
     
     /**
+     * Sets the theatreId of this Seat. The theatreId field corresponds to the
+     * database column c04cinema.c04cinema.seat.theatre_id.
+     * 
+     * @param theatreId to set of this Seat
+     * @return          this Seat instance
+     */
+    Seat setTheatreId(Integer theatreId);
+    
+    /**
      * Sets the id of this Seat. The id field corresponds to the database column
      * c04cinema.c04cinema.seat.id.
      * 
@@ -146,15 +155,6 @@ public interface GeneratedSeat {
      * @return     this Seat instance
      */
     Seat setName(String name);
-    
-    /**
-     * Sets the theatreId of this Seat. The theatreId field corresponds to the
-     * database column c04cinema.c04cinema.seat.theatre_id.
-     * 
-     * @param theatreId to set of this Seat
-     * @return          this Seat instance
-     */
-    Seat setTheatreId(Integer theatreId);
     
     /**
      * Sets the hallId of this Seat. The hallId field corresponds to the
@@ -203,9 +203,9 @@ public interface GeneratedSeat {
     
     enum Identifier implements ColumnIdentifier<Seat> {
         
+        THEATRE_ID   ("theatre_id"),
         ID           ("id"),
         NAME         ("name"),
-        THEATRE_ID   ("theatre_id"),
         HALL_ID      ("hall_id"),
         SEAT_TYPE_ID ("seat_type_id");
         

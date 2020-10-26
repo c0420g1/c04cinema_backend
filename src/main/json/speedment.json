@@ -149,6 +149,24 @@
                     "id" : "description",
                     "ordinalPosition" : 4,
                     "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "type",
+                    "id" : "type",
+                    "ordinalPosition" : 5,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Byte",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "isOther",
+                    "id" : "isOther",
+                    "ordinalPosition" : 6,
+                    "enabled" : true
                   }
                 ],
                 "enabled" : true,
@@ -1124,6 +1142,14 @@
                     "id" : "code",
                     "ordinalPosition" : 13,
                     "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "image_url",
+                    "id" : "image_url",
+                    "ordinalPosition" : 14
                   }
                 ],
                 "enabled" : true,
@@ -1409,6 +1435,15 @@
                 "restEnableCUD" : true,
                 "columns" : [
                   {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "seat_quantity",
+                    "id" : "seat_quantity",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
+                  },
+                  {
                     "nameProtected" : true,
                     "nullable" : false,
                     "autoIncrement" : true,
@@ -1439,18 +1474,9 @@
                     "databaseType" : "java.lang.Integer",
                     "expanded" : true,
                     "nullable" : true,
-                    "name" : "seat_quantity",
-                    "id" : "seat_quantity",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "expanded" : true,
-                    "nullable" : true,
                     "name" : "hall_type_id",
                     "id" : "hall_type_id",
-                    "ordinalPosition" : 4,
+                    "ordinalPosition" : 3,
                     "enabled" : true
                   },
                   {
@@ -1459,7 +1485,7 @@
                     "nullable" : true,
                     "name" : "theatre_id",
                     "id" : "theatre_id",
-                    "ordinalPosition" : 5,
+                    "ordinalPosition" : 4,
                     "enabled" : true
                   }
                 ],
@@ -2267,6 +2293,22 @@
                     "id" : "description",
                     "ordinalPosition" : 4,
                     "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Byte",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "isOther",
+                    "id" : "isOther",
+                    "ordinalPosition" : 5
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "image_url",
+                    "id" : "image_url",
+                    "ordinalPosition" : 6
                   }
                 ],
                 "enabled" : true,
@@ -3288,6 +3330,24 @@
                         "foreignDatabaseName" : "c04cinema",
                         "foreignSchemaName" : "c04cinema",
                         "expanded" : true,
+                        "name" : "theatre_id",
+                        "foreignColumnName" : "id",
+                        "id" : "theatre_id",
+                        "foreignTableName" : "theatre",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "fk_seat_theatre1",
+                    "id" : "fk_seat_theatre1",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "c04cinema",
+                        "foreignSchemaName" : "c04cinema",
+                        "expanded" : true,
                         "name" : "hall_id",
                         "foreignColumnName" : "id",
                         "id" : "hall_id",
@@ -3316,29 +3376,20 @@
                     "name" : "fk_seat_seat_type1",
                     "id" : "fk_seat_seat_type1",
                     "enabled" : true
-                  },
-                  {
-                    "expanded" : false,
-                    "foreignKeyColumns" : [
-                      {
-                        "foreignDatabaseName" : "c04cinema",
-                        "foreignSchemaName" : "c04cinema",
-                        "expanded" : true,
-                        "name" : "theatre_id",
-                        "foreignColumnName" : "id",
-                        "id" : "theatre_id",
-                        "foreignTableName" : "theatre",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "name" : "fk_seat_theatre1",
-                    "id" : "fk_seat_theatre1",
-                    "enabled" : true
                   }
                 ],
                 "isView" : false,
                 "restEnableCUD" : true,
                 "columns" : [
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "theatre_id",
+                    "id" : "theatre_id",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
+                  },
                   {
                     "nameProtected" : true,
                     "nullable" : false,
@@ -3370,18 +3421,9 @@
                     "databaseType" : "java.lang.Integer",
                     "expanded" : true,
                     "nullable" : true,
-                    "name" : "theatre_id",
-                    "id" : "theatre_id",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "expanded" : true,
-                    "nullable" : true,
                     "name" : "hall_id",
                     "id" : "hall_id",
-                    "ordinalPosition" : 4,
+                    "ordinalPosition" : 3,
                     "enabled" : true
                   },
                   {
@@ -3390,7 +3432,7 @@
                     "nullable" : true,
                     "name" : "seat_type_id",
                     "id" : "seat_type_id",
-                    "ordinalPosition" : 5,
+                    "ordinalPosition" : 4,
                     "enabled" : true
                   }
                 ],
@@ -3408,6 +3450,22 @@
                   }
                 ],
                 "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "fk_seat_theatre1_idx",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "theatre_id",
+                        "id" : "theatre_id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "fk_seat_theatre1_idx",
+                    "enabled" : true
+                  },
                   {
                     "expanded" : false,
                     "unique" : true,
@@ -3454,22 +3512,6 @@
                       }
                     ],
                     "id" : "fk_seat_seat_type1_idx",
-                    "enabled" : true
-                  },
-                  {
-                    "expanded" : false,
-                    "unique" : false,
-                    "name" : "fk_seat_theatre1_idx",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "theatre_id",
-                        "id" : "theatre_id",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "fk_seat_theatre1_idx",
                     "enabled" : true
                   }
                 ],
@@ -3540,6 +3582,30 @@
                     "id" : "promo_point_id",
                     "ordinalPosition" : 3,
                     "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Double",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "price",
+                    "id" : "price",
+                    "ordinalPosition" : 4
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "color",
+                    "id" : "color",
+                    "ordinalPosition" : 5
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "description",
+                    "id" : "description",
+                    "ordinalPosition" : 6
                   }
                 ],
                 "enabled" : true,
@@ -3996,6 +4062,14 @@
                     "id" : "code",
                     "ordinalPosition" : 13,
                     "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "image_url",
+                    "id" : "image_url",
+                    "ordinalPosition" : 14
                   }
                 ],
                 "enabled" : true,

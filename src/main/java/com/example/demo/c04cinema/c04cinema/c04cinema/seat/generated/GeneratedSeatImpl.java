@@ -25,13 +25,18 @@ import java.util.StringJoiner;
 @GeneratedCode("Speedment")
 public abstract class GeneratedSeatImpl implements Seat {
     
+    private Integer theatreId;
     private int id;
     private String name;
-    private Integer theatreId;
     private Integer hallId;
     private Integer seatTypeId;
     
     protected GeneratedSeatImpl() {}
+    
+    @Override
+    public OptionalInt getTheatreId() {
+        return OptionalUtil.ofNullable(theatreId);
+    }
     
     @Override
     public int getId() {
@@ -41,11 +46,6 @@ public abstract class GeneratedSeatImpl implements Seat {
     @Override
     public Optional<String> getName() {
         return Optional.ofNullable(name);
-    }
-    
-    @Override
-    public OptionalInt getTheatreId() {
-        return OptionalUtil.ofNullable(theatreId);
     }
     
     @Override
@@ -59,6 +59,12 @@ public abstract class GeneratedSeatImpl implements Seat {
     }
     
     @Override
+    public Seat setTheatreId(Integer theatreId) {
+        this.theatreId = theatreId;
+        return this;
+    }
+    
+    @Override
     public Seat setId(int id) {
         this.id = id;
         return this;
@@ -67,12 +73,6 @@ public abstract class GeneratedSeatImpl implements Seat {
     @Override
     public Seat setName(String name) {
         this.name = name;
-        return this;
-    }
-    
-    @Override
-    public Seat setTheatreId(Integer theatreId) {
-        this.theatreId = theatreId;
         return this;
     }
     
@@ -118,9 +118,9 @@ public abstract class GeneratedSeatImpl implements Seat {
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
+        sj.add("theatreId = "  + Objects.toString(OptionalUtil.unwrap(getTheatreId())));
         sj.add("id = "         + Objects.toString(getId()));
         sj.add("name = "       + Objects.toString(OptionalUtil.unwrap(getName())));
-        sj.add("theatreId = "  + Objects.toString(OptionalUtil.unwrap(getTheatreId())));
         sj.add("hallId = "     + Objects.toString(OptionalUtil.unwrap(getHallId())));
         sj.add("seatTypeId = " + Objects.toString(OptionalUtil.unwrap(getSeatTypeId())));
         return "SeatImpl " + sj.toString();
@@ -131,9 +131,9 @@ public abstract class GeneratedSeatImpl implements Seat {
         if (this == that) { return true; }
         if (!(that instanceof Seat)) { return false; }
         final Seat thatSeat = (Seat)that;
+        if (!Objects.equals(this.getTheatreId(), thatSeat.getTheatreId())) { return false; }
         if (this.getId() != thatSeat.getId()) { return false; }
         if (!Objects.equals(this.getName(), thatSeat.getName())) { return false; }
-        if (!Objects.equals(this.getTheatreId(), thatSeat.getTheatreId())) { return false; }
         if (!Objects.equals(this.getHallId(), thatSeat.getHallId())) { return false; }
         if (!Objects.equals(this.getSeatTypeId(), thatSeat.getSeatTypeId())) { return false; }
         return true;
@@ -142,9 +142,9 @@ public abstract class GeneratedSeatImpl implements Seat {
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getTheatreId()));
         hash = 31 * hash + Integer.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getName()));
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getTheatreId()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getHallId()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getSeatTypeId()));
         return hash;

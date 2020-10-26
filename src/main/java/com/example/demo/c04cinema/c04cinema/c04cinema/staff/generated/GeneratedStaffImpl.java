@@ -40,6 +40,7 @@ public abstract class GeneratedStaffImpl implements Staff {
     private Integer positionId;
     private Byte isactive;
     private String code;
+    private String imageUrl;
     
     protected GeneratedStaffImpl() {}
     
@@ -106,6 +107,11 @@ public abstract class GeneratedStaffImpl implements Staff {
     @Override
     public Optional<String> getCode() {
         return Optional.ofNullable(code);
+    }
+    
+    @Override
+    public Optional<String> getImageUrl() {
+        return Optional.ofNullable(imageUrl);
     }
     
     @Override
@@ -187,6 +193,12 @@ public abstract class GeneratedStaffImpl implements Staff {
     }
     
     @Override
+    public Staff setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+    
+    @Override
     public Optional<Account> findAccountId(Manager<Account> foreignManager) {
         if (getAccountId().isPresent()) {
             return foreignManager.stream().filter(Account.ID.equal(getAccountId().getAsInt())).findAny();
@@ -229,6 +241,7 @@ public abstract class GeneratedStaffImpl implements Staff {
         sj.add("positionId = " + Objects.toString(OptionalUtil.unwrap(getPositionId())));
         sj.add("isactive = "   + Objects.toString(OptionalUtil.unwrap(getIsactive())));
         sj.add("code = "       + Objects.toString(OptionalUtil.unwrap(getCode())));
+        sj.add("imageUrl = "   + Objects.toString(OptionalUtil.unwrap(getImageUrl())));
         return "StaffImpl " + sj.toString();
     }
     
@@ -250,6 +263,7 @@ public abstract class GeneratedStaffImpl implements Staff {
         if (!Objects.equals(this.getPositionId(), thatStaff.getPositionId())) { return false; }
         if (!Objects.equals(this.getIsactive(), thatStaff.getIsactive())) { return false; }
         if (!Objects.equals(this.getCode(), thatStaff.getCode())) { return false; }
+        if (!Objects.equals(this.getImageUrl(), thatStaff.getImageUrl())) { return false; }
         return true;
     }
     
@@ -269,6 +283,7 @@ public abstract class GeneratedStaffImpl implements Staff {
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getPositionId()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getIsactive()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getCode()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getImageUrl()));
         return hash;
     }
 }

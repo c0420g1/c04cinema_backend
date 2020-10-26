@@ -46,6 +46,7 @@ public abstract class GeneratedCustomerSqlAdapter implements SqlAdapter<Customer
             .setGender(            resultSet.getString(11 + offset))
             .setCardid(            resultSet.getString(12 + offset))
             .setCode(              resultSet.getString(13 + offset))
+            .setImageUrl(          resultSet.getString(14 + offset))
             ;
     }
     

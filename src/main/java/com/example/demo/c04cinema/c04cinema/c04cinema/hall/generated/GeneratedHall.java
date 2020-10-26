@@ -32,6 +32,17 @@ public interface GeneratedHall {
     
     /**
      * This Field corresponds to the {@link Hall} field that can be obtained
+     * using the {@link Hall#getSeatQuantity()} method.
+     */
+    ComparableField<Hall, Integer, Integer> SEAT_QUANTITY = ComparableField.create(
+        Identifier.SEAT_QUANTITY,
+        o -> OptionalUtil.unwrap(o.getSeatQuantity()),
+        Hall::setSeatQuantity,
+        TypeMapper.identity(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link Hall} field that can be obtained
      * using the {@link Hall#getId()} method.
      */
     IntField<Hall, Integer> ID = IntField.create(
@@ -49,17 +60,6 @@ public interface GeneratedHall {
         Identifier.NAME,
         o -> OptionalUtil.unwrap(o.getName()),
         Hall::setName,
-        TypeMapper.identity(),
-        false
-    );
-    /**
-     * This Field corresponds to the {@link Hall} field that can be obtained
-     * using the {@link Hall#getSeatQuantity()} method.
-     */
-    ComparableField<Hall, Integer, Integer> SEAT_QUANTITY = ComparableField.create(
-        Identifier.SEAT_QUANTITY,
-        o -> OptionalUtil.unwrap(o.getSeatQuantity()),
-        Hall::setSeatQuantity,
         TypeMapper.identity(),
         false
     );
@@ -89,6 +89,14 @@ public interface GeneratedHall {
     );
     
     /**
+     * Returns the seatQuantity of this Hall. The seatQuantity field corresponds
+     * to the database column c04cinema.c04cinema.hall.seat_quantity.
+     * 
+     * @return the seatQuantity of this Hall
+     */
+    OptionalInt getSeatQuantity();
+    
+    /**
      * Returns the id of this Hall. The id field corresponds to the database
      * column c04cinema.c04cinema.hall.id.
      * 
@@ -103,14 +111,6 @@ public interface GeneratedHall {
      * @return the name of this Hall
      */
     Optional<String> getName();
-    
-    /**
-     * Returns the seatQuantity of this Hall. The seatQuantity field corresponds
-     * to the database column c04cinema.c04cinema.hall.seat_quantity.
-     * 
-     * @return the seatQuantity of this Hall
-     */
-    OptionalInt getSeatQuantity();
     
     /**
      * Returns the hallTypeId of this Hall. The hallTypeId field corresponds to
@@ -129,6 +129,15 @@ public interface GeneratedHall {
     OptionalInt getTheatreId();
     
     /**
+     * Sets the seatQuantity of this Hall. The seatQuantity field corresponds to
+     * the database column c04cinema.c04cinema.hall.seat_quantity.
+     * 
+     * @param seatQuantity to set of this Hall
+     * @return             this Hall instance
+     */
+    Hall setSeatQuantity(Integer seatQuantity);
+    
+    /**
      * Sets the id of this Hall. The id field corresponds to the database column
      * c04cinema.c04cinema.hall.id.
      * 
@@ -145,15 +154,6 @@ public interface GeneratedHall {
      * @return     this Hall instance
      */
     Hall setName(String name);
-    
-    /**
-     * Sets the seatQuantity of this Hall. The seatQuantity field corresponds to
-     * the database column c04cinema.c04cinema.hall.seat_quantity.
-     * 
-     * @param seatQuantity to set of this Hall
-     * @return             this Hall instance
-     */
-    Hall setSeatQuantity(Integer seatQuantity);
     
     /**
      * Sets the hallTypeId of this Hall. The hallTypeId field corresponds to the
@@ -193,9 +193,9 @@ public interface GeneratedHall {
     
     enum Identifier implements ColumnIdentifier<Hall> {
         
+        SEAT_QUANTITY ("seat_quantity"),
         ID            ("id"),
         NAME          ("name"),
-        SEAT_QUANTITY ("seat_quantity"),
         HALL_TYPE_ID  ("hall_type_id"),
         THEATRE_ID    ("theatre_id");
         

@@ -66,9 +66,9 @@ public abstract class GeneratedHallController {
     @PostConstruct
     void createHallEncoder() {
         encoder = jsonComponent.<Hall>emptyEncoder()
+            .put("seatQuantity", Hall.SEAT_QUANTITY)
             .put("id", Hall.ID)
             .put("name", Hall.NAME)
-            .put("seatQuantity", Hall.SEAT_QUANTITY)
             .put("hallTypeId", Hall.HALL_TYPE_ID)
             .put("theatreId", Hall.THEATRE_ID)
             .build();
@@ -94,8 +94,8 @@ public abstract class GeneratedHallController {
     public void create(
             @RequestBody @Validated CreateBody createBody) {
         manager.persist(manager.create()
-            .setName(createBody.getName())
             .setSeatQuantity(createBody.getSeatQuantity())
+            .setName(createBody.getName())
             .setHallTypeId(createBody.getHallTypeId())
             .setTheatreId(createBody.getTheatreId())
         );
@@ -109,8 +109,8 @@ public abstract class GeneratedHallController {
         manager.stream()
             .filter(Hall.ID.equal(id))
             .map(hall -> {
-                hall.setName(updateBody.getName());
                 hall.setSeatQuantity(updateBody.getSeatQuantity());
+                hall.setName(updateBody.getName());
                 hall.setHallTypeId(updateBody.getHallTypeId());
                 hall.setTheatreId(updateBody.getTheatreId());
                 return hall;
@@ -226,6 +226,22 @@ public abstract class GeneratedHallController {
         @Override
         public Predicate<Hall> toPredicate() {
             switch (property()) {
+                case "seatQuantity" : {
+                    final Integer v = Integer.parseInt(value());
+                    switch (operator()) {
+                        case "eq"   : return Hall.SEAT_QUANTITY.equal(v);
+                        case "ne"   : return Hall.SEAT_QUANTITY.notEqual(v);
+                        case "lt"   : return Hall.SEAT_QUANTITY.lessThan(v);
+                        case "le"   : return Hall.SEAT_QUANTITY.lessOrEqual(v);
+                        case "gt"   : return Hall.SEAT_QUANTITY.greaterThan(v);
+                        case "ge"   : return Hall.SEAT_QUANTITY.greaterOrEqual(v);
+                        case "like" : // Fallthrough
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "Hall.seatQuantity."
+                        );
+                    }
+                }
                 case "id" : {
                     final int v = Integer.parseInt(value());
                     switch (operator()) {
@@ -255,22 +271,6 @@ public abstract class GeneratedHallController {
                         default : throw new IllegalArgumentException(
                             "'" + operator() + "' is not a valid operator for " +
                             "Hall.name."
-                        );
-                    }
-                }
-                case "seatQuantity" : {
-                    final Integer v = Integer.parseInt(value());
-                    switch (operator()) {
-                        case "eq"   : return Hall.SEAT_QUANTITY.equal(v);
-                        case "ne"   : return Hall.SEAT_QUANTITY.notEqual(v);
-                        case "lt"   : return Hall.SEAT_QUANTITY.lessThan(v);
-                        case "le"   : return Hall.SEAT_QUANTITY.lessOrEqual(v);
-                        case "gt"   : return Hall.SEAT_QUANTITY.greaterThan(v);
-                        case "ge"   : return Hall.SEAT_QUANTITY.greaterOrEqual(v);
-                        case "like" : // Fallthrough
-                        default : throw new IllegalArgumentException(
-                            "'" + operator() + "' is not a valid operator for " +
-                            "Hall.seatQuantity."
                         );
                     }
                 }
@@ -327,9 +327,9 @@ public abstract class GeneratedHallController {
         public Comparator<Hall> toComparator() {
             final Comparator<Hall> comparator;
             switch (property()) {
+                case "seatQuantity" : comparator = Hall.SEAT_QUANTITY.comparator(); break;
                 case "id"           : comparator = Hall.ID.comparator();            break;
                 case "name"         : comparator = Hall.NAME.comparator();          break;
-                case "seatQuantity" : comparator = Hall.SEAT_QUANTITY.comparator(); break;
                 case "hallTypeId"   : comparator = Hall.HALL_TYPE_ID.comparator();  break;
                 case "theatreId"    : comparator = Hall.THEATRE_ID.comparator();    break;
                 default : throw new IllegalArgumentException(
@@ -352,29 +352,29 @@ public abstract class GeneratedHallController {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class CreateBody {
         
-        private final String name;
         private final Integer seatQuantity;
+        private final String name;
         private final Integer hallTypeId;
         private final Integer theatreId;
         
         @JsonCreator
         public CreateBody(
-                @JsonProperty("name") String name,
                 @JsonProperty("seatQuantity") Integer seatQuantity,
+                @JsonProperty("name") String name,
                 @JsonProperty("hallTypeId") Integer hallTypeId,
                 @JsonProperty("theatreId") Integer theatreId) {
-            this.name = Objects.requireNonNull(name, "`name` is required");
             this.seatQuantity = Objects.requireNonNull(seatQuantity, "`seatQuantity` is required");
+            this.name = Objects.requireNonNull(name, "`name` is required");
             this.hallTypeId = Objects.requireNonNull(hallTypeId, "`hallTypeId` is required");
             this.theatreId = Objects.requireNonNull(theatreId, "`theatreId` is required");
         }
         
-        public String getName() {
-            return this.name;
-        }
-        
         public Integer getSeatQuantity() {
             return this.seatQuantity;
+        }
+        
+        public String getName() {
+            return this.name;
         }
         
         public Integer getHallTypeId() {
@@ -390,29 +390,29 @@ public abstract class GeneratedHallController {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class UpdateBody {
         
-        private final String name;
         private final Integer seatQuantity;
+        private final String name;
         private final Integer hallTypeId;
         private final Integer theatreId;
         
         @JsonCreator
         public UpdateBody(
-                @JsonProperty("name") String name,
                 @JsonProperty("seatQuantity") Integer seatQuantity,
+                @JsonProperty("name") String name,
                 @JsonProperty("hallTypeId") Integer hallTypeId,
                 @JsonProperty("theatreId") Integer theatreId) {
-            this.name = Objects.requireNonNull(name, "`name` is required");
             this.seatQuantity = Objects.requireNonNull(seatQuantity, "`seatQuantity` is required");
+            this.name = Objects.requireNonNull(name, "`name` is required");
             this.hallTypeId = Objects.requireNonNull(hallTypeId, "`hallTypeId` is required");
             this.theatreId = Objects.requireNonNull(theatreId, "`theatreId` is required");
         }
         
-        public String getName() {
-            return this.name;
-        }
-        
         public Integer getSeatQuantity() {
             return this.seatQuantity;
+        }
+        
+        public String getName() {
+            return this.name;
         }
         
         public Integer getHallTypeId() {

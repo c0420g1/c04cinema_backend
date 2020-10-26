@@ -33,9 +33,9 @@ public abstract class GeneratedSeatSqlAdapter implements SqlAdapter<Seat> {
     
     protected Seat apply(ResultSet resultSet, int offset) throws SQLException {
         return createEntity()
-            .setId(         resultSet.getInt(1 + offset))
-            .setName(       resultSet.getString(2 + offset))
-            .setTheatreId(  getInt(resultSet, 3 + offset))
+            .setTheatreId(  getInt(resultSet, 1 + offset))
+            .setId(         resultSet.getInt(2 + offset))
+            .setName(       resultSet.getString(3 + offset))
             .setHallId(     getInt(resultSet, 4 + offset))
             .setSeatTypeId( getInt(resultSet, 5 + offset))
             ;
