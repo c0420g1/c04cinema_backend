@@ -7,6 +7,7 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
 import java.time.LocalDateTime;
 
 public class BookingTicketDTO {
+
     private final int idBookingTicket;
     private final String bookingCode;
     private final LocalDateTime bookingDate;
@@ -17,6 +18,8 @@ public class BookingTicketDTO {
     private final String phoneCustomer;
     private final Byte status;
     private final String posterUrl;
+    private final LocalDateTime startTime;
+    private final double priceTicket;
 
 
     public BookingTicketDTO(BookingTicket bookingTicket, Customer customer, Show show, Movie movie){
@@ -30,11 +33,15 @@ public class BookingTicketDTO {
         this.phoneCustomer= customer.getPhone().get();
         this.status= bookingTicket.getStatus().get();
         this.posterUrl= movie.getPosterUrl().get();
+        this.startTime= show.getStartTime().get();
+        this.priceTicket= bookingTicket.getPrice().getAsDouble();
     }
 
-    public String getPosterUrl() {
-        return posterUrl;
-    }
+    public LocalDateTime getStartTime() { return startTime; }
+
+    public double getPriceTicket() { return priceTicket; }
+
+    public String getPosterUrl() { return posterUrl; }
 
     public int getIdBookingTicket() {
         return idBookingTicket;
