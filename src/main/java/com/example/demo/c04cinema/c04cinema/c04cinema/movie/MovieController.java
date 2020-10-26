@@ -5,16 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.generated.GeneratedMovieController;
-import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicket;
-import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicketManager;
-import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
-import com.example.demo.c04cinema.c04cinema.c04cinema.movie.generated.GeneratedMovieController;
+
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie_genre_associate.MovieGenreAssociate;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie_genre_associate.MovieGenreAssociateManager;
-import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
-import com.example.demo.c04cinema.model_dto.BookingTicketDTO;
-import com.speedment.runtime.join.Join;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
