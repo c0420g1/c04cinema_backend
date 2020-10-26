@@ -24,48 +24,93 @@ public class MovieController extends GeneratedMovieController {
     @Autowired
     private MovieGenreAssociateManager movieGenreAssociateManager;
 
+    // creator Vu Le Tuong
+    // lay ve movie cuoi cung (tuc movie moi them vao), de lay ra truong movie id, add vao bang movie_genre_associate,
+    // la bang quan he nhieu nhieu giua bang movie va bang movie_genre_type
     @GetMapping("/lastMovie")
     public Movie getLastMovie(){
-        return movieManager.stream().sorted(Movie.ID.reversed()).findFirst().get();
+        Movie movie = null;
+        try {
+            movie = movieManager.stream().sorted(Movie.ID.reversed()).findFirst().get();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return movie;
     }
 
+    // creator Vu Le Tuong
+    // lay ve tat ca cac record cua bang movie_genre_associate
     @GetMapping("/getAllMovieGenreAssociate/{movieid}")
     public List<MovieGenreAssociate> getAllMovieGenreAssociate(@PathVariable int movieid){
-        return movieGenreAssociateManager.stream().filter(MovieGenreAssociate.MOVIE_ID.equal(movieid)).collect(Collectors.toList());
+        List<MovieGenreAssociate> movieGenreAssociates = null;
+        try {
+            movieGenreAssociates = movieGenreAssociateManager.stream().filter(MovieGenreAssociate.MOVIE_ID.equal(movieid)).collect(Collectors.toList());
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return movieGenreAssociates;
     }
 
-    @GetMapping("/movie/date/{date}")
-    public List<Movie> searchByDate(@PathVariable Date date) {
-        LocalDate a= date.toLocalDate().plusDays(1);
-       return  movieManager.stream().filter(Movie.START_DATE.equal(Date.valueOf(a))).collect(Collectors.toList());
-    }
+
+
+
+    // creator Vu Le Tuong
+    // xoa tat ca record trong bang quan he nhieu-nhieu: movie_genre_associate, dung trong chuc nang edit-movie (chuc nang nay
+    //    co chuc nang sua the loai phim
     @DeleteMapping("/movieGenreAssociate/{movieId}")
     public void deleteMovieGenreAssociateByMovieId(@PathVariable int movieId){
-       movieGenreAssociateManager.stream().filter(MovieGenreAssociate.MOVIE_ID.equal(movieId)).forEach(e->
-             movieGenreAssociateManager.remove(e));
+        try {
+            movieGenreAssociateManager.stream().filter(MovieGenreAssociate.MOVIE_ID.equal(movieId)).forEach(e->
+                    movieGenreAssociateManager.remove(e));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+    // creator Vu Le Tuong
+    // lay ve mot list movie co phan trang, va co tim kiem
     @GetMapping("/movies/{pageNum}")
     public List<Movie> getAllMovies(@PathVariable int pageNum, @RequestParam(defaultValue = "") String search){
         int pageSize =10;
-
+        List<Movie> movies = null;
         if (search.equals("")){
-            return movieManager.stream().skip((pageNum-1)*pageSize).limit(pageSize).filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
-                    || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
-                    || String.valueOf(e.getDuration()).contains( search))
-                    .collect(Collectors.toList());
+            try {
+                movies = movieManager.stream().skip((pageNum-1)*pageSize).limit(pageSize).filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
+                        || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
+                        || String.valueOf(e.getDuration()).contains( search))
+                        .collect(Collectors.toList());
+            }catch (Exception e){
+                System.out.println(e);
+            }
+            return movies;
         }
-        return movieManager.stream().filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
-                || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
-                || String.valueOf(e.getDuration()).contains( search)).skip((pageNum-1)*pageSize).limit(pageSize).
-                collect(Collectors.toList());
-    }
+        
+        try {
+            movies = movieManager.stream().filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
+                    || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
+                    || String.valueOf(e.getDuration()).contains( search) || String.valueOf(e.getIs2d()).contains(search))
+                    .skip((pageNum-1)*pageSize).limit(pageSize).
+                            collect(Collectors.toList());
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return movies;
 
+
+    }
+    // creator Vu Le Tuong
+    // lay ve mot list movie, co tim kiem, nhung khong co phan trang
     @GetMapping("/movies")
     public List<Movie> getListMovie(@RequestParam(defaultValue = "") String search){
 
-
-        return movieManager.stream().filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
-                || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
-                || String.valueOf(e.getDuration()).contains( search)).collect(Collectors.toList());
+        List<Movie> movies = null;
+        try {
+            movies =  movieManager.stream().filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
+                    || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
+                    || String.valueOf(e.getDuration()).contains( search)).collect(Collectors.toList());
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return movies;
     }
 }
