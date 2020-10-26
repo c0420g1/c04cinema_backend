@@ -48,8 +48,7 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                || e.getBookingCode().contains(search) || e.getCardIdCustomer().contains(search)
                 || e.getPhoneCustomer().contains(search)).skip((pageNum-1)*pageSize).limit(pageSize).
                collect(Collectors.toList());
-    }
-    @GetMapping("/booking_ticket_dto")
+    }  @GetMapping("/booking_ticket_dto")
     public List<BookingTicketDTO> getBookingTicketDTO(@RequestParam(defaultValue = "") String search){
         Join<BookingTicketDTO> join = joinComponent.from(BookingTicketManager.IDENTIFIER).innerJoinOn(Customer.ACCOUNT_ID).equal(BookingTicket.ACCOUNT_ID)
                 .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID)
@@ -59,6 +58,7 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                 || e.getBookingCode().contains(search) || e.getCardIdCustomer().contains(search)
                 || e.getPhoneCustomer().contains(search)).collect(Collectors.toList());
     }
+
     @PatchMapping("/confirmTicket")
     public void confirmTicket(@RequestBody ConfirmTicketDTO confirmTicketDTO){
        BookingTicket bookingTicket = bookingTicketManager.stream().filter(BookingTicket.ID.equal(confirmTicketDTO.getId())).findFirst().get();
