@@ -1,13 +1,17 @@
 package com.example.demo.c04cinema.c04cinema.c04cinema.movie;
 
+import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicket;
+import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicketManager;
+import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.generated.GeneratedMovieController;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie_genre_associate.MovieGenreAssociate;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie_genre_associate.MovieGenreAssociateManager;
+import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
+import com.example.demo.c04cinema.model_dto.BookingTicketDTO;
+import com.speedment.runtime.join.Join;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -39,5 +43,29 @@ public class MovieController extends GeneratedMovieController {
     public void deleteMovieGenreAssociateByMovieId(@PathVariable int movieId){
        movieGenreAssociateManager.stream().filter(MovieGenreAssociate.MOVIE_ID.equal(movieId)).forEach(e->
              movieGenreAssociateManager.remove(e));
+    }
+    @GetMapping("/movies/{pageNum}")
+    public List<Movie> getAllMovies(@PathVariable int pageNum, @RequestParam(defaultValue = "") String search){
+        int pageSize =10;
+
+        if (search.equals("")){
+            return movieManager.stream().skip((pageNum-1)*pageSize).limit(pageSize).filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
+                    || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
+                    || String.valueOf(e.getDuration()).contains( search))
+                    .collect(Collectors.toList());
+        }
+        return movieManager.stream().filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
+                || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
+                || String.valueOf(e.getDuration()).contains( search)).skip((pageNum-1)*pageSize).limit(pageSize).
+                collect(Collectors.toList());
+    }
+
+    @GetMapping("/movies")
+    public List<Movie> getListMovie(@RequestParam(defaultValue = "") String search){
+
+
+        return movieManager.stream().filter(e-> e.getName().get().toLowerCase().contains(search.toLowerCase())
+                || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
+                || String.valueOf(e.getDuration()).contains( search)).collect(Collectors.toList());
     }
 }
