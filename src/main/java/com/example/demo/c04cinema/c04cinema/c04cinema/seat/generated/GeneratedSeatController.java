@@ -66,7 +66,6 @@ public abstract class GeneratedSeatController {
     @PostConstruct
     void createSeatEncoder() {
         encoder = jsonComponent.<Seat>emptyEncoder()
-            .put("theatreId", Seat.THEATRE_ID)
             .put("id", Seat.ID)
             .put("name", Seat.NAME)
             .put("hallId", Seat.HALL_ID)
@@ -94,7 +93,6 @@ public abstract class GeneratedSeatController {
     public void create(
             @RequestBody @Validated CreateBody createBody) {
         manager.persist(manager.create()
-            .setTheatreId(createBody.getTheatreId())
             .setName(createBody.getName())
             .setHallId(createBody.getHallId())
             .setSeatTypeId(createBody.getSeatTypeId())
@@ -109,7 +107,6 @@ public abstract class GeneratedSeatController {
         manager.stream()
             .filter(Seat.ID.equal(id))
             .map(seat -> {
-                seat.setTheatreId(updateBody.getTheatreId());
                 seat.setName(updateBody.getName());
                 seat.setHallId(updateBody.getHallId());
                 seat.setSeatTypeId(updateBody.getSeatTypeId());
@@ -164,7 +161,6 @@ public abstract class GeneratedSeatController {
         switch (jsonColumn) {
             case "id":         return GeneratedSeat.Identifier.ID;
             case "name":       return GeneratedSeat.Identifier.NAME;
-            case "theatreId":  return GeneratedSeat.Identifier.THEATRE_ID;
             case "hallId":     return GeneratedSeat.Identifier.HALL_ID;
             case "seatTypeId": return GeneratedSeat.Identifier.SEAT_TYPE_ID;
             default: throw new IllegalArgumentException(
@@ -177,7 +173,6 @@ public abstract class GeneratedSeatController {
         switch (columnId) {
             case ID:           return Seat.ID;
             case NAME:         return Seat.NAME;
-            case THEATRE_ID:   return Seat.THEATRE_ID;
             case HALL_ID:      return Seat.HALL_ID;
             case SEAT_TYPE_ID: return Seat.SEAT_TYPE_ID;
             default: throw new IllegalArgumentException(
@@ -226,22 +221,6 @@ public abstract class GeneratedSeatController {
         @Override
         public Predicate<Seat> toPredicate() {
             switch (property()) {
-                case "theatreId" : {
-                    final Integer v = Integer.parseInt(value());
-                    switch (operator()) {
-                        case "eq"   : return Seat.THEATRE_ID.equal(v);
-                        case "ne"   : return Seat.THEATRE_ID.notEqual(v);
-                        case "lt"   : return Seat.THEATRE_ID.lessThan(v);
-                        case "le"   : return Seat.THEATRE_ID.lessOrEqual(v);
-                        case "gt"   : return Seat.THEATRE_ID.greaterThan(v);
-                        case "ge"   : return Seat.THEATRE_ID.greaterOrEqual(v);
-                        case "like" : // Fallthrough
-                        default : throw new IllegalArgumentException(
-                            "'" + operator() + "' is not a valid operator for " +
-                            "Seat.theatreId."
-                        );
-                    }
-                }
                 case "id" : {
                     final int v = Integer.parseInt(value());
                     switch (operator()) {
@@ -327,7 +306,6 @@ public abstract class GeneratedSeatController {
         public Comparator<Seat> toComparator() {
             final Comparator<Seat> comparator;
             switch (property()) {
-                case "theatreId"  : comparator = Seat.THEATRE_ID.comparator();   break;
                 case "id"         : comparator = Seat.ID.comparator();           break;
                 case "name"       : comparator = Seat.NAME.comparator();         break;
                 case "hallId"     : comparator = Seat.HALL_ID.comparator();      break;
@@ -352,25 +330,18 @@ public abstract class GeneratedSeatController {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class CreateBody {
         
-        private final Integer theatreId;
         private final String name;
         private final Integer hallId;
         private final Integer seatTypeId;
         
         @JsonCreator
         public CreateBody(
-                @JsonProperty("theatreId") Integer theatreId,
                 @JsonProperty("name") String name,
                 @JsonProperty("hallId") Integer hallId,
                 @JsonProperty("seatTypeId") Integer seatTypeId) {
-            this.theatreId = Objects.requireNonNull(theatreId, "`theatreId` is required");
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.hallId = Objects.requireNonNull(hallId, "`hallId` is required");
             this.seatTypeId = Objects.requireNonNull(seatTypeId, "`seatTypeId` is required");
-        }
-        
-        public Integer getTheatreId() {
-            return this.theatreId;
         }
         
         public String getName() {
@@ -390,25 +361,18 @@ public abstract class GeneratedSeatController {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class UpdateBody {
         
-        private final Integer theatreId;
         private final String name;
         private final Integer hallId;
         private final Integer seatTypeId;
         
         @JsonCreator
         public UpdateBody(
-                @JsonProperty("theatreId") Integer theatreId,
                 @JsonProperty("name") String name,
                 @JsonProperty("hallId") Integer hallId,
                 @JsonProperty("seatTypeId") Integer seatTypeId) {
-            this.theatreId = Objects.requireNonNull(theatreId, "`theatreId` is required");
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.hallId = Objects.requireNonNull(hallId, "`hallId` is required");
             this.seatTypeId = Objects.requireNonNull(seatTypeId, "`seatTypeId` is required");
-        }
-        
-        public Integer getTheatreId() {
-            return this.theatreId;
         }
         
         public String getName() {

@@ -24,18 +24,12 @@ import java.util.StringJoiner;
 @GeneratedCode("Speedment")
 public abstract class GeneratedHallImpl implements Hall {
     
-    private Integer seatQuantity;
     private int id;
     private String name;
     private Integer hallTypeId;
     private Integer theatreId;
     
     protected GeneratedHallImpl() {}
-    
-    @Override
-    public OptionalInt getSeatQuantity() {
-        return OptionalUtil.ofNullable(seatQuantity);
-    }
     
     @Override
     public int getId() {
@@ -55,12 +49,6 @@ public abstract class GeneratedHallImpl implements Hall {
     @Override
     public OptionalInt getTheatreId() {
         return OptionalUtil.ofNullable(theatreId);
-    }
-    
-    @Override
-    public Hall setSeatQuantity(Integer seatQuantity) {
-        this.seatQuantity = seatQuantity;
-        return this;
     }
     
     @Override
@@ -108,11 +96,10 @@ public abstract class GeneratedHallImpl implements Hall {
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
-        sj.add("seatQuantity = " + Objects.toString(OptionalUtil.unwrap(getSeatQuantity())));
-        sj.add("id = "           + Objects.toString(getId()));
-        sj.add("name = "         + Objects.toString(OptionalUtil.unwrap(getName())));
-        sj.add("hallTypeId = "   + Objects.toString(OptionalUtil.unwrap(getHallTypeId())));
-        sj.add("theatreId = "    + Objects.toString(OptionalUtil.unwrap(getTheatreId())));
+        sj.add("id = "         + Objects.toString(getId()));
+        sj.add("name = "       + Objects.toString(OptionalUtil.unwrap(getName())));
+        sj.add("hallTypeId = " + Objects.toString(OptionalUtil.unwrap(getHallTypeId())));
+        sj.add("theatreId = "  + Objects.toString(OptionalUtil.unwrap(getTheatreId())));
         return "HallImpl " + sj.toString();
     }
     
@@ -121,7 +108,6 @@ public abstract class GeneratedHallImpl implements Hall {
         if (this == that) { return true; }
         if (!(that instanceof Hall)) { return false; }
         final Hall thatHall = (Hall)that;
-        if (!Objects.equals(this.getSeatQuantity(), thatHall.getSeatQuantity())) { return false; }
         if (this.getId() != thatHall.getId()) { return false; }
         if (!Objects.equals(this.getName(), thatHall.getName())) { return false; }
         if (!Objects.equals(this.getHallTypeId(), thatHall.getHallTypeId())) { return false; }
@@ -132,7 +118,6 @@ public abstract class GeneratedHallImpl implements Hall {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getSeatQuantity()));
         hash = 31 * hash + Integer.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getName()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getHallTypeId()));

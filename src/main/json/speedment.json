@@ -469,7 +469,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -665,7 +665,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -808,7 +808,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -938,7 +938,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -1149,12 +1149,13 @@
                     "nullable" : true,
                     "name" : "image_url",
                     "id" : "image_url",
-                    "ordinalPosition" : 14
+                    "ordinalPosition" : 14,
+                    "enabled" : true
                   }
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -1257,7 +1258,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -1355,7 +1356,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -1435,15 +1436,6 @@
                 "restEnableCUD" : true,
                 "columns" : [
                   {
-                    "databaseType" : "java.lang.Integer",
-                    "expanded" : true,
-                    "nullable" : true,
-                    "name" : "seat_quantity",
-                    "id" : "seat_quantity",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
-                  },
-                  {
                     "nameProtected" : true,
                     "nullable" : false,
                     "autoIncrement" : true,
@@ -1491,7 +1483,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -2300,7 +2292,8 @@
                     "nullable" : true,
                     "name" : "isOther",
                     "id" : "isOther",
-                    "ordinalPosition" : 5
+                    "ordinalPosition" : 5,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -2308,7 +2301,8 @@
                     "nullable" : true,
                     "name" : "image_url",
                     "id" : "image_url",
-                    "ordinalPosition" : 6
+                    "ordinalPosition" : 6,
+                    "enabled" : true
                   }
                 ],
                 "enabled" : true,
@@ -3330,24 +3324,6 @@
                         "foreignDatabaseName" : "c04cinema",
                         "foreignSchemaName" : "c04cinema",
                         "expanded" : true,
-                        "name" : "theatre_id",
-                        "foreignColumnName" : "id",
-                        "id" : "theatre_id",
-                        "foreignTableName" : "theatre",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "name" : "fk_seat_theatre1",
-                    "id" : "fk_seat_theatre1",
-                    "enabled" : true
-                  },
-                  {
-                    "expanded" : false,
-                    "foreignKeyColumns" : [
-                      {
-                        "foreignDatabaseName" : "c04cinema",
-                        "foreignSchemaName" : "c04cinema",
-                        "expanded" : true,
                         "name" : "hall_id",
                         "foreignColumnName" : "id",
                         "id" : "hall_id",
@@ -3381,15 +3357,6 @@
                 "isView" : false,
                 "restEnableCUD" : true,
                 "columns" : [
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "expanded" : true,
-                    "nullable" : true,
-                    "name" : "theatre_id",
-                    "id" : "theatre_id",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
-                  },
                   {
                     "nameProtected" : true,
                     "nullable" : false,
@@ -3438,7 +3405,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : true,
+                "expanded" : false,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -3589,7 +3556,8 @@
                     "nullable" : true,
                     "name" : "price",
                     "id" : "price",
-                    "ordinalPosition" : 4
+                    "ordinalPosition" : 4,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -3597,7 +3565,8 @@
                     "nullable" : true,
                     "name" : "color",
                     "id" : "color",
-                    "ordinalPosition" : 5
+                    "ordinalPosition" : 5,
+                    "enabled" : true
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -3605,7 +3574,8 @@
                     "nullable" : true,
                     "name" : "description",
                     "id" : "description",
-                    "ordinalPosition" : 6
+                    "ordinalPosition" : 6,
+                    "enabled" : true
                   }
                 ],
                 "enabled" : true,
@@ -4069,7 +4039,8 @@
                     "nullable" : true,
                     "name" : "image_url",
                     "id" : "image_url",
-                    "ordinalPosition" : 14
+                    "ordinalPosition" : 14,
+                    "enabled" : true
                   }
                 ],
                 "enabled" : true,

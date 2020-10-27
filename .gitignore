@@ -54,3 +54,4 @@ application.properties
 .DS_Store
 src/main/resources/application.properties
 *.md5
+*.properties

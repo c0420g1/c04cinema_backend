@@ -27,7 +27,6 @@ public interface GeneratedHallManager extends Manager<Hall> {
     List<Field<Hall>> FIELDS = unmodifiableList(asList(
         Hall.ID,
         Hall.NAME,
-        Hall.SEAT_QUANTITY,
         Hall.HALL_TYPE_ID,
         Hall.THEATRE_ID
     ));

@@ -3,7 +3,6 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.seat.generated;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.Hall;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat_type.SeatType;
-import com.example.demo.c04cinema.c04cinema.c04cinema.theatre.Theatre;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
@@ -25,18 +24,12 @@ import java.util.StringJoiner;
 @GeneratedCode("Speedment")
 public abstract class GeneratedSeatImpl implements Seat {
     
-    private Integer theatreId;
     private int id;
     private String name;
     private Integer hallId;
     private Integer seatTypeId;
     
     protected GeneratedSeatImpl() {}
-    
-    @Override
-    public OptionalInt getTheatreId() {
-        return OptionalUtil.ofNullable(theatreId);
-    }
     
     @Override
     public int getId() {
@@ -56,12 +49,6 @@ public abstract class GeneratedSeatImpl implements Seat {
     @Override
     public OptionalInt getSeatTypeId() {
         return OptionalUtil.ofNullable(seatTypeId);
-    }
-    
-    @Override
-    public Seat setTheatreId(Integer theatreId) {
-        this.theatreId = theatreId;
-        return this;
     }
     
     @Override
@@ -89,15 +76,6 @@ public abstract class GeneratedSeatImpl implements Seat {
     }
     
     @Override
-    public Optional<Theatre> findTheatreId(Manager<Theatre> foreignManager) {
-        if (getTheatreId().isPresent()) {
-            return foreignManager.stream().filter(Theatre.ID.equal(getTheatreId().getAsInt())).findAny();
-        } else {
-            return Optional.empty();
-        }
-    }
-    
-    @Override
     public Optional<Hall> findHallId(Manager<Hall> foreignManager) {
         if (getHallId().isPresent()) {
             return foreignManager.stream().filter(Hall.ID.equal(getHallId().getAsInt())).findAny();
@@ -118,7 +96,6 @@ public abstract class GeneratedSeatImpl implements Seat {
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
-        sj.add("theatreId = "  + Objects.toString(OptionalUtil.unwrap(getTheatreId())));
         sj.add("id = "         + Objects.toString(getId()));
         sj.add("name = "       + Objects.toString(OptionalUtil.unwrap(getName())));
         sj.add("hallId = "     + Objects.toString(OptionalUtil.unwrap(getHallId())));
@@ -131,7 +108,6 @@ public abstract class GeneratedSeatImpl implements Seat {
         if (this == that) { return true; }
         if (!(that instanceof Seat)) { return false; }
         final Seat thatSeat = (Seat)that;
-        if (!Objects.equals(this.getTheatreId(), thatSeat.getTheatreId())) { return false; }
         if (this.getId() != thatSeat.getId()) { return false; }
         if (!Objects.equals(this.getName(), thatSeat.getName())) { return false; }
         if (!Objects.equals(this.getHallId(), thatSeat.getHallId())) { return false; }
@@ -142,7 +118,6 @@ public abstract class GeneratedSeatImpl implements Seat {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getTheatreId()));
         hash = 31 * hash + Integer.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getName()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getHallId()));
