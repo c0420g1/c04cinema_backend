@@ -4,6 +4,7 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.generated.G
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.generated.GeneratedCustomerController;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
+import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
 import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
 import com.example.demo.c04cinema.model_dto.BookingTicketDTO;
 import com.example.demo.c04cinema.model_dto.ConfirmTicketDTO;
@@ -35,9 +36,12 @@ public class BookingTicketController extends GeneratedBookingTicketController {
     @GetMapping("/booking_ticket_dto/{pageNum}")
     public List<BookingTicketDTO> getBookingTicketDTO(@PathVariable int pageNum, @RequestParam(defaultValue = "") String search){
         int pageSize =10;
-       Join<BookingTicketDTO> join = joinComponent.from(BookingTicketManager.IDENTIFIER).innerJoinOn(Customer.ACCOUNT_ID).equal(BookingTicket.ACCOUNT_ID)
-                .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID)
-                .innerJoinOn(Movie.ID).equal(Show.MOVIE_ID).build(BookingTicketDTO::new);
+       Join<BookingTicketDTO> join = joinComponent.from(BookingTicketManager.IDENTIFIER)
+               .innerJoinOn(Customer.ACCOUNT_ID).equal(BookingTicket.ACCOUNT_ID)
+               .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID)
+               .innerJoinOn(Movie.ID).equal(Show.MOVIE_ID)
+               .innerJoinOn(Seat.ID).equal(BookingTicket.SEAT_ID)
+               .build(BookingTicketDTO::new);
         if (search.equals("")){
             return join.stream().skip((pageNum-1)*pageSize).limit(pageSize).filter(e-> e.getNameCustomer().contains(search)
                     || e.getBookingCode().contains(search) || e.getCardIdCustomer().contains(search)
@@ -50,9 +54,12 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                collect(Collectors.toList());
     }  @GetMapping("/booking_ticket_dto")
     public List<BookingTicketDTO> getBookingTicketDTO(@RequestParam(defaultValue = "") String search){
-        Join<BookingTicketDTO> join = joinComponent.from(BookingTicketManager.IDENTIFIER).innerJoinOn(Customer.ACCOUNT_ID).equal(BookingTicket.ACCOUNT_ID)
+        Join<BookingTicketDTO> join = joinComponent.from(BookingTicketManager.IDENTIFIER)
+                .innerJoinOn(Customer.ACCOUNT_ID).equal(BookingTicket.ACCOUNT_ID)
                 .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID)
-                .innerJoinOn(Movie.ID).equal(Show.MOVIE_ID).build(BookingTicketDTO::new);
+                .innerJoinOn(Movie.ID).equal(Show.MOVIE_ID)
+                .innerJoinOn(Seat.ID).equal(BookingTicket.SEAT_ID)
+                .build(BookingTicketDTO::new);
 
         return join.stream().filter(e-> e.getNameCustomer().contains(search)
                 || e.getBookingCode().contains(search) || e.getCardIdCustomer().contains(search)
