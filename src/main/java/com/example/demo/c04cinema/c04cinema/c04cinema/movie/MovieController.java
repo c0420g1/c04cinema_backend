@@ -97,29 +97,77 @@ public class MovieController extends GeneratedMovieController {
 
     }
 
+
+    //creator Hieu
+    @GetMapping("/movie-coming/{pageNum}")
+    public List<Movie> getMovieComingPage(@PathVariable int pageNum, @RequestParam Date date) {
+        int pageSize = 4;
+        LocalDate a = date.toLocalDate().plusDays(1);
+        List<Movie> movies = null;
+        if (pageNum >= 1) {
+            try {
+                movies = movieManager.stream().filter(Movie.START_DATE.greaterThan(Date.valueOf(a))).skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            return movies;
+        }
+        return null;
+    }
+
+    //creator Hieu resolve page
+    @GetMapping("/totalPageComing/{date}")
+    public Integer getMovieComing(@PathVariable Date date) {
+        LocalDate a = date.toLocalDate().plusDays(1);
+        List<Movie> movies = null;
+        try {
+            movies = movieManager.stream()
+                    .filter(Movie.START_DATE.greaterThan(Date.valueOf(a))).collect(Collectors.toList());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }   
+
+        return movies.size();
+    }
+
+
     //creator Hieu
     @GetMapping("/movie/date/{date}")
-    public List<Movie> searchByDate (@PathVariable Date date){
+    public List<Movie> searchByDate(@PathVariable Date date) {
         LocalDate a = date.toLocalDate().plusDays(1);
         List<Movie> movieList = null;
         try {
             movieList = movieManager.stream().filter(Movie.START_DATE.equal(Date.valueOf(a))).collect(Collectors.toList());
         } catch (Exception e) {
             System.out.println("Error at /movie/date/{date}");
-            return null;
         }
         return movieList;
     }
 
     // creator Hieu
     @GetMapping("/movie-new")
-    public List<Movie> getMovieNews(){
+    public List<Movie> getMovieNews() {
+//        String s= "";
+//        movieManager.stream().filter(e -> s.toLowerCase().contains(e.getName().get()  || s.toUpperCase().contains(e.getName().get())) )
         List<Movie> movieList = null;
         try {
             movieList = movieManager.stream().sorted(Movie.ID.reversed()).limit(16).collect(Collectors.toList());
         } catch (Exception e) {
             System.out.println("error in /movie-new");
-            return null;
+        }
+        return movieList;
+    }
+
+    //creator Hieu
+    @GetMapping("/movie/{name}")
+    public List<Movie> getByName(@PathVariable String name) {
+        List<Movie> movieList = null;
+        try {
+            movieList = movieManager.stream().filter(
+                    e -> e.getName().get().toLowerCase().contains(name.toLowerCase())
+            ).collect(Collectors.toList());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return movieList;
     }
