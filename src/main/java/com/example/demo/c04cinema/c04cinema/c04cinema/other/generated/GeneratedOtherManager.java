@@ -28,7 +28,9 @@ public interface GeneratedOtherManager extends Manager<Other> {
         Other.ID,
         Other.NAME,
         Other.TYPE,
-        Other.DESCRIPTION
+        Other.DESCRIPTION,
+        Other.IS_OTHER,
+        Other.IMAGE_URL
     ));
     
     @Override

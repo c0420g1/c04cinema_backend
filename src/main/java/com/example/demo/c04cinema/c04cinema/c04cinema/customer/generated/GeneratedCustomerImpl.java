@@ -7,8 +7,6 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.sql.Date;
 import java.util.Objects;
 import java.util.Optional;
@@ -26,9 +24,8 @@ import java.util.StringJoiner;
  */
 @GeneratedCode("Speedment")
 public abstract class GeneratedCustomerImpl implements Customer {
-
+    
     private int id;
-
     private String name;
     private String address;
     private Integer customerTypeId;
@@ -41,6 +38,7 @@ public abstract class GeneratedCustomerImpl implements Customer {
     private String gender;
     private String cardid;
     private String code;
+    private String imageUrl;
     
     protected GeneratedCustomerImpl() {}
     
@@ -107,6 +105,11 @@ public abstract class GeneratedCustomerImpl implements Customer {
     @Override
     public Optional<String> getCode() {
         return Optional.ofNullable(code);
+    }
+    
+    @Override
+    public Optional<String> getImageUrl() {
+        return Optional.ofNullable(imageUrl);
     }
     
     @Override
@@ -188,6 +191,12 @@ public abstract class GeneratedCustomerImpl implements Customer {
     }
     
     @Override
+    public Customer setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+    
+    @Override
     public Optional<CustomerType> findCustomerTypeId(Manager<CustomerType> foreignManager) {
         if (getCustomerTypeId().isPresent()) {
             return foreignManager.stream().filter(CustomerType.ID.equal(getCustomerTypeId().getAsInt())).findAny();
@@ -221,6 +230,7 @@ public abstract class GeneratedCustomerImpl implements Customer {
         sj.add("gender = "            + Objects.toString(OptionalUtil.unwrap(getGender())));
         sj.add("cardid = "            + Objects.toString(OptionalUtil.unwrap(getCardid())));
         sj.add("code = "              + Objects.toString(OptionalUtil.unwrap(getCode())));
+        sj.add("imageUrl = "          + Objects.toString(OptionalUtil.unwrap(getImageUrl())));
         return "CustomerImpl " + sj.toString();
     }
     
@@ -242,6 +252,7 @@ public abstract class GeneratedCustomerImpl implements Customer {
         if (!Objects.equals(this.getGender(), thatCustomer.getGender())) { return false; }
         if (!Objects.equals(this.getCardid(), thatCustomer.getCardid())) { return false; }
         if (!Objects.equals(this.getCode(), thatCustomer.getCode())) { return false; }
+        if (!Objects.equals(this.getImageUrl(), thatCustomer.getImageUrl())) { return false; }
         return true;
     }
     
@@ -261,6 +272,7 @@ public abstract class GeneratedCustomerImpl implements Customer {
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getGender()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getCardid()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getCode()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getImageUrl()));
         return hash;
     }
 }

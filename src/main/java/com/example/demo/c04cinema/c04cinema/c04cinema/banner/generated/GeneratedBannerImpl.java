@@ -24,6 +24,8 @@ public abstract class GeneratedBannerImpl implements Banner {
     private String title;
     private String url;
     private String description;
+    private String type;
+    private Byte isOther;
     
     protected GeneratedBannerImpl() {}
     
@@ -45,6 +47,16 @@ public abstract class GeneratedBannerImpl implements Banner {
     @Override
     public Optional<String> getDescription() {
         return Optional.ofNullable(description);
+    }
+    
+    @Override
+    public Optional<String> getType() {
+        return Optional.ofNullable(type);
+    }
+    
+    @Override
+    public Optional<Byte> getIsOther() {
+        return Optional.ofNullable(isOther);
     }
     
     @Override
@@ -72,12 +84,26 @@ public abstract class GeneratedBannerImpl implements Banner {
     }
     
     @Override
+    public Banner setType(String type) {
+        this.type = type;
+        return this;
+    }
+    
+    @Override
+    public Banner setIsOther(Byte isOther) {
+        this.isOther = isOther;
+        return this;
+    }
+    
+    @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "          + Objects.toString(getId()));
         sj.add("title = "       + Objects.toString(OptionalUtil.unwrap(getTitle())));
         sj.add("url = "         + Objects.toString(OptionalUtil.unwrap(getUrl())));
         sj.add("description = " + Objects.toString(OptionalUtil.unwrap(getDescription())));
+        sj.add("type = "        + Objects.toString(OptionalUtil.unwrap(getType())));
+        sj.add("isOther = "     + Objects.toString(OptionalUtil.unwrap(getIsOther())));
         return "BannerImpl " + sj.toString();
     }
     
@@ -90,6 +116,8 @@ public abstract class GeneratedBannerImpl implements Banner {
         if (!Objects.equals(this.getTitle(), thatBanner.getTitle())) { return false; }
         if (!Objects.equals(this.getUrl(), thatBanner.getUrl())) { return false; }
         if (!Objects.equals(this.getDescription(), thatBanner.getDescription())) { return false; }
+        if (!Objects.equals(this.getType(), thatBanner.getType())) { return false; }
+        if (!Objects.equals(this.getIsOther(), thatBanner.getIsOther())) { return false; }
         return true;
     }
     
@@ -100,6 +128,8 @@ public abstract class GeneratedBannerImpl implements Banner {
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getTitle()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getUrl()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getDescription()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getType()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getIsOther()));
         return hash;
     }
 }

@@ -36,6 +36,9 @@ public abstract class GeneratedSeatTypeSqlAdapter implements SqlAdapter<SeatType
             .setId(           resultSet.getInt(1 + offset))
             .setName(         resultSet.getString(2 + offset))
             .setPromoPointId( getInt(resultSet, 3 + offset))
+            .setPrice(        getDouble(resultSet, 4 + offset))
+            .setColor(        resultSet.getString(5 + offset))
+            .setDescription(  resultSet.getString(6 + offset))
             ;
     }
     
