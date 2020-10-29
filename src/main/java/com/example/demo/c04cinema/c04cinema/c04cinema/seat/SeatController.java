@@ -2,6 +2,7 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.seat;
 
 import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicketManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.Hall;
+import com.example.demo.c04cinema.c04cinema.c04cinema.hall.HallController;
 import com.example.demo.c04cinema.c04cinema.c04cinema.promo_point.PromoPoint;
 import com.example.demo.c04cinema.c04cinema.c04cinema.promo_point.PromoPointManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat.generated.GeneratedSeatController;
@@ -12,16 +13,21 @@ import com.speedment.common.tuple.Tuple4;
 import com.speedment.common.tuple.Tuples;
 import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class SeatController extends GeneratedSeatController {
+    private static final Log log = LogFactory.getLog(HallController.class);
 
     @Autowired
     BookingTicketManager bookingTicketManager;
@@ -29,6 +35,8 @@ public class SeatController extends GeneratedSeatController {
     PromoPointManager pointManager;
     @Autowired
     JoinComponent joinComponent;
+    @Autowired
+    private SeatManager seatManager;
 
     @GetMapping("/seatShow/{showId}")
     public List<SeatDTO> searchByShowlId(@PathVariable int showId){
@@ -52,6 +60,18 @@ public class SeatController extends GeneratedSeatController {
         });
 
         return seatDTOList;
+    }
+
+    @GetMapping("/seat/list")
+    public List<Seat> getSeatsByHallId(@RequestParam int hallId){
+        List<Seat> seatList;
+        try {
+            seatList= seatManager.stream().filter(Seat.HALL_ID.equal(hallId)).collect(Collectors.toList());
+            return seatList;
+        }catch (Exception e){
+            log.error("Lỗi tại vị trí seatController" + e.getMessage());
+            return seatList = null;
+        }
     }
 
 }
