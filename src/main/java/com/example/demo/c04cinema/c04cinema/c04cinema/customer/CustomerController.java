@@ -32,8 +32,12 @@ import com.example.demo.c04cinema.model_dto.CustomerPointDTO;
 public class CustomerController extends GeneratedCustomerController {
     @Autowired
     private JoinComponent joinComponent;
+
     @Autowired
     private CustomerManager customerManager;
+
+    @Autowired
+    private AccountManager accountManager;
 
     Regex regex = new Regex();
 
@@ -235,5 +239,26 @@ public class CustomerController extends GeneratedCustomerController {
             System.out.println(e);
         }
       return null;
+    }
+
+    @PatchMapping("/editPassWord/{id}")
+    public List<Error> postCombo(@RequestParam(value = "passOld") String passOld,@RequestParam(value = "newPass") String newPass, @PathVariable int id) {
+        try {
+            List<Error> errors = new ArrayList<>();
+//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            Account account = accountManager.stream().filter(Account.ID.equal(id)).findFirst().get();
+//            String newPassEnd = passwordEncoder.encode(newPass);
+            if (account.getPassword().get().equals(passOld)){
+                account.setPassword(newPass);
+                accountManager.update(account);
+                errors.add(new Error("success", "PassWord update success !"));
+            } else {
+                errors.add(new Error("error", "password error"));
+            }
+            return errors;
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
 }
