@@ -92,10 +92,10 @@ public class BookingTicketController extends GeneratedBookingTicketController {
 
     // qg23
     @GetMapping("/bookingTime/{locationId}")
-    public List<BookingTimeDTO> getBookingTime(@PathVariable int locationId, @RequestParam String dateShow) {
+    public List<BookingTimeDTO> getBookingTime(@PathVariable int locationId, @RequestParam int movieId, @RequestParam String dateShow) {
         Join<Tuple4<Hall, Theatre, Location, Show>> join = joinComponent.from(HallManager.IDENTIFIER).innerJoinOn(Theatre.ID).equal(Hall.THEATRE_ID).where(Theatre.LOCATION_ID.equal(locationId))
                 .innerJoinOn(Location.ID).equal(Theatre.LOCATION_ID)
-                .innerJoinOn(Show.HALL_ID).equal(Hall.ID).build(Tuples::of);
+                .innerJoinOn(Show.HALL_ID).equal(Hall.ID).where(Show.MOVIE_ID.equal(movieId)).build(Tuples::of);
 
         Map<Theatre, List<Show>> res = join.stream().collect(
                 groupingBy(Tuple4::get1, mapping(Tuple4::get3, toList()))
