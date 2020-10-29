@@ -589,7 +589,7 @@ public abstract class GeneratedBookingTicketController {
             this.paymentId = Objects.requireNonNull(paymentId, "`paymentId` is required");
             this.contactEmail = Objects.requireNonNull(contactEmail, "`contactEmail` is required");
             this.contactPhone = Objects.requireNonNull(contactPhone, "`contactPhone` is required");
-            this.status = Objects.requireNonNull(status, "`status` is required");
+            this.status = status;
             this.price = Objects.requireNonNull(price, "`price` is required");
             this.iscancel = Objects.requireNonNull(iscancel, "`iscancel` is required");
             this.bookingDate = Objects.requireNonNull(bookingDate, "`bookingDate` is required");

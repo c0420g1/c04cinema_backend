@@ -3,7 +3,8 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.Hall;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.HallManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.location.Location;
-import com.example.demo.c04cinema.model_dto.ShowDTO;
+import com.example.demo.c04cinema.common.Error;
+import com.example.demo.c04cinema.model_dto.*;
 import com.speedment.common.tuple.Tuple4;
 import com.speedment.common.tuple.Tuples;
 import com.speedment.runtime.join.Join;
@@ -16,10 +17,8 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
 import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
 import com.example.demo.c04cinema.c04cinema.c04cinema.theatre.Theatre;
-import com.example.demo.c04cinema.model_dto.BookingTicketDTO;
-import com.example.demo.c04cinema.model_dto.BookingTimeDTO;
-import com.example.demo.c04cinema.model_dto.ConfirmTicketDTO;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -128,6 +127,25 @@ public class BookingTicketController extends GeneratedBookingTicketController {
         return bookingTimeDTOList;
     }
 
-    @PostMapping("/booking")
-    public 
+//    @PostMapping("/booking")
+//    public List<Error> booking(@RequestBody List<BookingDTO> bookingDTOList, @RequestBody int promotionId, @RequestBody int paymentId, @RequestBody int status, @RequestBody String contactEmail, @RequestBody String contactPhone){
+//        bookingDTOList.stream().forEach(e->{
+//            BookingTicket bookingTicket= new BookingTicketImpl();
+//            bookingTicket.setCode(e.getCode());
+//            bookingTicket.setShowId(e.getShowId());
+//            bookingTicket.setTicketTypeId(e.getTicket_type_id());
+//            bookingTicket.setSeatId(e.getSeat_id());
+//            bookingTicket.setAccountId(e.getAccount_id());
+//            bookingTicket.setPrice(e.getPrice());
+//            bookingTicket.setBookingDate(LocalDateTime.parse(e.getBooking_date()));
+//            bookingTicket.setPromotionId(promotionId);
+//            bookingTicket.setPaymentId(paymentId);
+//            bookingTicket.setStatus(Byte.parseByte(String.valueOf(status)));
+//            bookingTicket.setContactEmail(contactEmail);
+//            bookingTicket.setContactPhone(contactPhone);
+//            bookingTicketManager.persist(bookingTicket);
+//        });
+//
+//        return null;
+//    }
 }
