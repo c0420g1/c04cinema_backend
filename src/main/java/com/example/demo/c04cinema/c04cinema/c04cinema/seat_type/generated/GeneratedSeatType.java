@@ -7,12 +7,14 @@ import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
+import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
 
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.OptionalInt;
 
 /**
@@ -62,6 +64,39 @@ public interface GeneratedSeatType {
         TypeMapper.identity(),
         false
     );
+    /**
+     * This Field corresponds to the {@link SeatType} field that can be obtained
+     * using the {@link SeatType#getPrice()} method.
+     */
+    ComparableField<SeatType, Double, Double> PRICE = ComparableField.create(
+        Identifier.PRICE,
+        o -> OptionalUtil.unwrap(o.getPrice()),
+        SeatType::setPrice,
+        TypeMapper.identity(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link SeatType} field that can be obtained
+     * using the {@link SeatType#getColor()} method.
+     */
+    StringField<SeatType, String> COLOR = StringField.create(
+        Identifier.COLOR,
+        o -> OptionalUtil.unwrap(o.getColor()),
+        SeatType::setColor,
+        TypeMapper.identity(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link SeatType} field that can be obtained
+     * using the {@link SeatType#getDescription()} method.
+     */
+    StringField<SeatType, String> DESCRIPTION = StringField.create(
+        Identifier.DESCRIPTION,
+        o -> OptionalUtil.unwrap(o.getDescription()),
+        SeatType::setDescription,
+        TypeMapper.identity(),
+        false
+    );
     
     /**
      * Returns the id of this SeatType. The id field corresponds to the database
@@ -87,6 +122,31 @@ public interface GeneratedSeatType {
      * @return the promoPointId of this SeatType
      */
     OptionalInt getPromoPointId();
+    
+    /**
+     * Returns the price of this SeatType. The price field corresponds to the
+     * database column c04cinema.c04cinema.seat_type.price.
+     * 
+     * @return the price of this SeatType
+     */
+    OptionalDouble getPrice();
+    
+    /**
+     * Returns the color of this SeatType. The color field corresponds to the
+     * database column c04cinema.c04cinema.seat_type.color.
+     * 
+     * @return the color of this SeatType
+     */
+    Optional<String> getColor();
+    
+    /**
+     * Returns the description of this SeatType. The description field
+     * corresponds to the database column
+     * c04cinema.c04cinema.seat_type.description.
+     * 
+     * @return the description of this SeatType
+     */
+    Optional<String> getDescription();
     
     /**
      * Sets the id of this SeatType. The id field corresponds to the database
@@ -117,6 +177,33 @@ public interface GeneratedSeatType {
     SeatType setPromoPointId(Integer promoPointId);
     
     /**
+     * Sets the price of this SeatType. The price field corresponds to the
+     * database column c04cinema.c04cinema.seat_type.price.
+     * 
+     * @param price to set of this SeatType
+     * @return      this SeatType instance
+     */
+    SeatType setPrice(Double price);
+    
+    /**
+     * Sets the color of this SeatType. The color field corresponds to the
+     * database column c04cinema.c04cinema.seat_type.color.
+     * 
+     * @param color to set of this SeatType
+     * @return      this SeatType instance
+     */
+    SeatType setColor(String color);
+    
+    /**
+     * Sets the description of this SeatType. The description field corresponds
+     * to the database column c04cinema.c04cinema.seat_type.description.
+     * 
+     * @param description to set of this SeatType
+     * @return            this SeatType instance
+     */
+    SeatType setDescription(String description);
+    
+    /**
      * Queries the specified manager for the referenced PromoPoint. If no such
      * PromoPoint exists, an {@code NullPointerException} will be thrown.
      * 
@@ -129,7 +216,10 @@ public interface GeneratedSeatType {
         
         ID             ("id"),
         NAME           ("name"),
-        PROMO_POINT_ID ("promo_point_id");
+        PROMO_POINT_ID ("promo_point_id"),
+        PRICE          ("price"),
+        COLOR          ("color"),
+        DESCRIPTION    ("description");
         
         private final String columnId;
         private final TableIdentifier<SeatType> tableIdentifier;

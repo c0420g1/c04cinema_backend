@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.speedment.common.injector.State.RESOLVED;
+import static com.speedment.runtime.core.util.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link
@@ -36,6 +37,8 @@ public abstract class GeneratedOtherSqlAdapter implements SqlAdapter<Other> {
             .setName(        resultSet.getString(2 + offset))
             .setType(        resultSet.getString(3 + offset))
             .setDescription( resultSet.getString(4 + offset))
+            .setIsOther(     getByte(resultSet, 5 + offset))
+            .setImageUrl(    resultSet.getString(6 + offset))
             ;
     }
     

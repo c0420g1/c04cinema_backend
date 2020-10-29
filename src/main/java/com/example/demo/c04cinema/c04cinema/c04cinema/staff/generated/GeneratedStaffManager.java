@@ -37,7 +37,8 @@ public interface GeneratedStaffManager extends Manager<Staff> {
         Staff.SALARY,
         Staff.POSITION_ID,
         Staff.ISACTIVE,
-        Staff.CODE
+        Staff.CODE,
+        Staff.IMAGE_URL
     ));
     
     @Override

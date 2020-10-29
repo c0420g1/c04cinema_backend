@@ -27,7 +27,10 @@ public interface GeneratedSeatTypeManager extends Manager<SeatType> {
     List<Field<SeatType>> FIELDS = unmodifiableList(asList(
         SeatType.ID,
         SeatType.NAME,
-        SeatType.PROMO_POINT_ID
+        SeatType.PROMO_POINT_ID,
+        SeatType.PRICE,
+        SeatType.COLOR,
+        SeatType.DESCRIPTION
     ));
     
     @Override

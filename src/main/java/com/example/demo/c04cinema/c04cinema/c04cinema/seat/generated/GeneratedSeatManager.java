@@ -27,7 +27,6 @@ public interface GeneratedSeatManager extends Manager<Seat> {
     List<Field<Seat>> FIELDS = unmodifiableList(asList(
         Seat.ID,
         Seat.NAME,
-        Seat.THEATRE_ID,
         Seat.HALL_ID,
         Seat.SEAT_TYPE_ID
     ));

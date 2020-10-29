@@ -28,7 +28,9 @@ public interface GeneratedBannerManager extends Manager<Banner> {
         Banner.ID,
         Banner.TITLE,
         Banner.URL,
-        Banner.DESCRIPTION
+        Banner.DESCRIPTION,
+        Banner.TYPE,
+        Banner.IS_OTHER
     ));
     
     @Override

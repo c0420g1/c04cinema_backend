@@ -70,6 +70,8 @@ public abstract class GeneratedOtherController {
             .put("name", Other.NAME)
             .put("type", Other.TYPE)
             .put("description", Other.DESCRIPTION)
+            .put("isOther", Other.IS_OTHER)
+            .put("imageUrl", Other.IMAGE_URL)
             .build();
     }
     
@@ -96,6 +98,8 @@ public abstract class GeneratedOtherController {
             .setName(createBody.getName())
             .setType(createBody.getType())
             .setDescription(createBody.getDescription())
+            .setIsOther(createBody.getIsOther())
+            .setImageUrl(createBody.getImageUrl())
         );
     }
     
@@ -110,6 +114,8 @@ public abstract class GeneratedOtherController {
                 other.setName(updateBody.getName());
                 other.setType(updateBody.getType());
                 other.setDescription(updateBody.getDescription());
+                other.setIsOther(updateBody.getIsOther());
+                other.setImageUrl(updateBody.getImageUrl());
                 return other;
         }).forEach(manager.updater());
     }
@@ -163,6 +169,8 @@ public abstract class GeneratedOtherController {
             case "name":        return GeneratedOther.Identifier.NAME;
             case "type":        return GeneratedOther.Identifier.TYPE;
             case "description": return GeneratedOther.Identifier.DESCRIPTION;
+            case "isOther":     return GeneratedOther.Identifier.IS_OTHER;
+            case "imageUrl":    return GeneratedOther.Identifier.IMAGE_URL;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + jsonColumn + "'."
             );
@@ -175,6 +183,8 @@ public abstract class GeneratedOtherController {
             case NAME:        return Other.NAME;
             case TYPE:        return Other.TYPE;
             case DESCRIPTION: return Other.DESCRIPTION;
+            case IS_OTHER:    return Other.IS_OTHER;
+            case IMAGE_URL:   return Other.IMAGE_URL;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + columnId + "'."
             );
@@ -285,6 +295,38 @@ public abstract class GeneratedOtherController {
                         );
                     }
                 }
+                case "isOther" : {
+                    final Byte v = Byte.parseByte(value());
+                    switch (operator()) {
+                        case "eq"   : return Other.IS_OTHER.equal(v);
+                        case "ne"   : return Other.IS_OTHER.notEqual(v);
+                        case "lt"   : return Other.IS_OTHER.lessThan(v);
+                        case "le"   : return Other.IS_OTHER.lessOrEqual(v);
+                        case "gt"   : return Other.IS_OTHER.greaterThan(v);
+                        case "ge"   : return Other.IS_OTHER.greaterOrEqual(v);
+                        case "like" : // Fallthrough
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "Other.isOther."
+                        );
+                    }
+                }
+                case "imageUrl" : {
+                    final String v = value();
+                    switch (operator()) {
+                        case "eq"   : return Other.IMAGE_URL.equal(v);
+                        case "ne"   : return Other.IMAGE_URL.notEqual(v);
+                        case "lt"   : return Other.IMAGE_URL.lessThan(v);
+                        case "le"   : return Other.IMAGE_URL.lessOrEqual(v);
+                        case "gt"   : return Other.IMAGE_URL.greaterThan(v);
+                        case "ge"   : return Other.IMAGE_URL.greaterOrEqual(v);
+                        case "like" : return Other.IMAGE_URL.contains(v);
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "Other.imageUrl."
+                        );
+                    }
+                }
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid Other property."
                 );
@@ -310,6 +352,8 @@ public abstract class GeneratedOtherController {
                 case "name"        : comparator = Other.NAME.comparator();        break;
                 case "type"        : comparator = Other.TYPE.comparator();        break;
                 case "description" : comparator = Other.DESCRIPTION.comparator(); break;
+                case "isOther"     : comparator = Other.IS_OTHER.comparator();    break;
+                case "imageUrl"    : comparator = Other.IMAGE_URL.comparator();   break;
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid Other property."
                 );
@@ -333,15 +377,21 @@ public abstract class GeneratedOtherController {
         private final String name;
         private final String type;
         private final String description;
+        private final Byte isOther;
+        private final String imageUrl;
         
         @JsonCreator
         public CreateBody(
                 @JsonProperty("name") String name,
                 @JsonProperty("type") String type,
-                @JsonProperty("description") String description) {
+                @JsonProperty("description") String description,
+                @JsonProperty("isOther") Byte isOther,
+                @JsonProperty("imageUrl") String imageUrl) {
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.type = Objects.requireNonNull(type, "`type` is required");
             this.description = Objects.requireNonNull(description, "`description` is required");
+            this.isOther = Objects.requireNonNull(isOther, "`isOther` is required");
+            this.imageUrl = Objects.requireNonNull(imageUrl, "`imageUrl` is required");
         }
         
         public String getName() {
@@ -354,6 +404,14 @@ public abstract class GeneratedOtherController {
         
         public String getDescription() {
             return this.description;
+        }
+        
+        public Byte getIsOther() {
+            return this.isOther;
+        }
+        
+        public String getImageUrl() {
+            return this.imageUrl;
         }
     }
     
@@ -364,15 +422,21 @@ public abstract class GeneratedOtherController {
         private final String name;
         private final String type;
         private final String description;
+        private final Byte isOther;
+        private final String imageUrl;
         
         @JsonCreator
         public UpdateBody(
                 @JsonProperty("name") String name,
                 @JsonProperty("type") String type,
-                @JsonProperty("description") String description) {
+                @JsonProperty("description") String description,
+                @JsonProperty("isOther") Byte isOther,
+                @JsonProperty("imageUrl") String imageUrl) {
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.type = Objects.requireNonNull(type, "`type` is required");
             this.description = Objects.requireNonNull(description, "`description` is required");
+            this.isOther = Objects.requireNonNull(isOther, "`isOther` is required");
+            this.imageUrl = Objects.requireNonNull(imageUrl, "`imageUrl` is required");
         }
         
         public String getName() {
@@ -385,6 +449,14 @@ public abstract class GeneratedOtherController {
         
         public String getDescription() {
             return this.description;
+        }
+        
+        public Byte getIsOther() {
+            return this.isOther;
+        }
+        
+        public String getImageUrl() {
+            return this.imageUrl;
         }
     }
 }
