@@ -8,7 +8,6 @@ import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
-import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
@@ -54,17 +53,6 @@ public interface GeneratedHall {
     );
     /**
      * This Field corresponds to the {@link Hall} field that can be obtained
-     * using the {@link Hall#getSeatQuantity()} method.
-     */
-    ComparableField<Hall, Integer, Integer> SEAT_QUANTITY = ComparableField.create(
-        Identifier.SEAT_QUANTITY,
-        o -> OptionalUtil.unwrap(o.getSeatQuantity()),
-        Hall::setSeatQuantity,
-        TypeMapper.identity(),
-        false
-    );
-    /**
-     * This Field corresponds to the {@link Hall} field that can be obtained
      * using the {@link Hall#getHallTypeId()} method.
      */
     ComparableForeignKeyField<Hall, Integer, Integer, HallType> HALL_TYPE_ID = ComparableForeignKeyField.create(
@@ -105,14 +93,6 @@ public interface GeneratedHall {
     Optional<String> getName();
     
     /**
-     * Returns the seatQuantity of this Hall. The seatQuantity field corresponds
-     * to the database column c04cinema.c04cinema.hall.seat_quantity.
-     * 
-     * @return the seatQuantity of this Hall
-     */
-    OptionalInt getSeatQuantity();
-    
-    /**
      * Returns the hallTypeId of this Hall. The hallTypeId field corresponds to
      * the database column c04cinema.c04cinema.hall.hall_type_id.
      * 
@@ -145,15 +125,6 @@ public interface GeneratedHall {
      * @return     this Hall instance
      */
     Hall setName(String name);
-    
-    /**
-     * Sets the seatQuantity of this Hall. The seatQuantity field corresponds to
-     * the database column c04cinema.c04cinema.hall.seat_quantity.
-     * 
-     * @param seatQuantity to set of this Hall
-     * @return             this Hall instance
-     */
-    Hall setSeatQuantity(Integer seatQuantity);
     
     /**
      * Sets the hallTypeId of this Hall. The hallTypeId field corresponds to the
@@ -193,11 +164,10 @@ public interface GeneratedHall {
     
     enum Identifier implements ColumnIdentifier<Hall> {
         
-        ID            ("id"),
-        NAME          ("name"),
-        SEAT_QUANTITY ("seat_quantity"),
-        HALL_TYPE_ID  ("hall_type_id"),
-        THEATRE_ID    ("theatre_id");
+        ID           ("id"),
+        NAME         ("name"),
+        HALL_TYPE_ID ("hall_type_id"),
+        THEATRE_ID   ("theatre_id");
         
         private final String columnId;
         private final TableIdentifier<Hall> tableIdentifier;

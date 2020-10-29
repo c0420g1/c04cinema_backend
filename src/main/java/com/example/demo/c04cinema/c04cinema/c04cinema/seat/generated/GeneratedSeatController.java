@@ -68,7 +68,6 @@ public abstract class GeneratedSeatController {
         encoder = jsonComponent.<Seat>emptyEncoder()
             .put("id", Seat.ID)
             .put("name", Seat.NAME)
-            .put("theatreId", Seat.THEATRE_ID)
             .put("hallId", Seat.HALL_ID)
             .put("seatTypeId", Seat.SEAT_TYPE_ID)
             .build();
@@ -95,7 +94,6 @@ public abstract class GeneratedSeatController {
             @RequestBody @Validated CreateBody createBody) {
         manager.persist(manager.create()
             .setName(createBody.getName())
-            .setTheatreId(createBody.getTheatreId())
             .setHallId(createBody.getHallId())
             .setSeatTypeId(createBody.getSeatTypeId())
         );
@@ -110,7 +108,6 @@ public abstract class GeneratedSeatController {
             .filter(Seat.ID.equal(id))
             .map(seat -> {
                 seat.setName(updateBody.getName());
-                seat.setTheatreId(updateBody.getTheatreId());
                 seat.setHallId(updateBody.getHallId());
                 seat.setSeatTypeId(updateBody.getSeatTypeId());
                 return seat;
@@ -164,7 +161,6 @@ public abstract class GeneratedSeatController {
         switch (jsonColumn) {
             case "id":         return GeneratedSeat.Identifier.ID;
             case "name":       return GeneratedSeat.Identifier.NAME;
-            case "theatreId":  return GeneratedSeat.Identifier.THEATRE_ID;
             case "hallId":     return GeneratedSeat.Identifier.HALL_ID;
             case "seatTypeId": return GeneratedSeat.Identifier.SEAT_TYPE_ID;
             default: throw new IllegalArgumentException(
@@ -177,7 +173,6 @@ public abstract class GeneratedSeatController {
         switch (columnId) {
             case ID:           return Seat.ID;
             case NAME:         return Seat.NAME;
-            case THEATRE_ID:   return Seat.THEATRE_ID;
             case HALL_ID:      return Seat.HALL_ID;
             case SEAT_TYPE_ID: return Seat.SEAT_TYPE_ID;
             default: throw new IllegalArgumentException(
@@ -258,22 +253,6 @@ public abstract class GeneratedSeatController {
                         );
                     }
                 }
-                case "theatreId" : {
-                    final Integer v = Integer.parseInt(value());
-                    switch (operator()) {
-                        case "eq"   : return Seat.THEATRE_ID.equal(v);
-                        case "ne"   : return Seat.THEATRE_ID.notEqual(v);
-                        case "lt"   : return Seat.THEATRE_ID.lessThan(v);
-                        case "le"   : return Seat.THEATRE_ID.lessOrEqual(v);
-                        case "gt"   : return Seat.THEATRE_ID.greaterThan(v);
-                        case "ge"   : return Seat.THEATRE_ID.greaterOrEqual(v);
-                        case "like" : // Fallthrough
-                        default : throw new IllegalArgumentException(
-                            "'" + operator() + "' is not a valid operator for " +
-                            "Seat.theatreId."
-                        );
-                    }
-                }
                 case "hallId" : {
                     final Integer v = Integer.parseInt(value());
                     switch (operator()) {
@@ -329,7 +308,6 @@ public abstract class GeneratedSeatController {
             switch (property()) {
                 case "id"         : comparator = Seat.ID.comparator();           break;
                 case "name"       : comparator = Seat.NAME.comparator();         break;
-                case "theatreId"  : comparator = Seat.THEATRE_ID.comparator();   break;
                 case "hallId"     : comparator = Seat.HALL_ID.comparator();      break;
                 case "seatTypeId" : comparator = Seat.SEAT_TYPE_ID.comparator(); break;
                 default : throw new IllegalArgumentException(
@@ -353,28 +331,21 @@ public abstract class GeneratedSeatController {
     public static final class CreateBody {
         
         private final String name;
-        private final Integer theatreId;
         private final Integer hallId;
         private final Integer seatTypeId;
         
         @JsonCreator
         public CreateBody(
                 @JsonProperty("name") String name,
-                @JsonProperty("theatreId") Integer theatreId,
                 @JsonProperty("hallId") Integer hallId,
                 @JsonProperty("seatTypeId") Integer seatTypeId) {
             this.name = Objects.requireNonNull(name, "`name` is required");
-            this.theatreId = Objects.requireNonNull(theatreId, "`theatreId` is required");
             this.hallId = Objects.requireNonNull(hallId, "`hallId` is required");
             this.seatTypeId = Objects.requireNonNull(seatTypeId, "`seatTypeId` is required");
         }
         
         public String getName() {
             return this.name;
-        }
-        
-        public Integer getTheatreId() {
-            return this.theatreId;
         }
         
         public Integer getHallId() {
@@ -391,28 +362,21 @@ public abstract class GeneratedSeatController {
     public static final class UpdateBody {
         
         private final String name;
-        private final Integer theatreId;
         private final Integer hallId;
         private final Integer seatTypeId;
         
         @JsonCreator
         public UpdateBody(
                 @JsonProperty("name") String name,
-                @JsonProperty("theatreId") Integer theatreId,
                 @JsonProperty("hallId") Integer hallId,
                 @JsonProperty("seatTypeId") Integer seatTypeId) {
             this.name = Objects.requireNonNull(name, "`name` is required");
-            this.theatreId = Objects.requireNonNull(theatreId, "`theatreId` is required");
             this.hallId = Objects.requireNonNull(hallId, "`hallId` is required");
             this.seatTypeId = Objects.requireNonNull(seatTypeId, "`seatTypeId` is required");
         }
         
         public String getName() {
             return this.name;
-        }
-        
-        public Integer getTheatreId() {
-            return this.theatreId;
         }
         
         public Integer getHallId() {

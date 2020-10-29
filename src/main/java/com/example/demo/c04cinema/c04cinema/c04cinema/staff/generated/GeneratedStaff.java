@@ -179,6 +179,17 @@ public interface GeneratedStaff {
         TypeMapper.identity(),
         false
     );
+    /**
+     * This Field corresponds to the {@link Staff} field that can be obtained
+     * using the {@link Staff#getImageUrl()} method.
+     */
+    StringField<Staff, String> IMAGE_URL = StringField.create(
+        Identifier.IMAGE_URL,
+        o -> OptionalUtil.unwrap(o.getImageUrl()),
+        Staff::setImageUrl,
+        TypeMapper.identity(),
+        false
+    );
     
     /**
      * Returns the id of this Staff. The id field corresponds to the database
@@ -283,6 +294,14 @@ public interface GeneratedStaff {
      * @return the code of this Staff
      */
     Optional<String> getCode();
+    
+    /**
+     * Returns the imageUrl of this Staff. The imageUrl field corresponds to the
+     * database column c04cinema.c04cinema.staff.image_url.
+     * 
+     * @return the imageUrl of this Staff
+     */
+    Optional<String> getImageUrl();
     
     /**
      * Sets the id of this Staff. The id field corresponds to the database
@@ -402,6 +421,15 @@ public interface GeneratedStaff {
     Staff setCode(String code);
     
     /**
+     * Sets the imageUrl of this Staff. The imageUrl field corresponds to the
+     * database column c04cinema.c04cinema.staff.image_url.
+     * 
+     * @param imageUrl to set of this Staff
+     * @return         this Staff instance
+     */
+    Staff setImageUrl(String imageUrl);
+    
+    /**
      * Queries the specified manager for the referenced Account. If no such
      * Account exists, an {@code NullPointerException} will be thrown.
      * 
@@ -442,7 +470,8 @@ public interface GeneratedStaff {
         SALARY      ("salary"),
         POSITION_ID ("position_id"),
         ISACTIVE    ("isactive"),
-        CODE        ("code");
+        CODE        ("code"),
+        IMAGE_URL   ("image_url");
         
         private final String columnId;
         private final TableIdentifier<Staff> tableIdentifier;
