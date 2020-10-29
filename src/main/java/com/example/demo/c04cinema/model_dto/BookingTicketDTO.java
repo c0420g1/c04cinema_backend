@@ -2,6 +2,7 @@ package com.example.demo.c04cinema.model_dto;
 
 import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicket;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
+import com.example.demo.c04cinema.c04cinema.c04cinema.hall.Hall;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
 import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
@@ -22,9 +23,12 @@ public class BookingTicketDTO {
     private final LocalDateTime startTime;
     private final double priceTicket;
     private final String seat;
+    private final double pointCustomer;
+    private final Byte isCancel;
+    private final String hallName;
 
 
-    public BookingTicketDTO(BookingTicket bookingTicket, Customer customer, Show show, Movie movie, Seat seat){
+    public BookingTicketDTO(BookingTicket bookingTicket, Customer customer, Show show, Movie movie, Seat seat, Hall hall){
         this.idBookingTicket= bookingTicket.getId();
         this.bookingCode= bookingTicket.getCode().get();
         this.bookingDate=  bookingTicket.getBookingDate().get();
@@ -38,7 +42,16 @@ public class BookingTicketDTO {
         this.startTime= show.getStartTime().get();
         this.priceTicket= bookingTicket.getPrice().getAsDouble();
         this.seat= seat.getName().get();
+        this.pointCustomer = customer.getCurrentBonusPoint().getAsInt();
+        this.isCancel = bookingTicket.getIscancel().get();
+        this.hallName = hall.getName().get();
     }
+
+    public String getHallName() { return hallName; }
+
+    public Byte getIsCancel() { return isCancel; }
+
+    public double getPointCustomer() { return pointCustomer; }
 
     public String getSeat() {
         return seat;
