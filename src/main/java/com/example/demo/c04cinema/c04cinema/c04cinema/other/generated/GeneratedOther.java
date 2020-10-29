@@ -5,6 +5,7 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.util.OptionalUtil;
+import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
@@ -68,6 +69,28 @@ public interface GeneratedOther {
         TypeMapper.identity(),
         false
     );
+    /**
+     * This Field corresponds to the {@link Other} field that can be obtained
+     * using the {@link Other#getIsOther()} method.
+     */
+    ComparableField<Other, Byte, Byte> IS_OTHER = ComparableField.create(
+        Identifier.IS_OTHER,
+        o -> OptionalUtil.unwrap(o.getIsOther()),
+        Other::setIsOther,
+        TypeMapper.identity(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link Other} field that can be obtained
+     * using the {@link Other#getImageUrl()} method.
+     */
+    StringField<Other, String> IMAGE_URL = StringField.create(
+        Identifier.IMAGE_URL,
+        o -> OptionalUtil.unwrap(o.getImageUrl()),
+        Other::setImageUrl,
+        TypeMapper.identity(),
+        false
+    );
     
     /**
      * Returns the id of this Other. The id field corresponds to the database
@@ -100,6 +123,22 @@ public interface GeneratedOther {
      * @return the description of this Other
      */
     Optional<String> getDescription();
+    
+    /**
+     * Returns the isOther of this Other. The isOther field corresponds to the
+     * database column c04cinema.c04cinema.other.isOther.
+     * 
+     * @return the isOther of this Other
+     */
+    Optional<Byte> getIsOther();
+    
+    /**
+     * Returns the imageUrl of this Other. The imageUrl field corresponds to the
+     * database column c04cinema.c04cinema.other.image_url.
+     * 
+     * @return the imageUrl of this Other
+     */
+    Optional<String> getImageUrl();
     
     /**
      * Sets the id of this Other. The id field corresponds to the database
@@ -137,12 +176,32 @@ public interface GeneratedOther {
      */
     Other setDescription(String description);
     
+    /**
+     * Sets the isOther of this Other. The isOther field corresponds to the
+     * database column c04cinema.c04cinema.other.isOther.
+     * 
+     * @param isOther to set of this Other
+     * @return        this Other instance
+     */
+    Other setIsOther(Byte isOther);
+    
+    /**
+     * Sets the imageUrl of this Other. The imageUrl field corresponds to the
+     * database column c04cinema.c04cinema.other.image_url.
+     * 
+     * @param imageUrl to set of this Other
+     * @return         this Other instance
+     */
+    Other setImageUrl(String imageUrl);
+    
     enum Identifier implements ColumnIdentifier<Other> {
         
         ID          ("id"),
         NAME        ("name"),
         TYPE        ("type"),
-        DESCRIPTION ("description");
+        DESCRIPTION ("description"),
+        IS_OTHER    ("isOther"),
+        IMAGE_URL   ("image_url");
         
         private final String columnId;
         private final TableIdentifier<Other> tableIdentifier;

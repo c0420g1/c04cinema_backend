@@ -69,6 +69,9 @@ public abstract class GeneratedSeatTypeController {
             .put("id", SeatType.ID)
             .put("name", SeatType.NAME)
             .put("promoPointId", SeatType.PROMO_POINT_ID)
+            .put("price", SeatType.PRICE)
+            .put("color", SeatType.COLOR)
+            .put("description", SeatType.DESCRIPTION)
             .build();
     }
     
@@ -94,6 +97,9 @@ public abstract class GeneratedSeatTypeController {
         manager.persist(manager.create()
             .setName(createBody.getName())
             .setPromoPointId(createBody.getPromoPointId())
+            .setPrice(createBody.getPrice())
+            .setColor(createBody.getColor())
+            .setDescription(createBody.getDescription())
         );
     }
     
@@ -107,6 +113,9 @@ public abstract class GeneratedSeatTypeController {
             .map(seatType -> {
                 seatType.setName(updateBody.getName());
                 seatType.setPromoPointId(updateBody.getPromoPointId());
+                seatType.setPrice(updateBody.getPrice());
+                seatType.setColor(updateBody.getColor());
+                seatType.setDescription(updateBody.getDescription());
                 return seatType;
         }).forEach(manager.updater());
     }
@@ -159,6 +168,9 @@ public abstract class GeneratedSeatTypeController {
             case "id":           return GeneratedSeatType.Identifier.ID;
             case "name":         return GeneratedSeatType.Identifier.NAME;
             case "promoPointId": return GeneratedSeatType.Identifier.PROMO_POINT_ID;
+            case "price":        return GeneratedSeatType.Identifier.PRICE;
+            case "color":        return GeneratedSeatType.Identifier.COLOR;
+            case "description":  return GeneratedSeatType.Identifier.DESCRIPTION;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + jsonColumn + "'."
             );
@@ -170,6 +182,9 @@ public abstract class GeneratedSeatTypeController {
             case ID:             return SeatType.ID;
             case NAME:           return SeatType.NAME;
             case PROMO_POINT_ID: return SeatType.PROMO_POINT_ID;
+            case PRICE:          return SeatType.PRICE;
+            case COLOR:          return SeatType.COLOR;
+            case DESCRIPTION:    return SeatType.DESCRIPTION;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + columnId + "'."
             );
@@ -264,6 +279,54 @@ public abstract class GeneratedSeatTypeController {
                         );
                     }
                 }
+                case "price" : {
+                    final Double v = Double.parseDouble(value());
+                    switch (operator()) {
+                        case "eq"   : return SeatType.PRICE.equal(v);
+                        case "ne"   : return SeatType.PRICE.notEqual(v);
+                        case "lt"   : return SeatType.PRICE.lessThan(v);
+                        case "le"   : return SeatType.PRICE.lessOrEqual(v);
+                        case "gt"   : return SeatType.PRICE.greaterThan(v);
+                        case "ge"   : return SeatType.PRICE.greaterOrEqual(v);
+                        case "like" : // Fallthrough
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "SeatType.price."
+                        );
+                    }
+                }
+                case "color" : {
+                    final String v = value();
+                    switch (operator()) {
+                        case "eq"   : return SeatType.COLOR.equal(v);
+                        case "ne"   : return SeatType.COLOR.notEqual(v);
+                        case "lt"   : return SeatType.COLOR.lessThan(v);
+                        case "le"   : return SeatType.COLOR.lessOrEqual(v);
+                        case "gt"   : return SeatType.COLOR.greaterThan(v);
+                        case "ge"   : return SeatType.COLOR.greaterOrEqual(v);
+                        case "like" : return SeatType.COLOR.contains(v);
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "SeatType.color."
+                        );
+                    }
+                }
+                case "description" : {
+                    final String v = value();
+                    switch (operator()) {
+                        case "eq"   : return SeatType.DESCRIPTION.equal(v);
+                        case "ne"   : return SeatType.DESCRIPTION.notEqual(v);
+                        case "lt"   : return SeatType.DESCRIPTION.lessThan(v);
+                        case "le"   : return SeatType.DESCRIPTION.lessOrEqual(v);
+                        case "gt"   : return SeatType.DESCRIPTION.greaterThan(v);
+                        case "ge"   : return SeatType.DESCRIPTION.greaterOrEqual(v);
+                        case "like" : return SeatType.DESCRIPTION.contains(v);
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "SeatType.description."
+                        );
+                    }
+                }
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid SeatType property."
                 );
@@ -288,6 +351,9 @@ public abstract class GeneratedSeatTypeController {
                 case "id"           : comparator = SeatType.ID.comparator();             break;
                 case "name"         : comparator = SeatType.NAME.comparator();           break;
                 case "promoPointId" : comparator = SeatType.PROMO_POINT_ID.comparator(); break;
+                case "price"        : comparator = SeatType.PRICE.comparator();          break;
+                case "color"        : comparator = SeatType.COLOR.comparator();          break;
+                case "description"  : comparator = SeatType.DESCRIPTION.comparator();    break;
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid SeatType property."
                 );
@@ -310,13 +376,22 @@ public abstract class GeneratedSeatTypeController {
         
         private final String name;
         private final Integer promoPointId;
+        private final Double price;
+        private final String color;
+        private final String description;
         
         @JsonCreator
         public CreateBody(
                 @JsonProperty("name") String name,
-                @JsonProperty("promoPointId") Integer promoPointId) {
+                @JsonProperty("promoPointId") Integer promoPointId,
+                @JsonProperty("price") Double price,
+                @JsonProperty("color") String color,
+                @JsonProperty("description") String description) {
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.promoPointId = Objects.requireNonNull(promoPointId, "`promoPointId` is required");
+            this.price = Objects.requireNonNull(price, "`price` is required");
+            this.color = Objects.requireNonNull(color, "`color` is required");
+            this.description = Objects.requireNonNull(description, "`description` is required");
         }
         
         public String getName() {
@@ -325,6 +400,18 @@ public abstract class GeneratedSeatTypeController {
         
         public Integer getPromoPointId() {
             return this.promoPointId;
+        }
+        
+        public Double getPrice() {
+            return this.price;
+        }
+        
+        public String getColor() {
+            return this.color;
+        }
+        
+        public String getDescription() {
+            return this.description;
         }
     }
     
@@ -334,13 +421,22 @@ public abstract class GeneratedSeatTypeController {
         
         private final String name;
         private final Integer promoPointId;
+        private final Double price;
+        private final String color;
+        private final String description;
         
         @JsonCreator
         public UpdateBody(
                 @JsonProperty("name") String name,
-                @JsonProperty("promoPointId") Integer promoPointId) {
+                @JsonProperty("promoPointId") Integer promoPointId,
+                @JsonProperty("price") Double price,
+                @JsonProperty("color") String color,
+                @JsonProperty("description") String description) {
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.promoPointId = Objects.requireNonNull(promoPointId, "`promoPointId` is required");
+            this.price = Objects.requireNonNull(price, "`price` is required");
+            this.color = Objects.requireNonNull(color, "`color` is required");
+            this.description = Objects.requireNonNull(description, "`description` is required");
         }
         
         public String getName() {
@@ -349,6 +445,18 @@ public abstract class GeneratedSeatTypeController {
         
         public Integer getPromoPointId() {
             return this.promoPointId;
+        }
+        
+        public Double getPrice() {
+            return this.price;
+        }
+        
+        public String getColor() {
+            return this.color;
+        }
+        
+        public String getDescription() {
+            return this.description;
         }
     }
 }

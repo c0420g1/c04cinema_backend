@@ -8,6 +8,7 @@ import com.speedment.runtime.core.util.OptionalUtil;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.StringJoiner;
 
@@ -26,6 +27,9 @@ public abstract class GeneratedSeatTypeImpl implements SeatType {
     private int id;
     private String name;
     private Integer promoPointId;
+    private Double price;
+    private String color;
+    private String description;
     
     protected GeneratedSeatTypeImpl() {}
     
@@ -42,6 +46,21 @@ public abstract class GeneratedSeatTypeImpl implements SeatType {
     @Override
     public OptionalInt getPromoPointId() {
         return OptionalUtil.ofNullable(promoPointId);
+    }
+    
+    @Override
+    public OptionalDouble getPrice() {
+        return OptionalUtil.ofNullable(price);
+    }
+    
+    @Override
+    public Optional<String> getColor() {
+        return Optional.ofNullable(color);
+    }
+    
+    @Override
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
     }
     
     @Override
@@ -63,6 +82,24 @@ public abstract class GeneratedSeatTypeImpl implements SeatType {
     }
     
     @Override
+    public SeatType setPrice(Double price) {
+        this.price = price;
+        return this;
+    }
+    
+    @Override
+    public SeatType setColor(String color) {
+        this.color = color;
+        return this;
+    }
+    
+    @Override
+    public SeatType setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+    
+    @Override
     public Optional<PromoPoint> findPromoPointId(Manager<PromoPoint> foreignManager) {
         if (getPromoPointId().isPresent()) {
             return foreignManager.stream().filter(PromoPoint.ID.equal(getPromoPointId().getAsInt())).findAny();
@@ -77,6 +114,9 @@ public abstract class GeneratedSeatTypeImpl implements SeatType {
         sj.add("id = "           + Objects.toString(getId()));
         sj.add("name = "         + Objects.toString(OptionalUtil.unwrap(getName())));
         sj.add("promoPointId = " + Objects.toString(OptionalUtil.unwrap(getPromoPointId())));
+        sj.add("price = "        + Objects.toString(OptionalUtil.unwrap(getPrice())));
+        sj.add("color = "        + Objects.toString(OptionalUtil.unwrap(getColor())));
+        sj.add("description = "  + Objects.toString(OptionalUtil.unwrap(getDescription())));
         return "SeatTypeImpl " + sj.toString();
     }
     
@@ -88,6 +128,9 @@ public abstract class GeneratedSeatTypeImpl implements SeatType {
         if (this.getId() != thatSeatType.getId()) { return false; }
         if (!Objects.equals(this.getName(), thatSeatType.getName())) { return false; }
         if (!Objects.equals(this.getPromoPointId(), thatSeatType.getPromoPointId())) { return false; }
+        if (!Objects.equals(this.getPrice(), thatSeatType.getPrice())) { return false; }
+        if (!Objects.equals(this.getColor(), thatSeatType.getColor())) { return false; }
+        if (!Objects.equals(this.getDescription(), thatSeatType.getDescription())) { return false; }
         return true;
     }
     
@@ -97,6 +140,9 @@ public abstract class GeneratedSeatTypeImpl implements SeatType {
         hash = 31 * hash + Integer.hashCode(getId());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getName()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getPromoPointId()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getPrice()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getColor()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getDescription()));
         return hash;
     }
 }
