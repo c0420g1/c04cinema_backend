@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PromotionController extends GeneratedPromotionController {
     @Autowired
     CustomerManager customerManager;
-//    CẬP NHẬT LẠI ĐIỂM CUSTOMERPOINT
+//    CẬP NHẬT LẠI ĐIỂM CU  STOMERPOINT
     @PatchMapping ("/abc")
     public void updatePoint (@RequestParam String id,
                              @RequestParam String point){
