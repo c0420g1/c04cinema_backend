@@ -24,6 +24,8 @@ public abstract class GeneratedOtherImpl implements Other {
     private String name;
     private String type;
     private String description;
+    private Byte isOther;
+    private String imageUrl;
     
     protected GeneratedOtherImpl() {}
     
@@ -45,6 +47,16 @@ public abstract class GeneratedOtherImpl implements Other {
     @Override
     public Optional<String> getDescription() {
         return Optional.ofNullable(description);
+    }
+    
+    @Override
+    public Optional<Byte> getIsOther() {
+        return Optional.ofNullable(isOther);
+    }
+    
+    @Override
+    public Optional<String> getImageUrl() {
+        return Optional.ofNullable(imageUrl);
     }
     
     @Override
@@ -72,12 +84,26 @@ public abstract class GeneratedOtherImpl implements Other {
     }
     
     @Override
+    public Other setIsOther(Byte isOther) {
+        this.isOther = isOther;
+        return this;
+    }
+    
+    @Override
+    public Other setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+    
+    @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("id = "          + Objects.toString(getId()));
         sj.add("name = "        + Objects.toString(OptionalUtil.unwrap(getName())));
         sj.add("type = "        + Objects.toString(OptionalUtil.unwrap(getType())));
         sj.add("description = " + Objects.toString(OptionalUtil.unwrap(getDescription())));
+        sj.add("isOther = "     + Objects.toString(OptionalUtil.unwrap(getIsOther())));
+        sj.add("imageUrl = "    + Objects.toString(OptionalUtil.unwrap(getImageUrl())));
         return "OtherImpl " + sj.toString();
     }
     
@@ -90,6 +116,8 @@ public abstract class GeneratedOtherImpl implements Other {
         if (!Objects.equals(this.getName(), thatOther.getName())) { return false; }
         if (!Objects.equals(this.getType(), thatOther.getType())) { return false; }
         if (!Objects.equals(this.getDescription(), thatOther.getDescription())) { return false; }
+        if (!Objects.equals(this.getIsOther(), thatOther.getIsOther())) { return false; }
+        if (!Objects.equals(this.getImageUrl(), thatOther.getImageUrl())) { return false; }
         return true;
     }
     
@@ -100,6 +128,8 @@ public abstract class GeneratedOtherImpl implements Other {
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getName()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getType()));
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getDescription()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getIsOther()));
+        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getImageUrl()));
         return hash;
     }
 }

@@ -3,7 +3,6 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.seat.generated;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.Hall;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat_type.SeatType;
-import com.example.demo.c04cinema.c04cinema.c04cinema.theatre.Theatre;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
@@ -54,18 +53,6 @@ public interface GeneratedSeat {
     );
     /**
      * This Field corresponds to the {@link Seat} field that can be obtained
-     * using the {@link Seat#getTheatreId()} method.
-     */
-    ComparableForeignKeyField<Seat, Integer, Integer, Theatre> THEATRE_ID = ComparableForeignKeyField.create(
-        Identifier.THEATRE_ID,
-        o -> OptionalUtil.unwrap(o.getTheatreId()),
-        Seat::setTheatreId,
-        Theatre.ID,
-        TypeMapper.identity(),
-        false
-    );
-    /**
-     * This Field corresponds to the {@link Seat} field that can be obtained
      * using the {@link Seat#getHallId()} method.
      */
     ComparableForeignKeyField<Seat, Integer, Integer, Hall> HALL_ID = ComparableForeignKeyField.create(
@@ -106,14 +93,6 @@ public interface GeneratedSeat {
     Optional<String> getName();
     
     /**
-     * Returns the theatreId of this Seat. The theatreId field corresponds to
-     * the database column c04cinema.c04cinema.seat.theatre_id.
-     * 
-     * @return the theatreId of this Seat
-     */
-    OptionalInt getTheatreId();
-    
-    /**
      * Returns the hallId of this Seat. The hallId field corresponds to the
      * database column c04cinema.c04cinema.seat.hall_id.
      * 
@@ -148,15 +127,6 @@ public interface GeneratedSeat {
     Seat setName(String name);
     
     /**
-     * Sets the theatreId of this Seat. The theatreId field corresponds to the
-     * database column c04cinema.c04cinema.seat.theatre_id.
-     * 
-     * @param theatreId to set of this Seat
-     * @return          this Seat instance
-     */
-    Seat setTheatreId(Integer theatreId);
-    
-    /**
      * Sets the hallId of this Seat. The hallId field corresponds to the
      * database column c04cinema.c04cinema.seat.hall_id.
      * 
@@ -173,15 +143,6 @@ public interface GeneratedSeat {
      * @return           this Seat instance
      */
     Seat setSeatTypeId(Integer seatTypeId);
-    
-    /**
-     * Queries the specified manager for the referenced Theatre. If no such
-     * Theatre exists, an {@code NullPointerException} will be thrown.
-     * 
-     * @param foreignManager the manager to query for the entity
-     * @return               the foreign entity referenced
-     */
-    Optional<Theatre> findTheatreId(Manager<Theatre> foreignManager);
     
     /**
      * Queries the specified manager for the referenced Hall. If no such Hall
@@ -205,7 +166,6 @@ public interface GeneratedSeat {
         
         ID           ("id"),
         NAME         ("name"),
-        THEATRE_ID   ("theatre_id"),
         HALL_ID      ("hall_id"),
         SEAT_TYPE_ID ("seat_type_id");
         

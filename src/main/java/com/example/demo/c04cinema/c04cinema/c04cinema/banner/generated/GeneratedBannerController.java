@@ -70,6 +70,8 @@ public abstract class GeneratedBannerController {
             .put("title", Banner.TITLE)
             .put("url", Banner.URL)
             .put("description", Banner.DESCRIPTION)
+            .put("type", Banner.TYPE)
+            .put("isOther", Banner.IS_OTHER)
             .build();
     }
     
@@ -96,6 +98,8 @@ public abstract class GeneratedBannerController {
             .setTitle(createBody.getTitle())
             .setUrl(createBody.getUrl())
             .setDescription(createBody.getDescription())
+            .setType(createBody.getType())
+            .setIsOther(createBody.getIsOther())
         );
     }
     
@@ -110,6 +114,8 @@ public abstract class GeneratedBannerController {
                 banner.setTitle(updateBody.getTitle());
                 banner.setUrl(updateBody.getUrl());
                 banner.setDescription(updateBody.getDescription());
+                banner.setType(updateBody.getType());
+                banner.setIsOther(updateBody.getIsOther());
                 return banner;
         }).forEach(manager.updater());
     }
@@ -163,6 +169,8 @@ public abstract class GeneratedBannerController {
             case "title":       return GeneratedBanner.Identifier.TITLE;
             case "url":         return GeneratedBanner.Identifier.URL;
             case "description": return GeneratedBanner.Identifier.DESCRIPTION;
+            case "type":        return GeneratedBanner.Identifier.TYPE;
+            case "isOther":     return GeneratedBanner.Identifier.IS_OTHER;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + jsonColumn + "'."
             );
@@ -175,6 +183,8 @@ public abstract class GeneratedBannerController {
             case TITLE:       return Banner.TITLE;
             case URL:         return Banner.URL;
             case DESCRIPTION: return Banner.DESCRIPTION;
+            case TYPE:        return Banner.TYPE;
+            case IS_OTHER:    return Banner.IS_OTHER;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + columnId + "'."
             );
@@ -285,6 +295,38 @@ public abstract class GeneratedBannerController {
                         );
                     }
                 }
+                case "type" : {
+                    final String v = value();
+                    switch (operator()) {
+                        case "eq"   : return Banner.TYPE.equal(v);
+                        case "ne"   : return Banner.TYPE.notEqual(v);
+                        case "lt"   : return Banner.TYPE.lessThan(v);
+                        case "le"   : return Banner.TYPE.lessOrEqual(v);
+                        case "gt"   : return Banner.TYPE.greaterThan(v);
+                        case "ge"   : return Banner.TYPE.greaterOrEqual(v);
+                        case "like" : return Banner.TYPE.contains(v);
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "Banner.type."
+                        );
+                    }
+                }
+                case "isOther" : {
+                    final Byte v = Byte.parseByte(value());
+                    switch (operator()) {
+                        case "eq"   : return Banner.IS_OTHER.equal(v);
+                        case "ne"   : return Banner.IS_OTHER.notEqual(v);
+                        case "lt"   : return Banner.IS_OTHER.lessThan(v);
+                        case "le"   : return Banner.IS_OTHER.lessOrEqual(v);
+                        case "gt"   : return Banner.IS_OTHER.greaterThan(v);
+                        case "ge"   : return Banner.IS_OTHER.greaterOrEqual(v);
+                        case "like" : // Fallthrough
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "Banner.isOther."
+                        );
+                    }
+                }
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid Banner property."
                 );
@@ -310,6 +352,8 @@ public abstract class GeneratedBannerController {
                 case "title"       : comparator = Banner.TITLE.comparator();       break;
                 case "url"         : comparator = Banner.URL.comparator();         break;
                 case "description" : comparator = Banner.DESCRIPTION.comparator(); break;
+                case "type"        : comparator = Banner.TYPE.comparator();        break;
+                case "isOther"     : comparator = Banner.IS_OTHER.comparator();    break;
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid Banner property."
                 );
@@ -333,15 +377,21 @@ public abstract class GeneratedBannerController {
         private final String title;
         private final String url;
         private final String description;
+        private final String type;
+        private final Byte isOther;
         
         @JsonCreator
         public CreateBody(
                 @JsonProperty("title") String title,
                 @JsonProperty("url") String url,
-                @JsonProperty("description") String description) {
+                @JsonProperty("description") String description,
+                @JsonProperty("type") String type,
+                @JsonProperty("isOther") Byte isOther) {
             this.title = Objects.requireNonNull(title, "`title` is required");
             this.url = Objects.requireNonNull(url, "`url` is required");
             this.description = Objects.requireNonNull(description, "`description` is required");
+            this.type = Objects.requireNonNull(type, "`type` is required");
+            this.isOther = Objects.requireNonNull(isOther, "`isOther` is required");
         }
         
         public String getTitle() {
@@ -354,6 +404,14 @@ public abstract class GeneratedBannerController {
         
         public String getDescription() {
             return this.description;
+        }
+        
+        public String getType() {
+            return this.type;
+        }
+        
+        public Byte getIsOther() {
+            return this.isOther;
         }
     }
     
@@ -364,15 +422,21 @@ public abstract class GeneratedBannerController {
         private final String title;
         private final String url;
         private final String description;
+        private final String type;
+        private final Byte isOther;
         
         @JsonCreator
         public UpdateBody(
                 @JsonProperty("title") String title,
                 @JsonProperty("url") String url,
-                @JsonProperty("description") String description) {
+                @JsonProperty("description") String description,
+                @JsonProperty("type") String type,
+                @JsonProperty("isOther") Byte isOther) {
             this.title = Objects.requireNonNull(title, "`title` is required");
             this.url = Objects.requireNonNull(url, "`url` is required");
             this.description = Objects.requireNonNull(description, "`description` is required");
+            this.type = Objects.requireNonNull(type, "`type` is required");
+            this.isOther = Objects.requireNonNull(isOther, "`isOther` is required");
         }
         
         public String getTitle() {
@@ -385,6 +449,14 @@ public abstract class GeneratedBannerController {
         
         public String getDescription() {
             return this.description;
+        }
+        
+        public String getType() {
+            return this.type;
+        }
+        
+        public Byte getIsOther() {
+            return this.isOther;
         }
     }
 }
