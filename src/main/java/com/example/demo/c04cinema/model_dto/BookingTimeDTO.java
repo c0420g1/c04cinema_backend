@@ -10,32 +10,24 @@ import java.util.List;
 
 public class BookingTimeDTO {
     private int theatreId;
-    private int hallId;
     private String theatreName;
-    private List<String> showTime;
+    private List<ShowDTO> showDTO;
+
+    public BookingTimeDTO(int theatreId, String theatreName, List<ShowDTO> showDTO) {
+        this.theatreId = theatreId;
+        this.theatreName = theatreName;
+        this.showDTO = showDTO;
+    }
 
     public int getTheatreId() {
         return theatreId;
-    }
-
-
-    public int getHallId() {
-        return hallId;
     }
 
     public String getTheatreName() {
         return theatreName;
     }
 
-    public List<String> getShowTime() {
-        return showTime;
+    public List<ShowDTO> getShowDTO() {
+        return showDTO;
     }
-
-    public BookingTimeDTO(Hall hall, Theatre theatre, Location location, Show show) {
-        this.theatreId = theatre.getId();
-        this.hallId= hall.getId();
-        this.theatreName = theatre.getName().get();
-        this.showTime = Collections.singletonList(show.getStartTime().get().toString());
-    }
-
 }
