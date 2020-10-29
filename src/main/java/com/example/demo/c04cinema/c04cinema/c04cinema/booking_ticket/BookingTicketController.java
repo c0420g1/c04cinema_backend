@@ -40,6 +40,9 @@ public class BookingTicketController extends GeneratedBookingTicketController {
     @Autowired
     private CustomerManager customerManager;
 
+    @Autowired
+    private HallManager hallManager;
+
     // Get List has Pagination
     @GetMapping("/booking_ticket_dto/{pageNum}")
     public List<BookingTicketDTO> getBookingTicketDTO(@PathVariable int pageNum,
@@ -143,6 +146,8 @@ public class BookingTicketController extends GeneratedBookingTicketController {
         res.forEach((th, ti) -> {
             int theatreId = th.getId();
             String theatreName = th.getName().get();
+            int hallId= ti.stream().findFirst().get().getHallId();
+            String hallName= hallManager.stream().filter(Hall.ID.equal(hallId)).findFirst().get().getName().get();
             List<ShowDTO> showDTOList= new ArrayList<>();
             ti.stream().filter(f-> f.getStartTime().get().toString().contains(dateShow)).forEach(s->{
                 int id = s.getId();
@@ -152,7 +157,7 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                 showDTOList.add(showDTO);
             });
 
-            BookingTimeDTO bookingTimeDTO = new BookingTimeDTO(theatreId, theatreName, showDTOList);
+            BookingTimeDTO bookingTimeDTO = new BookingTimeDTO(theatreId, theatreName,hallName, showDTOList);
             if(showDTOList.size()>0)
                 bookingTimeDTOList.add(bookingTimeDTO);
 
@@ -163,6 +168,13 @@ public class BookingTicketController extends GeneratedBookingTicketController {
         });
 
         return bookingTimeDTOList;
+    }
+
+    @GetMapping("/bookingUpdateBonus")
+    public void bookingUpdateBonus(@RequestParam int cusId, @RequestParam int bonusPoint){
+        Customer customer= customerManager.stream().filter(Customer.ID.equal(cusId)).findFirst().get();
+        customer.setCurrentBonusPoint(customer.getCurrentBonusPoint().getAsInt()+ bonusPoint);
+        customerManager.update(customer);
     }
 
     // Lấy về số lượng vé, dựa vào accountId và ShowId

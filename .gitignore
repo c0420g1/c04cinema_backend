@@ -55,3 +55,4 @@ application.properties
 src/main/resources/application.properties
 *.md5
 *.properties
+src/main/resources/application.properties
