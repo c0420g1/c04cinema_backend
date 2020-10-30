@@ -80,6 +80,7 @@ public abstract class GeneratedCustomerController {
             .put("gender", Customer.GENDER)
             .put("cardid", Customer.CARDID)
             .put("code", Customer.CODE)
+            .put("imageUrl", Customer.IMAGE_URL)
             .build();
     }
     
@@ -115,6 +116,7 @@ public abstract class GeneratedCustomerController {
             .setGender(createBody.getGender())
             .setCardid(createBody.getCardid())
             .setCode(createBody.getCode())
+            .setImageUrl(createBody.getImageUrl())
         );
     }
     
@@ -138,6 +140,7 @@ public abstract class GeneratedCustomerController {
                 customer.setGender(updateBody.getGender());
                 customer.setCardid(updateBody.getCardid());
                 customer.setCode(updateBody.getCode());
+                customer.setImageUrl(updateBody.getImageUrl());
                 return customer;
         }).forEach(manager.updater());
     }
@@ -200,6 +203,7 @@ public abstract class GeneratedCustomerController {
             case "gender":            return GeneratedCustomer.Identifier.GENDER;
             case "cardid":            return GeneratedCustomer.Identifier.CARDID;
             case "code":              return GeneratedCustomer.Identifier.CODE;
+            case "imageUrl":          return GeneratedCustomer.Identifier.IMAGE_URL;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + jsonColumn + "'."
             );
@@ -221,6 +225,7 @@ public abstract class GeneratedCustomerController {
             case GENDER:              return Customer.GENDER;
             case CARDID:              return Customer.CARDID;
             case CODE:                return Customer.CODE;
+            case IMAGE_URL:           return Customer.IMAGE_URL;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + columnId + "'."
             );
@@ -475,6 +480,22 @@ public abstract class GeneratedCustomerController {
                         );
                     }
                 }
+                case "imageUrl" : {
+                    final String v = value();
+                    switch (operator()) {
+                        case "eq"   : return Customer.IMAGE_URL.equal(v);
+                        case "ne"   : return Customer.IMAGE_URL.notEqual(v);
+                        case "lt"   : return Customer.IMAGE_URL.lessThan(v);
+                        case "le"   : return Customer.IMAGE_URL.lessOrEqual(v);
+                        case "gt"   : return Customer.IMAGE_URL.greaterThan(v);
+                        case "ge"   : return Customer.IMAGE_URL.greaterOrEqual(v);
+                        case "like" : return Customer.IMAGE_URL.contains(v);
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "Customer.imageUrl."
+                        );
+                    }
+                }
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid Customer property."
                 );
@@ -509,6 +530,7 @@ public abstract class GeneratedCustomerController {
                 case "gender"            : comparator = Customer.GENDER.comparator();              break;
                 case "cardid"            : comparator = Customer.CARDID.comparator();              break;
                 case "code"              : comparator = Customer.CODE.comparator();                break;
+                case "imageUrl"          : comparator = Customer.IMAGE_URL.comparator();           break;
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid Customer property."
                 );
@@ -541,6 +563,7 @@ public abstract class GeneratedCustomerController {
         private final String gender;
         private final String cardid;
         private final String code;
+        private final String imageUrl;
         
         @JsonCreator
         public CreateBody(
@@ -555,7 +578,8 @@ public abstract class GeneratedCustomerController {
                 @JsonProperty("isactive") Byte isactive,
                 @JsonProperty("gender") String gender,
                 @JsonProperty("cardid") String cardid,
-                @JsonProperty("code") String code) {
+                @JsonProperty("code") String code,
+                @JsonProperty("imageUrl") String imageUrl) {
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.address = Objects.requireNonNull(address, "`address` is required");
             this.customerTypeId = Objects.requireNonNull(customerTypeId, "`customerTypeId` is required");
@@ -568,6 +592,7 @@ public abstract class GeneratedCustomerController {
             this.gender = Objects.requireNonNull(gender, "`gender` is required");
             this.cardid = Objects.requireNonNull(cardid, "`cardid` is required");
             this.code = Objects.requireNonNull(code, "`code` is required");
+            this.imageUrl = Objects.requireNonNull(imageUrl, "`imageUrl` is required");
         }
         
         public String getName() {
@@ -616,6 +641,10 @@ public abstract class GeneratedCustomerController {
         
         public String getCode() {
             return this.code;
+        }
+        
+        public String getImageUrl() {
+            return this.imageUrl;
         }
     }
     
@@ -635,6 +664,7 @@ public abstract class GeneratedCustomerController {
         private final String gender;
         private final String cardid;
         private final String code;
+        private final String imageUrl;
         
         @JsonCreator
         public UpdateBody(
@@ -649,9 +679,9 @@ public abstract class GeneratedCustomerController {
                 @JsonProperty("isactive") Byte isactive,
                 @JsonProperty("gender") String gender,
                 @JsonProperty("cardid") String cardid,
-                @JsonProperty("code") String code) {
+                @JsonProperty("code") String code,
+                @JsonProperty("imageUrl") String imageUrl) {
             this.name = Objects.requireNonNull(name, "`name` is required");
-
             this.address = Objects.requireNonNull(address, "`address` is required");
             this.customerTypeId = Objects.requireNonNull(customerTypeId, "`customerTypeId` is required");
             this.currentBonusPoint = Objects.requireNonNull(currentBonusPoint, "`currentBonusPoint` is required");
@@ -663,6 +693,7 @@ public abstract class GeneratedCustomerController {
             this.gender = Objects.requireNonNull(gender, "`gender` is required");
             this.cardid = Objects.requireNonNull(cardid, "`cardid` is required");
             this.code = Objects.requireNonNull(code, "`code` is required");
+            this.imageUrl = Objects.requireNonNull(imageUrl, "`imageUrl` is required");
         }
         
         public String getName() {
@@ -711,6 +742,10 @@ public abstract class GeneratedCustomerController {
         
         public String getCode() {
             return this.code;
+        }
+        
+        public String getImageUrl() {
+            return this.imageUrl;
         }
     }
 }

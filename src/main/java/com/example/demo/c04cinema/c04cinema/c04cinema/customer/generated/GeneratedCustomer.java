@@ -176,6 +176,17 @@ public interface GeneratedCustomer {
         TypeMapper.identity(),
         false
     );
+    /**
+     * This Field corresponds to the {@link Customer} field that can be obtained
+     * using the {@link Customer#getImageUrl()} method.
+     */
+    StringField<Customer, String> IMAGE_URL = StringField.create(
+        Identifier.IMAGE_URL,
+        o -> OptionalUtil.unwrap(o.getImageUrl()),
+        Customer::setImageUrl,
+        TypeMapper.identity(),
+        false
+    );
     
     /**
      * Returns the id of this Customer. The id field corresponds to the database
@@ -282,6 +293,14 @@ public interface GeneratedCustomer {
      * @return the code of this Customer
      */
     Optional<String> getCode();
+    
+    /**
+     * Returns the imageUrl of this Customer. The imageUrl field corresponds to
+     * the database column c04cinema.c04cinema.customer.image_url.
+     * 
+     * @return the imageUrl of this Customer
+     */
+    Optional<String> getImageUrl();
     
     /**
      * Sets the id of this Customer. The id field corresponds to the database
@@ -403,6 +422,15 @@ public interface GeneratedCustomer {
     Customer setCode(String code);
     
     /**
+     * Sets the imageUrl of this Customer. The imageUrl field corresponds to the
+     * database column c04cinema.c04cinema.customer.image_url.
+     * 
+     * @param imageUrl to set of this Customer
+     * @return         this Customer instance
+     */
+    Customer setImageUrl(String imageUrl);
+    
+    /**
      * Queries the specified manager for the referenced CustomerType. If no such
      * CustomerType exists, an {@code NullPointerException} will be thrown.
      * 
@@ -434,7 +462,8 @@ public interface GeneratedCustomer {
         ISACTIVE            ("isactive"),
         GENDER              ("gender"),
         CARDID              ("cardid"),
-        CODE                ("code");
+        CODE                ("code"),
+        IMAGE_URL           ("image_url");
         
         private final String columnId;
         private final TableIdentifier<Customer> tableIdentifier;

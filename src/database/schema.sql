@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: c04cinema
+-- Host: localhost    Database: c04cinema
 -- ------------------------------------------------------
 -- Server version	8.0.20
 
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,6 +42,8 @@ CREATE TABLE `banner` (
   `title` varchar(45) DEFAULT NULL,
   `url` varchar(250) DEFAULT NULL,
   `description` varchar(250) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `isOther` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -81,7 +83,7 @@ CREATE TABLE `booking_ticket` (
   CONSTRAINT `fk_booking_ticket_seat1` FOREIGN KEY (`seat_id`) REFERENCES `seat` (`id`),
   CONSTRAINT `fk_booking_ticket_show1` FOREIGN KEY (`show_id`) REFERENCES `show` (`id`),
   CONSTRAINT `fk_booking_ticket_ticket_type1` FOREIGN KEY (`ticket_type_id`) REFERENCES `ticket_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,6 +161,7 @@ CREATE TABLE `customer` (
   `gender` varchar(45) DEFAULT NULL,
   `cardid` varchar(45) DEFAULT NULL,
   `code` varchar(45) DEFAULT NULL,
+  `image_url` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_customer_account1_idx` (`account_id`),
   KEY `fk_customer_customer_type1_idx` (`customer_type_id`),
@@ -208,7 +211,6 @@ DROP TABLE IF EXISTS `hall`;
 CREATE TABLE `hall` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `seat_quantity` int DEFAULT NULL,
   `hall_type_id` int DEFAULT NULL,
   `theatre_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -216,7 +218,7 @@ CREATE TABLE `hall` (
   KEY `fk_hall_theatre1_idx` (`theatre_id`),
   CONSTRAINT `fk_hall_hall_type1` FOREIGN KEY (`hall_type_id`) REFERENCES `hall_type` (`id`),
   CONSTRAINT `fk_hall_theatre1` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -338,6 +340,8 @@ CREATE TABLE `other` (
   `name` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL,
+  `isOther` tinyint DEFAULT NULL,
+  `image_url` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -431,7 +435,7 @@ DROP TABLE IF EXISTS `promotion_customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `promotion_customer` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `promotion_id` int DEFAULT NULL,
   `customer_id` int DEFAULT NULL,
   `promotion_code` varchar(45) DEFAULT NULL,
@@ -440,7 +444,7 @@ CREATE TABLE `promotion_customer` (
   KEY `fk_promotion_customer_customer1_idx` (`customer_id`),
   CONSTRAINT `fk_promotion_customer_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
   CONSTRAINT `fk_promotion_customer_promotion1` FOREIGN KEY (`promotion_id`) REFERENCES `promotion` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -486,17 +490,14 @@ DROP TABLE IF EXISTS `seat`;
 CREATE TABLE `seat` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `theatre_id` int DEFAULT NULL,
   `hall_id` int DEFAULT NULL,
   `seat_type_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_seat_theatre1_idx` (`theatre_id`),
   KEY `fk_seat_hall1_idx` (`hall_id`),
   KEY `fk_seat_seat_type1_idx` (`seat_type_id`),
   CONSTRAINT `fk_seat_hall1` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
-  CONSTRAINT `fk_seat_seat_type1` FOREIGN KEY (`seat_type_id`) REFERENCES `seat_type` (`id`),
-  CONSTRAINT `fk_seat_theatre1` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_seat_seat_type1` FOREIGN KEY (`seat_type_id`) REFERENCES `seat_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -510,6 +511,9 @@ CREATE TABLE `seat_type` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `promo_point_id` int DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `color` varchar(45) DEFAULT NULL,
+  `description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_seat_type_promo_point1_idx` (`promo_point_id`),
   CONSTRAINT `fk_seat_type_promo_point1` FOREIGN KEY (`promo_point_id`) REFERENCES `promo_point` (`id`)
@@ -536,7 +540,7 @@ CREATE TABLE `show` (
   KEY `fk_show_movie1_idx` (`movie_id`),
   CONSTRAINT `fk_show_hall1` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
   CONSTRAINT `fk_show_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -560,6 +564,7 @@ CREATE TABLE `staff` (
   `position_id` int DEFAULT NULL,
   `isactive` tinyint DEFAULT '1',
   `code` varchar(45) DEFAULT NULL,
+  `image_url` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_employee_account1_idx` (`account_id`),
   KEY `fk_staff_theatre1_idx` (`theatre_id`),
@@ -614,4 +619,4 @@ CREATE TABLE `ticket_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-22 23:20:08
+-- Dump completed on 2020-10-30 10:13:08
