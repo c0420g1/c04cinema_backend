@@ -108,6 +108,35 @@ public class MovieController extends GeneratedMovieController {
 
 
     }
+    // creator Vu Le Tuong
+    // lay ve mot list movie  va co tim kiem
+    @GetMapping("/movies")
+    public List<Movie> getAllMovies(@RequestParam(defaultValue = "") String search) {
+        List<Movie> movies = null;
+        if (search.equals("")) {
+            try {
+                movies = movieManager.stream().filter(e -> e.getName().get().toLowerCase().contains(search.toLowerCase())
+                        || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
+                        || String.valueOf(e.getDuration()).contains(search))
+                        .collect(Collectors.toList());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return movies;
+        }
+
+        try {
+            movies = movieManager.stream().filter(e -> e.getName().get().toLowerCase().contains(search.toLowerCase())
+                    || e.getEntertainment().get().contains(search) || String.valueOf(e.getStartDate().get()).contains(search)
+                    || String.valueOf(e.getDuration()).contains(search) || String.valueOf(e.getIs2d()).contains(search))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return movies;
+
+
+    }
 
 
     //creator Hieu
