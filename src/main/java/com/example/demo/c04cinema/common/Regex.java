@@ -10,6 +10,7 @@ public class Regex {
     private static final String GENDER_REGEX = "Male|Female";
     private static final String CARD_REGEX = "[\\d]{3,}(-)[\\d]{2,}(-)[\\d]{4,}";
     private static final String PHONE_REGEX = "^[\\d\\s]+$";
+    private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$";
     private static Pattern pattern;
     private static Matcher matcher;
 
@@ -38,6 +39,11 @@ public class Regex {
     }
     public boolean regexPhone(String string){
         pattern = Pattern.compile(PHONE_REGEX);
+        matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
+    public boolean regexPass(String string){
+        pattern = Pattern.compile(PASSWORD_REGEX);
         matcher = pattern.matcher(string);
         return matcher.matches();
     }
