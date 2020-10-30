@@ -11,8 +11,14 @@ public class Regex {
     private static final String CARD_REGEX = "[\\d]{3,}(-)[\\d]{2,}(-)[\\d]{4,}";
     private static final String PHONE_REGEX = "^[\\d\\s]+$";
     private static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$";
+    private static final String SPECIAL_SIGN_REGEX = "/^[a-zA-Z0-9 ]+$/";
+    private static final String DATE_MONTH_YEAR_REGEX = "^\\\\d{4}\\\\-(0?[1-9]|1[012])\\\\-(0?[1-9]|[12][0-9]|3[01])$";
+    private static final String NUMBER_REGEX = "/^[0-9]+$/";
+    private static final String TRAILER_URL_REGEX = "^(https://www.youtube.com)[0-9a-zA-Z./?=&_-]+$";
     private static Pattern pattern;
     private static Matcher matcher;
+
+
 
     public boolean regexEmail(String string){
         pattern = Pattern.compile(EMAIL_REGEX);
@@ -44,6 +50,30 @@ public class Regex {
     }
     public boolean regexPass(String string){
         pattern = Pattern.compile(PASSWORD_REGEX);
+        matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
+
+    public boolean regexSpecialSign(String string){
+        pattern = Pattern.compile(SPECIAL_SIGN_REGEX);
+        matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
+
+    public boolean regexDateMonthYear(String string){
+        pattern = Pattern.compile(DATE_MONTH_YEAR_REGEX);
+        matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
+
+    public boolean regexNumber(String string){
+        pattern = Pattern.compile(NUMBER_REGEX);
+        matcher = pattern.matcher(string);
+        return matcher.matches();
+    }
+
+    public boolean regexTrailerUrl(String string){
+        pattern = Pattern.compile(TRAILER_URL_REGEX);
         matcher = pattern.matcher(string);
         return matcher.matches();
     }

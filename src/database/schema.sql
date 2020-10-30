@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: c04cinema
+-- Host: localhost    Database: c04cinema
 -- ------------------------------------------------------
 -- Server version	8.0.20
 
@@ -83,7 +83,7 @@ CREATE TABLE `booking_ticket` (
   CONSTRAINT `fk_booking_ticket_seat1` FOREIGN KEY (`seat_id`) REFERENCES `seat` (`id`),
   CONSTRAINT `fk_booking_ticket_show1` FOREIGN KEY (`show_id`) REFERENCES `show` (`id`),
   CONSTRAINT `fk_booking_ticket_ticket_type1` FOREIGN KEY (`ticket_type_id`) REFERENCES `ticket_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +218,7 @@ CREATE TABLE `hall` (
   KEY `fk_hall_theatre1_idx` (`theatre_id`),
   CONSTRAINT `fk_hall_hall_type1` FOREIGN KEY (`hall_type_id`) REFERENCES `hall_type` (`id`),
   CONSTRAINT `fk_hall_theatre1` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -435,7 +435,7 @@ DROP TABLE IF EXISTS `promotion_customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `promotion_customer` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `promotion_id` int DEFAULT NULL,
   `customer_id` int DEFAULT NULL,
   `promotion_code` varchar(45) DEFAULT NULL,
@@ -444,7 +444,7 @@ CREATE TABLE `promotion_customer` (
   KEY `fk_promotion_customer_customer1_idx` (`customer_id`),
   CONSTRAINT `fk_promotion_customer_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
   CONSTRAINT `fk_promotion_customer_promotion1` FOREIGN KEY (`promotion_id`) REFERENCES `promotion` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -497,7 +497,7 @@ CREATE TABLE `seat` (
   KEY `fk_seat_seat_type1_idx` (`seat_type_id`),
   CONSTRAINT `fk_seat_hall1` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
   CONSTRAINT `fk_seat_seat_type1` FOREIGN KEY (`seat_type_id`) REFERENCES `seat_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -540,7 +540,7 @@ CREATE TABLE `show` (
   KEY `fk_show_movie1_idx` (`movie_id`),
   CONSTRAINT `fk_show_hall1` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
   CONSTRAINT `fk_show_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -619,4 +619,4 @@ CREATE TABLE `ticket_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-27  0:10:06
+-- Dump completed on 2020-10-30 10:13:08

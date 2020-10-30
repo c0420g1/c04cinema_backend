@@ -2,13 +2,22 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket;
 
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.CustomerManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.Hall;
+import com.example.demo.c04cinema.c04cinema.c04cinema.hall.HallManager;
+import com.example.demo.c04cinema.c04cinema.c04cinema.location.Location;
+import com.example.demo.c04cinema.c04cinema.c04cinema.theatre.Theatre;
+import com.example.demo.c04cinema.model_dto.BookingTimeDTO;
+import com.example.demo.c04cinema.model_dto.ShowDTO;
+import com.speedment.common.tuple.Tuple4;
+import com.speedment.common.tuple.Tuples;
 import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.stream.Collectors;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.generated.GeneratedBookingTicketController;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
@@ -17,6 +26,7 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
 import com.example.demo.c04cinema.model_dto.BookingTicketDTO;
 import com.example.demo.c04cinema.model_dto.ConfirmTicketDTO;
 
+import static java.util.stream.Collectors.*;
 
 
 @RestController
@@ -29,6 +39,9 @@ public class BookingTicketController extends GeneratedBookingTicketController {
 
     @Autowired
     private CustomerManager customerManager;
+
+    @Autowired
+    private HallManager hallManager;
 
     // Get List has Pagination
     @GetMapping("/booking_ticket_dto/{pageNum}")
@@ -50,12 +63,12 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                         || e.getBookingCode().contains(search)
                         || e.getCardIdCustomer().contains(search)
                         || e.getPhoneCustomer().contains(search))
-                        .collect(Collectors.toList());
+                        .collect(toList());
             }
             return join.stream().filter(e-> e.getNameCustomer().contains(search)
                     || e.getBookingCode().contains(search) || e.getCardIdCustomer().contains(search)
                     || e.getPhoneCustomer().contains(search)).skip((pageNum-1)*pageSize).limit(pageSize).
-                    collect(Collectors.toList());
+                    collect(toList());
         }catch (NullPointerException e){
             throw new Exception(e.getMessage());
         } catch (Exception ex){
@@ -76,7 +89,7 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                     .build(BookingTicketDTO::new);
             return join.stream().filter(e-> e.getNameCustomer().contains(search)
                     || e.getBookingCode().contains(search) || e.getCardIdCustomer().contains(search)
-                    || e.getPhoneCustomer().contains(search)).collect(Collectors.toList());
+                    || e.getPhoneCustomer().contains(search)).collect(toList());
         } catch (NullPointerException e){
             throw new Exception(e.getMessage());
         } catch (Exception ex){
@@ -101,7 +114,7 @@ public class BookingTicketController extends GeneratedBookingTicketController {
             // Update lại trạng thái nhận vé
             List<BookingTicket> bookingTicketList = bookingTicketManager.stream()
                     .filter(e-> e.getAccountId().getAsInt() == accountId && e.getShowId().getAsInt() == showId)
-                    .collect(Collectors.toList());
+                    .collect(toList());
             for (BookingTicket bk: bookingTicketList){
                 bk.setStatus((byte) 1);
                 bookingTicketManager.update(bk);
@@ -118,6 +131,52 @@ public class BookingTicketController extends GeneratedBookingTicketController {
 
     }
 
+    // qg23
+    @GetMapping("/bookingTime/{locationId}")
+    public List<BookingTimeDTO> getBookingTime(@PathVariable int locationId, @RequestParam int movieId, @RequestParam String dateShow) {
+        Join<Tuple4<Hall, Theatre, Location, Show>> join = joinComponent.from(HallManager.IDENTIFIER).innerJoinOn(Theatre.ID).equal(Hall.THEATRE_ID).where(Theatre.LOCATION_ID.equal(locationId))
+                .innerJoinOn(Location.ID).equal(Theatre.LOCATION_ID)
+                .innerJoinOn(Show.HALL_ID).equal(Hall.ID).where(Show.MOVIE_ID.equal(movieId)).build(Tuples::of);
+
+        Map<Theatre, List<Show>> res = join.stream().collect(
+                groupingBy(Tuple4::get1, mapping(Tuple4::get3, toList()))
+        );
+
+        List<BookingTimeDTO> bookingTimeDTOList = new ArrayList<>();
+        res.forEach((th, ti) -> {
+            int theatreId = th.getId();
+            String theatreName = th.getName().get();
+            int hallId= ti.stream().findFirst().get().getHallId();
+            String hallName= hallManager.stream().filter(Hall.ID.equal(hallId)).findFirst().get().getName().get();
+            List<ShowDTO> showDTOList= new ArrayList<>();
+            ti.stream().filter(f-> f.getStartTime().get().toString().contains(dateShow)).forEach(s->{
+                int id = s.getId();
+                String time= s.getStartTime().get().toString();
+                double price= s.getPrice().getAsDouble();
+                ShowDTO showDTO= new ShowDTO(id,time,price);
+                showDTOList.add(showDTO);
+            });
+
+            BookingTimeDTO bookingTimeDTO = new BookingTimeDTO(theatreId, theatreName,hallName, showDTOList);
+            if(showDTOList.size()>0)
+                bookingTimeDTOList.add(bookingTimeDTO);
+
+//            System.out.format("%s -> %s %n",
+//                    th.getName(),
+//                    ti.stream().map(Show::getHallId).sorted().collect(toList())
+//            );
+        });
+
+        return bookingTimeDTOList;
+    }
+
+    @GetMapping("/bookingUpdateBonus")
+    public void bookingUpdateBonus(@RequestParam int cusId, @RequestParam int bonusPoint){
+        Customer customer= customerManager.stream().filter(Customer.ID.equal(cusId)).findFirst().get();
+        customer.setCurrentBonusPoint(customer.getCurrentBonusPoint().getAsInt()+ bonusPoint);
+        customerManager.update(customer);
+    }
+
     // Lấy về số lượng vé, dựa vào accountId và ShowId
     @GetMapping("/getQuantity")
     public List<BookingTicketDTO> getQuantity(@RequestParam int showId,
@@ -131,7 +190,6 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                 .innerJoinOn(Seat.ID).equal(BookingTicket.SEAT_ID)
                 .innerJoinOn(Hall.ID).equal(Show.HALL_ID)
                 .build(BookingTicketDTO::new);
-        return join.stream().collect(Collectors.toList());
-
+        return join.stream().collect(toList());
     }
 }
