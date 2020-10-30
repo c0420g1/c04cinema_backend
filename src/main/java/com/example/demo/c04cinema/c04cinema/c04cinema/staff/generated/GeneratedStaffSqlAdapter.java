@@ -46,6 +46,7 @@ public abstract class GeneratedStaffSqlAdapter implements SqlAdapter<Staff> {
             .setPositionId( getInt(resultSet, 11 + offset))
             .setIsactive(   getByte(resultSet, 12 + offset))
             .setCode(       resultSet.getString(13 + offset))
+            .setImageUrl(   resultSet.getString(14 + offset))
             ;
     }
     

@@ -80,6 +80,7 @@ public abstract class GeneratedStaffController {
             .put("positionId", Staff.POSITION_ID)
             .put("isactive", Staff.ISACTIVE)
             .put("code", Staff.CODE)
+            .put("imageUrl", Staff.IMAGE_URL)
             .build();
     }
     
@@ -115,6 +116,7 @@ public abstract class GeneratedStaffController {
             .setPositionId(createBody.getPositionId())
             .setIsactive(createBody.getIsactive())
             .setCode(createBody.getCode())
+            .setImageUrl(createBody.getImageUrl())
         );
     }
     
@@ -138,6 +140,7 @@ public abstract class GeneratedStaffController {
                 staff.setPositionId(updateBody.getPositionId());
                 staff.setIsactive(updateBody.getIsactive());
                 staff.setCode(updateBody.getCode());
+                staff.setImageUrl(updateBody.getImageUrl());
                 return staff;
         }).forEach(manager.updater());
     }
@@ -200,6 +203,7 @@ public abstract class GeneratedStaffController {
             case "positionId": return GeneratedStaff.Identifier.POSITION_ID;
             case "isactive":   return GeneratedStaff.Identifier.ISACTIVE;
             case "code":       return GeneratedStaff.Identifier.CODE;
+            case "imageUrl":   return GeneratedStaff.Identifier.IMAGE_URL;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + jsonColumn + "'."
             );
@@ -221,6 +225,7 @@ public abstract class GeneratedStaffController {
             case POSITION_ID: return Staff.POSITION_ID;
             case ISACTIVE:    return Staff.ISACTIVE;
             case CODE:        return Staff.CODE;
+            case IMAGE_URL:   return Staff.IMAGE_URL;
             default: throw new IllegalArgumentException(
                 "Unknown column '" + columnId + "'."
             );
@@ -475,6 +480,22 @@ public abstract class GeneratedStaffController {
                         );
                     }
                 }
+                case "imageUrl" : {
+                    final String v = value();
+                    switch (operator()) {
+                        case "eq"   : return Staff.IMAGE_URL.equal(v);
+                        case "ne"   : return Staff.IMAGE_URL.notEqual(v);
+                        case "lt"   : return Staff.IMAGE_URL.lessThan(v);
+                        case "le"   : return Staff.IMAGE_URL.lessOrEqual(v);
+                        case "gt"   : return Staff.IMAGE_URL.greaterThan(v);
+                        case "ge"   : return Staff.IMAGE_URL.greaterOrEqual(v);
+                        case "like" : return Staff.IMAGE_URL.contains(v);
+                        default : throw new IllegalArgumentException(
+                            "'" + operator() + "' is not a valid operator for " +
+                            "Staff.imageUrl."
+                        );
+                    }
+                }
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid Staff property."
                 );
@@ -509,6 +530,7 @@ public abstract class GeneratedStaffController {
                 case "positionId" : comparator = Staff.POSITION_ID.comparator(); break;
                 case "isactive"   : comparator = Staff.ISACTIVE.comparator();    break;
                 case "code"       : comparator = Staff.CODE.comparator();        break;
+                case "imageUrl"   : comparator = Staff.IMAGE_URL.comparator();   break;
                 default : throw new IllegalArgumentException(
                     "'" + property() + "' is not a valid Staff property."
                 );
@@ -541,6 +563,7 @@ public abstract class GeneratedStaffController {
         private final Integer positionId;
         private final Byte isactive;
         private final String code;
+        private final String imageUrl;
         
         @JsonCreator
         public CreateBody(
@@ -555,7 +578,8 @@ public abstract class GeneratedStaffController {
                 @JsonProperty("salary") Double salary,
                 @JsonProperty("positionId") Integer positionId,
                 @JsonProperty("isactive") Byte isactive,
-                @JsonProperty("code") String code) {
+                @JsonProperty("code") String code,
+                @JsonProperty("imageUrl") String imageUrl) {
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.address = Objects.requireNonNull(address, "`address` is required");
             this.accountId = Objects.requireNonNull(accountId, "`accountId` is required");
@@ -568,6 +592,7 @@ public abstract class GeneratedStaffController {
             this.positionId = Objects.requireNonNull(positionId, "`positionId` is required");
             this.isactive = Objects.requireNonNull(isactive, "`isactive` is required");
             this.code = Objects.requireNonNull(code, "`code` is required");
+            this.imageUrl = Objects.requireNonNull(imageUrl, "`imageUrl` is required");
         }
         
         public String getName() {
@@ -616,6 +641,10 @@ public abstract class GeneratedStaffController {
         
         public String getCode() {
             return this.code;
+        }
+        
+        public String getImageUrl() {
+            return this.imageUrl;
         }
     }
     
@@ -635,6 +664,7 @@ public abstract class GeneratedStaffController {
         private final Integer positionId;
         private final Byte isactive;
         private final String code;
+        private final String imageUrl;
         
         @JsonCreator
         public UpdateBody(
@@ -649,7 +679,8 @@ public abstract class GeneratedStaffController {
                 @JsonProperty("salary") Double salary,
                 @JsonProperty("positionId") Integer positionId,
                 @JsonProperty("isactive") Byte isactive,
-                @JsonProperty("code") String code) {
+                @JsonProperty("code") String code,
+                @JsonProperty("imageUrl") String imageUrl) {
             this.name = Objects.requireNonNull(name, "`name` is required");
             this.address = Objects.requireNonNull(address, "`address` is required");
             this.accountId = Objects.requireNonNull(accountId, "`accountId` is required");
@@ -662,6 +693,7 @@ public abstract class GeneratedStaffController {
             this.positionId = Objects.requireNonNull(positionId, "`positionId` is required");
             this.isactive = Objects.requireNonNull(isactive, "`isactive` is required");
             this.code = Objects.requireNonNull(code, "`code` is required");
+            this.imageUrl = Objects.requireNonNull(imageUrl, "`imageUrl` is required");
         }
         
         public String getName() {
@@ -710,6 +742,10 @@ public abstract class GeneratedStaffController {
         
         public String getCode() {
             return this.code;
+        }
+        
+        public String getImageUrl() {
+            return this.imageUrl;
         }
     }
 }

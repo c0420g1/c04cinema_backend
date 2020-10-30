@@ -37,7 +37,8 @@ public interface GeneratedCustomerManager extends Manager<Customer> {
         Customer.ISACTIVE,
         Customer.GENDER,
         Customer.CARDID,
-        Customer.CODE
+        Customer.CODE,
+        Customer.IMAGE_URL
     ));
     
     @Override

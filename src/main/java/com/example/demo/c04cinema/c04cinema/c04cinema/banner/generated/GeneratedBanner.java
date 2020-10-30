@@ -5,6 +5,7 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.util.OptionalUtil;
+import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
@@ -68,6 +69,28 @@ public interface GeneratedBanner {
         TypeMapper.identity(),
         false
     );
+    /**
+     * This Field corresponds to the {@link Banner} field that can be obtained
+     * using the {@link Banner#getType()} method.
+     */
+    StringField<Banner, String> TYPE = StringField.create(
+        Identifier.TYPE,
+        o -> OptionalUtil.unwrap(o.getType()),
+        Banner::setType,
+        TypeMapper.identity(),
+        false
+    );
+    /**
+     * This Field corresponds to the {@link Banner} field that can be obtained
+     * using the {@link Banner#getIsOther()} method.
+     */
+    ComparableField<Banner, Byte, Byte> IS_OTHER = ComparableField.create(
+        Identifier.IS_OTHER,
+        o -> OptionalUtil.unwrap(o.getIsOther()),
+        Banner::setIsOther,
+        TypeMapper.identity(),
+        false
+    );
     
     /**
      * Returns the id of this Banner. The id field corresponds to the database
@@ -100,6 +123,22 @@ public interface GeneratedBanner {
      * @return the description of this Banner
      */
     Optional<String> getDescription();
+    
+    /**
+     * Returns the type of this Banner. The type field corresponds to the
+     * database column c04cinema.c04cinema.banner.type.
+     * 
+     * @return the type of this Banner
+     */
+    Optional<String> getType();
+    
+    /**
+     * Returns the isOther of this Banner. The isOther field corresponds to the
+     * database column c04cinema.c04cinema.banner.isOther.
+     * 
+     * @return the isOther of this Banner
+     */
+    Optional<Byte> getIsOther();
     
     /**
      * Sets the id of this Banner. The id field corresponds to the database
@@ -137,12 +176,32 @@ public interface GeneratedBanner {
      */
     Banner setDescription(String description);
     
+    /**
+     * Sets the type of this Banner. The type field corresponds to the database
+     * column c04cinema.c04cinema.banner.type.
+     * 
+     * @param type to set of this Banner
+     * @return     this Banner instance
+     */
+    Banner setType(String type);
+    
+    /**
+     * Sets the isOther of this Banner. The isOther field corresponds to the
+     * database column c04cinema.c04cinema.banner.isOther.
+     * 
+     * @param isOther to set of this Banner
+     * @return        this Banner instance
+     */
+    Banner setIsOther(Byte isOther);
+    
     enum Identifier implements ColumnIdentifier<Banner> {
         
         ID          ("id"),
         TITLE       ("title"),
         URL         ("url"),
-        DESCRIPTION ("description");
+        DESCRIPTION ("description"),
+        TYPE        ("type"),
+        IS_OTHER    ("isOther");
         
         private final String columnId;
         private final TableIdentifier<Banner> tableIdentifier;

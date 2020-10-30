@@ -103,7 +103,7 @@ public abstract class GeneratedMovieController {
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping(path = "/movie", consumes = "application/json")
     public void create(
-            @RequestBody CreateBody createBody) {
+            @RequestBody @Validated CreateBody createBody) {
         manager.persist(manager.create()
             .setName(createBody.getName())
             .setDirector(createBody.getDirector())
@@ -604,20 +604,20 @@ public abstract class GeneratedMovieController {
                 @JsonProperty("movieRatedAgeId") Integer movieRatedAgeId,
                 @JsonProperty("description") String description,
                 @JsonProperty("entertainment") String entertainment) {
-            this.name =name;
-            this.director = director;
-            this.actor = actor;
-            this.isSub = isSub;
-            this.is2d = is2d;
-            this.posterUrl = posterUrl;
-            this.startDate = startDate;
-            this.endDate = endDate;
-            this.duration = duration;
-            this.trailerUrl = trailerUrl;
-            this.starRating = starRating;
-            this.movieRatedAgeId = movieRatedAgeId;
-            this.description = description;
-            this.entertainment = entertainment;
+            this.name = Objects.requireNonNull(name, "`name` is required");
+            this.director = Objects.requireNonNull(director, "`director` is required");
+            this.actor = Objects.requireNonNull(actor, "`actor` is required");
+            this.isSub = Objects.requireNonNull(isSub, "`isSub` is required");
+            this.is2d = Objects.requireNonNull(is2d, "`is2d` is required");
+            this.posterUrl = Objects.requireNonNull(posterUrl, "`posterUrl` is required");
+            this.startDate = Objects.requireNonNull(startDate, "`startDate` is required");
+            this.endDate = Objects.requireNonNull(endDate, "`endDate` is required");
+            this.duration = Objects.requireNonNull(duration, "`duration` is required");
+            this.trailerUrl = Objects.requireNonNull(trailerUrl, "`trailerUrl` is required");
+            this.starRating = Objects.requireNonNull(starRating, "`starRating` is required");
+            this.movieRatedAgeId = Objects.requireNonNull(movieRatedAgeId, "`movieRatedAgeId` is required");
+            this.description = Objects.requireNonNull(description, "`description` is required");
+            this.entertainment = Objects.requireNonNull(entertainment, "`entertainment` is required");
         }
         
         public String getName() {
@@ -680,7 +680,7 @@ public abstract class GeneratedMovieController {
     @JsonInclude(Include.NON_NULL)
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class UpdateBody {
-
+        
         private final String name;
         private final String director;
         private final String actor;
@@ -712,20 +712,20 @@ public abstract class GeneratedMovieController {
                 @JsonProperty("movieRatedAgeId") Integer movieRatedAgeId,
                 @JsonProperty("description") String description,
                 @JsonProperty("entertainment") String entertainment) {
-            this.name =name;
-            this.director = director;
-            this.actor = actor;
-            this.isSub = isSub;
-            this.is2d = is2d;
-            this.posterUrl = posterUrl;
-            this.startDate = startDate;
-            this.endDate = endDate;
-            this.duration = duration;
-            this.trailerUrl = trailerUrl;
-            this.starRating = starRating;
-            this.movieRatedAgeId = movieRatedAgeId;
-            this.description = description;
-            this.entertainment = entertainment;
+            this.name = Objects.requireNonNull(name, "`name` is required");
+            this.director = Objects.requireNonNull(director, "`director` is required");
+            this.actor = Objects.requireNonNull(actor, "`actor` is required");
+            this.isSub = Objects.requireNonNull(isSub, "`isSub` is required");
+            this.is2d = Objects.requireNonNull(is2d, "`is2d` is required");
+            this.posterUrl = Objects.requireNonNull(posterUrl, "`posterUrl` is required");
+            this.startDate = Objects.requireNonNull(startDate, "`startDate` is required");
+            this.endDate = Objects.requireNonNull(endDate, "`endDate` is required");
+            this.duration = Objects.requireNonNull(duration, "`duration` is required");
+            this.trailerUrl = Objects.requireNonNull(trailerUrl, "`trailerUrl` is required");
+            this.starRating = Objects.requireNonNull(starRating, "`starRating` is required");
+            this.movieRatedAgeId = Objects.requireNonNull(movieRatedAgeId, "`movieRatedAgeId` is required");
+            this.description = Objects.requireNonNull(description, "`description` is required");
+            this.entertainment = Objects.requireNonNull(entertainment, "`entertainment` is required");
         }
         
         public String getName() {

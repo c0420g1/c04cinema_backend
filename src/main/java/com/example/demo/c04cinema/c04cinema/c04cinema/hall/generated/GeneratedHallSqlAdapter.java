@@ -33,11 +33,10 @@ public abstract class GeneratedHallSqlAdapter implements SqlAdapter<Hall> {
     
     protected Hall apply(ResultSet resultSet, int offset) throws SQLException {
         return createEntity()
-            .setId(           resultSet.getInt(1 + offset))
-            .setName(         resultSet.getString(2 + offset))
-            .setSeatQuantity( getInt(resultSet, 3 + offset))
-            .setHallTypeId(   getInt(resultSet, 4 + offset))
-            .setTheatreId(    getInt(resultSet, 5 + offset))
+            .setId(         resultSet.getInt(1 + offset))
+            .setName(       resultSet.getString(2 + offset))
+            .setHallTypeId( getInt(resultSet, 3 + offset))
+            .setTheatreId(  getInt(resultSet, 4 + offset))
             ;
     }
     
