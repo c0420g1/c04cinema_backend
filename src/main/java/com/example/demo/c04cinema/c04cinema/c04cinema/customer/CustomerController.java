@@ -1,10 +1,10 @@
 package com.example.demo.c04cinema.c04cinema.c04cinema.customer;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.demo.c04cinema.c04cinema.c04cinema.promotion_customer.PromotionCustomer;
 import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,6 @@ import com.example.demo.c04cinema.model_dto.CustomerDTO;
 import com.example.demo.c04cinema.model_dto.CustomerPointDTO;
 
 
-
 @RestController
 public class CustomerController extends GeneratedCustomerController {
     @Autowired
@@ -42,7 +41,7 @@ public class CustomerController extends GeneratedCustomerController {
     Regex regex = new Regex();
 
     //HUỳnh văn Thịnh
-    // lấy danh sách thông tin vé bị cancel theo page
+    // lấy danh sách thông tin vé theo page
     @GetMapping("/showTickerList/{id}/{pageNum}/{cancel}")
     public List<CustomerDTO> getDTO(@PathVariable int id, @PathVariable int pageNum, @PathVariable byte cancel) {
         try {
@@ -61,7 +60,7 @@ public class CustomerController extends GeneratedCustomerController {
 
 
     //HUỳnh văn Thịnh
-    // lấy danh sách vé bị cancel
+    // lấy danh sách vé
     @GetMapping("/showTickerListPage/{id}/{cancel}")
     public List<CustomerDTO> getListDTO(@PathVariable int id, @PathVariable byte cancel) {
         try {
@@ -119,7 +118,8 @@ public class CustomerController extends GeneratedCustomerController {
         try {
             Join<CustomerPointDTO> join = joinComponent.from(AccountManager.IDENTIFIER)
                     .where(Account.ID.equal(id))
-                    .innerJoinOn(BookingTicket.ACCOUNT_ID).equal(Account.ID).where(BookingTicket.BOOKING_DATE.between(star_date, end_date))
+                    .innerJoinOn(BookingTicket.ACCOUNT_ID).equal(Account.ID).where(BookingTicket.BOOKING_DATE.between(star_date, end_date)
+                            .and(BookingTicket.ACCOUNT_ID.equal(id)))
                     .innerJoinOn(Seat.ID).equal(BookingTicket.SEAT_ID)
                     .innerJoinOn(SeatType.ID).equal(Seat.SEAT_TYPE_ID)
                     .innerJoinOn(PromoPoint.ID).equal(SeatType.PROMO_POINT_ID)
@@ -128,7 +128,7 @@ public class CustomerController extends GeneratedCustomerController {
                     .build(CustomerPointDTO::new);
 
             return join.stream().collect(Collectors.toList());
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;
@@ -148,18 +148,20 @@ public class CustomerController extends GeneratedCustomerController {
         try {
             int pageSize = 10;
             Join<CustomerPointUseDTO> join = joinComponent.from(AccountManager.IDENTIFIER)
-                    .innerJoinOn(BookingTicket.ACCOUNT_ID).equal(Account.ID).where(BookingTicket.BOOKING_DATE.between(star_date, end_date))
+                    .innerJoinOn(BookingTicket.ACCOUNT_ID).equal(Account.ID).where(BookingTicket.BOOKING_DATE.between(star_date, end_date)
+                            .and(BookingTicket.ACCOUNT_ID.equal(id)))
                     .innerJoinOn(Seat.ID).equal(BookingTicket.SEAT_ID)
                     .innerJoinOn(SeatType.ID).equal(Seat.SEAT_TYPE_ID)
                     .innerJoinOn(PromoPoint.ID).equal(SeatType.PROMO_POINT_ID)
                     .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID)
                     .innerJoinOn(Movie.ID).equal(Show.MOVIE_ID)
                     .innerJoinOn(Customer.ACCOUNT_ID).equal(Account.ID)
-                    .innerJoinOn(Promotion.CUSTOMER_ID).equal(Customer.ID).where(Promotion.CUSTOMER_ID.equal(id))
+                    .innerJoinOn(PromotionCustomer.CUSTOMER_ID).equal(Customer.ID).where(PromotionCustomer.CUSTOMER_ID.equal(id))
+                    .innerJoinOn(Promotion.ID).equal(PromotionCustomer.PROMOTION_ID)
                     .build(CustomerPointUseDTO::new);
 
             return join.stream().skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;
@@ -184,11 +186,16 @@ public class CustomerController extends GeneratedCustomerController {
                     .innerJoinOn(Show.ID).equal(BookingTicket.SHOW_ID)
                     .innerJoinOn(Movie.ID).equal(Show.MOVIE_ID)
                     .innerJoinOn(Customer.ACCOUNT_ID).equal(Account.ID)
-                    .innerJoinOn(Promotion.CUSTOMER_ID).equal(Customer.ID).where(Promotion.CUSTOMER_ID.equal(id))
+                    .innerJoinOn(PromotionCustomer.CUSTOMER_ID).equal(Customer.ID).where(PromotionCustomer.CUSTOMER_ID.equal(id))
+                    .innerJoinOn(Promotion.ID).equal(PromotionCustomer.PROMOTION_ID)
                     .build(CustomerPointUseDTO::new);
-
-            return join.stream().collect(Collectors.toList());
-        }catch (Exception e){
+            List<CustomerPointUseDTO> res = new ArrayList<>();
+            join.stream().forEach(e -> {
+                if (!res.contains(e))
+                    res.add(e);
+            });
+            return res;
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;
@@ -235,20 +242,23 @@ public class CustomerController extends GeneratedCustomerController {
                 customerManager.update(cus);
             }
             return errors;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
-      return null;
+        return null;
     }
 
     @PatchMapping("/editPassWord/{id}")
-    public List<Error> postCombo(@RequestParam(value = "passOld") String passOld,@RequestParam(value = "newPass") String newPass, @PathVariable int id) {
+    public List<Error> postCombo(@RequestParam(value = "passOld") String passOld, @RequestParam(value = "newPass") String newPass, @PathVariable int id) {
         try {
             List<Error> errors = new ArrayList<>();
 //            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            Account account = accountManager.stream().filter(Account.ID.equal(id)).findFirst().get();
 //            String newPassEnd = passwordEncoder.encode(newPass);
-            if (account.getPassword().get().equals(passOld)){
+            Account account = accountManager.stream().filter(Account.ID.equal(id)).findFirst().get();
+            if (!(regex.regexPass(newPass))) {
+                errors.add(new Error("error", "new Pass not format Abcd1234 !"));
+                return errors;
+            } else if (account.getPassword().get().equals(passOld)) {
                 account.setPassword(newPass);
                 accountManager.update(account);
                 errors.add(new Error("success", "PassWord update success !"));
@@ -256,7 +266,7 @@ public class CustomerController extends GeneratedCustomerController {
                 errors.add(new Error("error", "password error"));
             }
             return errors;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return null;
