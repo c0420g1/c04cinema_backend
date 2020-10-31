@@ -13,6 +13,8 @@ import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.StringJoiner;
 
+import static java.util.Optional.ofNullable;
+
 /**
  * The generated base implementation of the {@link
  * com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer}-interface.
@@ -49,12 +51,12 @@ public abstract class GeneratedCustomerImpl implements Customer {
     
     @Override
     public Optional<String> getName() {
-        return Optional.ofNullable(name);
+        return ofNullable(name);
     }
     
     @Override
     public Optional<String> getAddress() {
-        return Optional.ofNullable(address);
+        return ofNullable(address);
     }
     
     @Override
@@ -74,42 +76,42 @@ public abstract class GeneratedCustomerImpl implements Customer {
     
     @Override
     public Optional<String> getEmail() {
-        return Optional.ofNullable(email);
+        return ofNullable(email);
     }
     
     @Override
     public Optional<Date> getBirthday() {
-        return Optional.ofNullable(birthday);
+        return ofNullable(birthday);
     }
     
     @Override
     public Optional<String> getPhone() {
-        return Optional.ofNullable(phone);
+        return ofNullable(phone);
     }
     
     @Override
     public Optional<Byte> getIsactive() {
-        return Optional.ofNullable(isactive);
+        return ofNullable(isactive);
     }
     
     @Override
     public Optional<String> getGender() {
-        return Optional.ofNullable(gender);
+        return ofNullable(gender);
     }
     
     @Override
     public Optional<String> getCardid() {
-        return Optional.ofNullable(cardid);
+        return ofNullable(cardid);
     }
     
     @Override
     public Optional<String> getCode() {
-        return Optional.ofNullable(code);
+        return ofNullable(code);
     }
     
     @Override
     public Optional<String> getImageUrl() {
-        return Optional.ofNullable(imageUrl);
+        return ofNullable(imageUrl);
     }
     
     @Override
