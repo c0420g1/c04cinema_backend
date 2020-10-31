@@ -63,6 +63,7 @@ public class MovieController extends GeneratedMovieController {
     }
 
 
+
     // creator Vu Le Tuong
     // xoa tat ca record trong bang quan he nhieu-nhieu: movie_genre_associate, dung trong chuc nang edit-movie (chuc nang nay
     //    co chuc nang sua the loai phim
@@ -155,6 +156,17 @@ public class MovieController extends GeneratedMovieController {
         }
         return null;
     }
+    //creator Hieu get best choice film
+    @GetMapping ("/movie/bestchoise")
+    public List<Movie> getBestChoiceFilm(){
+        List<Movie> movieList = null;
+        try {
+            movieList = movieManager.stream().filter(Movie.STAR_RATING.equal(5)).sorted(Movie.ID.reversed()).limit(6).collect(Collectors.toList());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return movieList;
+    }
 
     //creator Hieu resolve page
     @GetMapping("/totalPageComing/{date}")
@@ -192,7 +204,7 @@ public class MovieController extends GeneratedMovieController {
 //        movieManager.stream().filter(e -> s.toLowerCase().contains(e.getName().get()  || s.toUpperCase().contains(e.getName().get())) )
         List<Movie> movieList = null;
         try {
-            movieList = movieManager.stream().sorted(Movie.ID.reversed()).limit(16).collect(Collectors.toList());
+            movieList = movieManager.stream().sorted(Movie.ID.reversed()).limit(10).collect(Collectors.toList());
         } catch (Exception e) {
             System.out.println("error in /movie-new");
         }
