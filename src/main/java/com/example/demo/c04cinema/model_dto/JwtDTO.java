@@ -5,6 +5,7 @@ public class JwtDTO {
     private String username;
     private String authorities;
     private int accountId;
+    private String imageUrl;
 
     public JwtDTO(String accessToken, String username, String authorities, int accountId) {
         this.accessToken = accessToken;
