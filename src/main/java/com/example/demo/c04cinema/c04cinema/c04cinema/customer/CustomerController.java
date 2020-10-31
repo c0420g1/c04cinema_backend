@@ -42,7 +42,7 @@ public class CustomerController extends GeneratedCustomerController {
     Regex regex = new Regex();
 
     //HUỳnh văn Thịnh
-    // lấy danh sách thông tin vé bị cancel theo page
+    // lấy danh sách thông tin vé theo page
     @GetMapping("/showTickerList/{id}/{pageNum}/{cancel}")
     public List<CustomerDTO> getDTO(@PathVariable int id, @PathVariable int pageNum, @PathVariable byte cancel) {
         try {
@@ -61,7 +61,7 @@ public class CustomerController extends GeneratedCustomerController {
 
 
     //HUỳnh văn Thịnh
-    // lấy danh sách vé bị cancel
+    // lấy danh sách vé
     @GetMapping("/showTickerListPage/{id}/{cancel}")
     public List<CustomerDTO> getListDTO(@PathVariable int id, @PathVariable byte cancel) {
         try {
@@ -246,9 +246,12 @@ public class CustomerController extends GeneratedCustomerController {
         try {
             List<Error> errors = new ArrayList<>();
 //            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            Account account = accountManager.stream().filter(Account.ID.equal(id)).findFirst().get();
 //            String newPassEnd = passwordEncoder.encode(newPass);
-            if (account.getPassword().get().equals(passOld)){
+            Account account = accountManager.stream().filter(Account.ID.equal(id)).findFirst().get();
+            if(!(regex.regexPass(newPass))){
+                errors.add(new Error("error", "new Pass not format Abcd1234 !"));
+                return  errors;
+            } else if (account.getPassword().get().equals(passOld)){
                 account.setPassword(newPass);
                 accountManager.update(account);
                 errors.add(new Error("success", "PassWord update success !"));
