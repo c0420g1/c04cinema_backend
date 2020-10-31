@@ -586,11 +586,11 @@ public abstract class GeneratedPromotionController {
             this.description = Objects.requireNonNull(description, "`description` is required");
             this.startDate = Objects.requireNonNull(startDate, "`startDate` is required");
             this.endDate = Objects.requireNonNull(endDate, "`endDate` is required");
-            this.showId = Objects.requireNonNull(showId, "`showId` is required");
-            this.moveId = Objects.requireNonNull(moveId, "`moveId` is required");
-            this.theatreId = Objects.requireNonNull(theatreId, "`theatreId` is required");
-            this.customerId = Objects.requireNonNull(customerId, "`customerId` is required");
-            this.staffId = Objects.requireNonNull(staffId, "`staffId` is required");
+            this.showId = showId;
+            this.moveId = moveId;
+            this.theatreId = theatreId;
+            this.customerId = customerId;
+            this.staffId = staffId;
             this.price = Objects.requireNonNull(price, "`price` is required");
             this.picture = Objects.requireNonNull(picture, "`picture` is required");
         }
