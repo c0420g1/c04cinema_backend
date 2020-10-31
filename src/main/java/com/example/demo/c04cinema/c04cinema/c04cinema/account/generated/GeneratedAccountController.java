@@ -21,6 +21,7 @@ import com.speedment.enterprise.plugins.spring.runtime.ControllerUtil;
 import com.speedment.runtime.field.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -71,7 +72,7 @@ public abstract class GeneratedAccountController {
             .put("password", Account.PASSWORD)
             .build();
     }
-    
+
     @GetMapping(path = "/account", produces = "application/json")
     public String get(
             @RequestParam(name = "filter", defaultValue = "[]") String filters,
