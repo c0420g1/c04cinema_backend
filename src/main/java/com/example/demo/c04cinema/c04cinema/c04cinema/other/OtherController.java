@@ -73,4 +73,15 @@ public class OtherController extends GeneratedOtherController {
 
 
     }
+    @GetMapping("/news")
+    public List<Other> getAllNew(){
+        List<Other> others = null;
+        try {
+            others = otherManager.stream().collect(Collectors.toList());
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return others;
+    }
 }
