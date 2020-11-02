@@ -75,8 +75,8 @@ public class SeatController extends GeneratedSeatController {
     }
 
     @GetMapping("/getSeatNameById/{id}")
-    public String getSeatNameById(@PathVariable int id){
-      return  seatManager.stream().filter(Seat.ID.equal(id)).findFirst().get().getName().get();
+    public Seat getSeatById(@PathVariable int id){
+      return  seatManager.stream().filter(Seat.ID.equal(id)).findFirst().get();
     }
 
 }
