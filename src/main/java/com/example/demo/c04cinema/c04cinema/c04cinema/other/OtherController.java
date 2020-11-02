@@ -77,7 +77,19 @@ public class OtherController extends GeneratedOtherController {
     public List<Other> getAllNew(){
         List<Other> others = null;
         try {
-            others = otherManager.stream().collect(Collectors.toList());
+            others = otherManager.stream().filter(Other.TYPE.equal("news")).collect(Collectors.toList());
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return others;
+    }
+
+    @GetMapping("/sitemap")
+    public List<Other> getAllMenu(){
+        List<Other> others = null;
+        try {
+            others = otherManager.stream().filter(Other.TYPE.equal("sitemap")).collect(Collectors.toList());
 
         }catch (Exception e){
             System.out.println(e.getMessage());
