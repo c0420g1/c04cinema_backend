@@ -9,6 +9,7 @@ import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.c04cinema.c04cinema.c04cinema.account.Account;
 import com.example.demo.c04cinema.c04cinema.c04cinema.account.AccountManager;
@@ -159,8 +160,12 @@ public class CustomerController extends GeneratedCustomerController {
                     .innerJoinOn(PromotionCustomer.CUSTOMER_ID).equal(Customer.ID).where(PromotionCustomer.CUSTOMER_ID.equal(id))
                     .innerJoinOn(Promotion.ID).equal(PromotionCustomer.PROMOTION_ID)
                     .build(CustomerPointUseDTO::new);
-
-            return join.stream().skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
+            List<CustomerPointUseDTO> res = new ArrayList<>();
+            join.stream().forEach(e -> {
+                if (!res.contains(e))
+                    res.add(e);
+            });
+            return res;
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -252,14 +257,15 @@ public class CustomerController extends GeneratedCustomerController {
     public List<Error> postCombo(@RequestParam(value = "passOld") String passOld, @RequestParam(value = "newPass") String newPass, @PathVariable int id) {
         try {
             List<Error> errors = new ArrayList<>();
-//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//            String newPassEnd = passwordEncoder.encode(newPass);
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String newPassEnd = passwordEncoder.encode(newPass);
+
             Account account = accountManager.stream().filter(Account.ID.equal(id)).findFirst().get();
             if (!(regex.regexPass(newPass))) {
                 errors.add(new Error("error", "new Pass not format Abcd1234 !"));
                 return errors;
-            } else if (account.getPassword().get().equals(passOld)) {
-                account.setPassword(newPass);
+            } else if (passwordEncoder.matches(passOld,account.getPassword().get())) {
+                account.setPassword(newPassEnd);
                 accountManager.update(account);
                 errors.add(new Error("success", "PassWord update success !"));
             } else {

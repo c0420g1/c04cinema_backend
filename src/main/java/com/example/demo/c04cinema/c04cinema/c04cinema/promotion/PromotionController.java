@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PromotionController extends GeneratedPromotionController {
+
+    @Autowired
+    PromotionCustomerManager promotionCustomerManager;
+
     @Autowired
     CustomerManager customerManager;
 //    CẬP NHẬT LẠI ĐIỂM CUSTOMERPOINT
@@ -24,8 +28,7 @@ public class PromotionController extends GeneratedPromotionController {
         customer.setCurrentBonusPoint(point);
         customerManager.update(customer);
     }
-    @Autowired
-    PromotionCustomerManager promotionCustomerManager;
+
     @PostMapping("/createProCus")
     public void  createProCustomer(@RequestParam int cusId, @RequestParam int proId, @RequestParam String code){
         PromotionCustomer promotionCustomer = new PromotionCustomerImpl();
@@ -33,5 +36,9 @@ public class PromotionController extends GeneratedPromotionController {
         promotionCustomer.setPromotionId(proId);
         promotionCustomer.setPromotionCode(code);
         promotionCustomerManager.persist(promotionCustomer);
+    }
+    @GetMapping("/findCustomer/{accountID}")
+    public Customer findCustomer(@PathVariable int accountID){
+        return customerManager.stream().filter(Customer.ACCOUNT_ID.equal(accountID)).findFirst().get();
     }
 }

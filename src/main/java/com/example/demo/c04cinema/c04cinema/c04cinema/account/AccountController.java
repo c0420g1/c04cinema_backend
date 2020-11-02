@@ -20,6 +20,8 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.account.generated.Generate
 import com.example.demo.c04cinema.c04cinema.c04cinema.account.generated.TokenAuthenticator;
 import com.example.demo.c04cinema.model_dto.AccountDTO;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200",allowedHeaders = "*")
 @RestController
@@ -38,6 +40,33 @@ public class AccountController extends GeneratedAccountController {
     @GetMapping("/customerIdFirst")
     public Customer getAllCustomer(){
         return customerManager.stream().sorted(Customer.ID.reversed()).findFirst().get();
+    }
+    @PostMapping("/checkAccount")
+    public Account checkAccount(@RequestBody AccountDTO accountDTO){
+        Account account = null;
+        try {
+             account = accountManager.stream().filter(Account.USERNAME.equal(accountDTO.getUsername())).findFirst().get();
+        }catch (Exception e){
+            e.getMessage();
+        }
+        if(account != null){
+            return account;
+        }
+        return null;
+    }
+    @PostMapping("/checkEmail")
+    public Customer checkEmail(@RequestBody String email){
+        System.out.println(email);
+        Customer customer1 = null;
+        try {
+            customer1 = customerManager.stream().filter(Customer.EMAIL.equal(email)).findFirst().get();
+        }catch (Exception e){
+            e.getMessage();
+        }
+        if (customer1 !=null){
+            return customer1;
+        }
+        return null;
     }
 
     @PostMapping("/login")
