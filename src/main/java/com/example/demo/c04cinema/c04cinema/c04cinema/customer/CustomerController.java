@@ -215,8 +215,8 @@ public class CustomerController extends GeneratedCustomerController {
             List<Error> errors = new ArrayList<>();
             Customer cus = customerManager.stream().filter(Customer.ID.equal(id)).findFirst().get();
 
-            if (!regex.regexEmail(customer.getEmail())) {
-                errors.add(new Error("email", "email invalid format"));
+            if (!customer.getEmail().equals(cus.getEmail().get())) {
+                errors.add(new Error("email", "email not change"));
             }
             if (!regex.regexName(customer.getName())) {
                 errors.add(new Error("name", "name invalid format"));
