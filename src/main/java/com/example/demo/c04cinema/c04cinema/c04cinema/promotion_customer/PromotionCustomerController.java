@@ -1,5 +1,7 @@
 package com.example.demo.c04cinema.c04cinema.c04cinema.promotion_customer;
 
+import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
+import com.example.demo.c04cinema.c04cinema.c04cinema.customer.CustomerManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.promotion.Promotion;
 import com.example.demo.c04cinema.c04cinema.c04cinema.promotion_customer.generated.GeneratedPromotionCustomerController;
 import com.speedment.common.tuple.Tuple2;
@@ -17,9 +19,15 @@ public class PromotionCustomerController extends GeneratedPromotionCustomerContr
     @Autowired
     JoinComponent joinComponent;
 
+    @Autowired
+    CustomerManager customerManager;
+
     @GetMapping("/promotionDiscount")
     public double getpromotionDiscount(@RequestParam int accId, @RequestParam String proCode){
-        Join<Tuple2<PromotionCustomer, Promotion>> join= joinComponent.from(PromotionCustomerManager.IDENTIFIER).where(PromotionCustomer.CUSTOMER_ID.equal(accId))
+      int tmp=  customerManager.stream().filter(Customer.ACCOUNT_ID.equal(accId)).mapToInt(Customer.ID.asInt()).findFirst().getAsInt();
+
+        Join<Tuple2<PromotionCustomer, Promotion>> join= joinComponent.from(PromotionCustomerManager.IDENTIFIER).where(PromotionCustomer.CUSTOMER_ID.equal(tmp))
+                .where(PromotionCustomer.PROMOTION_CODE.equal(proCode))
                 .innerJoinOn(Promotion.ID).equal(PromotionCustomer.PROMOTION_ID).build(Tuples::of);
 
         if(join.stream().count()>0){
