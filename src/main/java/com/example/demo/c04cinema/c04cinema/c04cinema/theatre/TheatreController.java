@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/test")
 public class TheatreController extends GeneratedTheatreController {
     @Autowired
     TheatreManager theatreManager;
@@ -46,30 +45,13 @@ public class TheatreController extends GeneratedTheatreController {
 //       return join.stream().skip(pageNum*pageSize).limit(pageSize).collect(toList());
 //    }
 
-    @GetMapping("/theatre")
+    @GetMapping("/theatreName")
     public Theatre getTheaterById(@RequestParam int id){
         try {
-            Theatre theatre=  theatreManager.stream().filter(Theatre.ID.equal(id)).findFirst().get();
-            return theatre;
+            return  theatreManager.stream().filter(Theatre.ID.equal(id)).findFirst().get();
         }catch (Exception e){
             e.getMessage();
             return null;
         }
-    }
-
-    @PostMapping("/c")
-    public String checkValid(@RequestBody Combo combo){
-        if(combo.getName().equals(""))
-            return "Name not null";
-
-        return "Ok";
-    }
-
-    @PostMapping("/d")
-    public String checkValid2(@RequestBody ComboDTO comboDTO){
-        if(comboDTO.getName().equals(""))
-            return "Name not null";
-
-        return "Ok";
     }
 }
