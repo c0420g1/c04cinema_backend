@@ -8,6 +8,7 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTick
 import com.example.demo.c04cinema.c04cinema.c04cinema.buy_combo.BuyComboManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.buy_food_drink.BuyFoodDrinkManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.combo.ComboManager;
+import com.example.demo.c04cinema.c04cinema.c04cinema.comment.CommentManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.CustomerManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer_type.CustomerTypeManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.food_drink.FoodDrinkManager;
@@ -53,7 +54,6 @@ import org.springframework.core.env.Environment;
  */
 @GeneratedCode("Speedment")
 public class GeneratedC04cinemaConfiguration {
-    
     @Bean
     public ProjectComponent getProjectComponent(C04cinemaApplication app) {
         return app.getOrThrow(ProjectComponent.class);
@@ -97,6 +97,11 @@ public class GeneratedC04cinemaConfiguration {
     @Bean
     public ComboManager getComboManager(C04cinemaApplication app) {
         return app.getOrThrow(ComboManager.class);
+    }
+    
+    @Bean
+    public CommentManager getCommentManager(C04cinemaApplication app) {
+        return app.getOrThrow(CommentManager.class);
     }
     
     @Bean

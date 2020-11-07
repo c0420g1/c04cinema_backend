@@ -12,7 +12,7 @@
     "dbmses" : [
       {
         "nameProtected" : true,
-        "expanded" : true,
+        "expanded" : false,
         "port" : 3306,
         "schemas" : [
           {
@@ -900,13 +900,21 @@
                     "restVisible" : true
                   },
                   {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "autoIncrement" : false,
+                    "restUpdateBodyInclude" : true,
+                    "ordinalPosition" : 2,
+                    "enabled" : true,
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
-                    "nullable" : true,
                     "name" : "name",
+                    "restCreateBodyInclude" : true,
+                    "nullableImplementation" : "OPTIONAL",
+                    "restUpdateBodyRequired" : true,
+                    "restCreateBodyRequired" : true,
                     "id" : "name",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "restVisible" : true
                   },
                   {
                     "databaseType" : "java.lang.Double",
@@ -938,7 +946,7 @@
                 ],
                 "enabled" : true,
                 "restEnableFilters" : true,
-                "expanded" : false,
+                "expanded" : true,
                 "restEnabled" : true,
                 "primaryKeyColumns" : [
                   {
@@ -971,6 +979,210 @@
                 "restEnableSkipLimit" : true,
                 "restCors" : "*",
                 "id" : "combo",
+                "restEnableSorters" : true,
+                "restEnableTotal" : false
+              },
+              {
+                "nameProtected" : true,
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "c04cinema",
+                        "foreignSchemaName" : "c04cinema",
+                        "expanded" : true,
+                        "name" : "customer_id",
+                        "foreignColumnName" : "id",
+                        "id" : "customer_id",
+                        "foreignTableName" : "customer",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "fk_comment_customer1",
+                    "id" : "fk_comment_customer1",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "c04cinema",
+                        "foreignSchemaName" : "c04cinema",
+                        "expanded" : true,
+                        "name" : "movie_id",
+                        "foreignColumnName" : "id",
+                        "id" : "movie_id",
+                        "foreignTableName" : "movie",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "fk_comment_movie1",
+                    "id" : "fk_comment_movie1",
+                    "enabled" : true
+                  }
+                ],
+                "isView" : false,
+                "restEnableCUD" : true,
+                "columns" : [
+                  {
+                    "nameProtected" : true,
+                    "nullable" : false,
+                    "autoIncrement" : true,
+                    "restUpdateBodyInclude" : false,
+                    "ordinalPosition" : 1,
+                    "enabled" : true,
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
+                    "name" : "id",
+                    "restCreateBodyInclude" : false,
+                    "nullableImplementation" : "OPTIONAL",
+                    "restUpdateBodyRequired" : true,
+                    "restCreateBodyRequired" : true,
+                    "id" : "id",
+                    "restVisible" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "customer_id",
+                    "id" : "customer_id",
+                    "ordinalPosition" : 2,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "movie_id",
+                    "id" : "movie_id",
+                    "ordinalPosition" : 3,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "comment",
+                    "id" : "comment",
+                    "ordinalPosition" : 4,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.sql.Timestamp",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "createDate",
+                    "id" : "createDate",
+                    "ordinalPosition" : 5,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "reply_one_custom_id",
+                    "id" : "reply_one_custom_id",
+                    "ordinalPosition" : 6,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "like",
+                    "id" : "like",
+                    "ordinalPosition" : 7,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.String",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "emotion",
+                    "id" : "emotion",
+                    "ordinalPosition" : 8,
+                    "enabled" : true
+                  },
+                  {
+                    "databaseType" : "java.lang.Integer",
+                    "expanded" : true,
+                    "nullable" : true,
+                    "name" : "reply_two_custom_id",
+                    "id" : "reply_two_custom_id",
+                    "ordinalPosition" : 9,
+                    "enabled" : true
+                  }
+                ],
+                "enabled" : true,
+                "restEnableFilters" : true,
+                "expanded" : true,
+                "restEnabled" : true,
+                "primaryKeyColumns" : [
+                  {
+                    "expanded" : true,
+                    "name" : "id",
+                    "id" : "id",
+                    "ordinalPosition" : 1,
+                    "enabled" : true
+                  }
+                ],
+                "indexes" : [
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "PRIMARY",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "id",
+                        "id" : "id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "PRIMARY",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "fk_comment_customer1_idx",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "customer_id",
+                        "id" : "customer_id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "fk_comment_customer1_idx",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "fk_comment_movie1_idx",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "movie_id",
+                        "id" : "movie_id",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "fk_comment_movie1_idx",
+                    "enabled" : true
+                  }
+                ],
+                "name" : "comment",
+                "restEnableSkipLimit" : true,
+                "restCors" : "*",
+                "id" : "comment",
                 "restEnableSorters" : true,
                 "restEnableTotal" : false
               },
@@ -2980,7 +3192,7 @@
                   {
                     "nameProtected" : true,
                     "nullable" : false,
-                    "autoIncrement" : false,
+                    "autoIncrement" : true,
                     "restUpdateBodyInclude" : false,
                     "ordinalPosition" : 1,
                     "enabled" : true,
