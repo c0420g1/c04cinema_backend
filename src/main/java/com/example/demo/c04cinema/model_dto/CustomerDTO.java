@@ -13,13 +13,25 @@ public class CustomerDTO {
     private final Double totalMoney;
     private final Byte status;
     private final Byte canCel;
+    private final int idAcc;
+    private final int idTicker;
 
     public CustomerDTO(Account account, BookingTicket bookingTicket, Show show, Movie movie){
+        this.idAcc= account.getId();
         this.movieName= movie.getName().get();
         this.dayPut= bookingTicket.getBookingDate().get();
+        this.idTicker= bookingTicket.getId();
         this.totalMoney= bookingTicket.getPrice().getAsDouble();
         this.status= bookingTicket.getStatus().get();
         this.canCel= bookingTicket.getIscancel().get();
+    }
+
+    public int getIdTicker() {
+        return idTicker;
+    }
+
+    public int getIdAcc() {
+        return idAcc;
     }
 
     public String getMovieName() {

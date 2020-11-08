@@ -47,6 +47,8 @@ public class BookingTicketDTO {
         this.hallName = hall.getName().get();
     }
 
+
+
     public String getHallName() { return hallName; }
 
     public Byte getIsCancel() { return isCancel; }
