@@ -247,6 +247,7 @@ public class CustomerController extends GeneratedCustomerController {
             cus.setEmail(customer.getEmail());
             cus.setGender(customer.getGender());
             cus.setName(customer.getName());
+            cus.setImageUrl(customer.getImageUrl());
             if (errors.isEmpty()) {
                 customerManager.update(cus);
             }
