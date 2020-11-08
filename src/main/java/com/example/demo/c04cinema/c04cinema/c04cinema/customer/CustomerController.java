@@ -283,6 +283,12 @@ public class CustomerController extends GeneratedCustomerController {
         return null;
     }
 
+    //qg23
+    @GetMapping("/customer/{accId}")
+    public Customer getCustomerByAccountId(@PathVariable int accId){
+        return customerManager.stream().filter(Customer.ACCOUNT_ID.equal(accId)).findFirst().get();
+    }
+
     @GetMapping("/editTicket/{id}")
     public  List<Error> postPoint(@PathVariable int id,@RequestParam(value = "idTicker") String idTicker) {
         try {

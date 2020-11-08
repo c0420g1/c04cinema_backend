@@ -16,6 +16,8 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.buy_food_drink.BuyFoodDrin
 import com.example.demo.c04cinema.c04cinema.c04cinema.buy_food_drink.BuyFoodDrinkSqlAdapter;
 import com.example.demo.c04cinema.c04cinema.c04cinema.combo.ComboManagerImpl;
 import com.example.demo.c04cinema.c04cinema.c04cinema.combo.ComboSqlAdapter;
+import com.example.demo.c04cinema.c04cinema.c04cinema.comment.CommentManagerImpl;
+import com.example.demo.c04cinema.c04cinema.c04cinema.comment.CommentSqlAdapter;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.CustomerManagerImpl;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.CustomerSqlAdapter;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer_type.CustomerTypeManagerImpl;
@@ -90,6 +92,7 @@ public abstract class GeneratedC04cinemaApplicationBuilder extends AbstractAppli
         withManager(BuyComboManagerImpl.class);
         withManager(BuyFoodDrinkManagerImpl.class);
         withManager(ComboManagerImpl.class);
+        withManager(CommentManagerImpl.class);
         withManager(CustomerManagerImpl.class);
         withManager(CustomerTypeManagerImpl.class);
         withManager(FoodDrinkManagerImpl.class);
@@ -120,6 +123,7 @@ public abstract class GeneratedC04cinemaApplicationBuilder extends AbstractAppli
         withComponent(BuyComboSqlAdapter.class);
         withComponent(BuyFoodDrinkSqlAdapter.class);
         withComponent(ComboSqlAdapter.class);
+        withComponent(CommentSqlAdapter.class);
         withComponent(CustomerSqlAdapter.class);
         withComponent(CustomerTypeSqlAdapter.class);
         withComponent(FoodDrinkSqlAdapter.class);
