@@ -54,6 +54,7 @@ import org.springframework.core.env.Environment;
  */
 @GeneratedCode("Speedment")
 public class GeneratedC04cinemaConfiguration {
+    
     @Bean
     public ProjectComponent getProjectComponent(C04cinemaApplication app) {
         return app.getOrThrow(ProjectComponent.class);

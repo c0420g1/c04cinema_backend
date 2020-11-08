@@ -2,6 +2,9 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.movie;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -449,6 +452,7 @@ public class MovieController extends GeneratedMovieController {
         return errors;
     };
 
+    // qg23
     @GetMapping("/comments/{movieId}")
     public List<CommentDTO> getComments(@PathVariable int movieId){
         Join<Tuple2<Comment, Customer>> join= joinComponent.from(CommentManager.IDENTIFIER).where(Comment.MOVIE_ID.equal(movieId))
@@ -462,9 +466,8 @@ public class MovieController extends GeneratedMovieController {
             int customerId= e.get1().getId();
             String customerName= e.get1().getName().get();
             String customerImgUrl= e.get1().getImageUrl().get();
-            String time= e.get0().getCreateDate().get().toString();
+            String time=convetDate(e.get0().getCreateDate().get());
             String comment= e.get0().getComment().get();
-
 
             List<CommentDTO> c= new ArrayList<>();
             Join<Tuple2<Comment, Customer>> ele= joinComponent.from(CommentManager.IDENTIFIER).where(Comment.MOVIE_ID.equal(movieId)).where(Comment.CUSTOMER_ID.equal(customerId))
@@ -472,14 +475,17 @@ public class MovieController extends GeneratedMovieController {
 
             ele.stream().forEach(f->{
                 if(f.get0().getReplyOneCustomId().isPresent()) {
-                    int ids= f.get0().getId();
-                    int i = f.get1().getId();
-                    String n = f.get1().getName().get();
-                    String u = f.get1().getImageUrl().get();
-                    String t = f.get0().getCreateDate().get().toString();
-                    String co = f.get0().getComment().get();
-                    CommentDTO com = new CommentDTO(ids, movieId, i, n, u, t, co, 0, null);
-                    c.add(com);
+                    if(f.get0().getReplyTwoCustomId().getAsInt()== id){
+                        int ids= f.get0().getId();
+                        int i = f.get1().getId();
+                        String n = f.get1().getName().get();
+                        String u = f.get1().getImageUrl().get();
+                        String t = convetDate(f.get0().getCreateDate().get());
+                        String co = f.get0().getComment().get();
+                        CommentDTO com = new CommentDTO(ids, movieId, i, n, u, t, co, 0, null);
+                        c.add(com);
+                    }
+
                 }
             });
 
@@ -491,29 +497,16 @@ public class MovieController extends GeneratedMovieController {
         return res;
     }
 
-//    @PostMapping("/addcomment")
-//    public void addComment(@PathVariable int movieId,){
-//
-//    }
+    private String convetDate(LocalDateTime date){
+        LocalDateTime dateNow= LocalDateTime.now();
+        LocalDateTime dateComment= date.plusHours(7);
 
-//    @GetMapping("/reply/{id}")
-//    public List<CommentDTO> getReplys(@PathVariable int id, @RequestParam int cusId, @RequestParam int movieId){
-//        Join<Tuple2<Comment, Customer>> join= joinComponent.from(CommentManager.IDENTIFIER).where(Comment.MOVIE_ID.equal(movieId)).where(Comment.CUSTOMER_ID.equal(cusId)).where(Comment.REPLY_ONE_CUSTOM_ID.equal(id))
-//                .innerJoinOn(Customer.ID).equal(Comment.REPLY_ONE_CUSTOM_ID).build(Tuples::of);
-//
-//        List<CommentDTO> res= new ArrayList<>();
-//
-//        join.stream().forEach(e->{
-//            int customerId= e.get1().getId();
-//            String customerName= e.get1().getName().get();
-//            String customerImgUrl= e.get1().getImageUrl().get();
-//            String time= e.get0().getCreateDate().get().toString();
-//            String comment= e.get0().getComment().get();
-//            int replyCusId= e.get0().getReplyTwoCustomId().orElse(0);
-//
-//            CommentDTO commentDTO= new CommentDTO(movieId, customerId, customerName, customerImgUrl, time, comment, replyCusId, 0);
-//            res.add(commentDTO);
-//        });
-//        return res;
-//    }
+        if(dateNow.toLocalDate().equals(dateComment.toLocalDate())){
+            int hour= dateNow.getHour() - dateComment.getHour();
+            int minute= dateNow.getMinute()- dateComment.getMinute();
+            return hour >0 ? hour + " hour ago" : minute + " minutes ago";
+        }
+
+        return dateComment.toLocalDate().toString();
+    }
 }

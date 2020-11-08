@@ -12,7 +12,7 @@
     "dbmses" : [
       {
         "nameProtected" : true,
-        "expanded" : false,
+        "expanded" : true,
         "port" : 3306,
         "schemas" : [
           {
@@ -1071,13 +1071,22 @@
                     "enabled" : true
                   },
                   {
+                    "nameProtected" : true,
+                    "nullable" : true,
+                    "autoIncrement" : false,
+                    "restUpdateBodyInclude" : true,
+                    "ordinalPosition" : 5,
+                    "enabled" : true,
                     "databaseType" : "java.sql.Timestamp",
                     "expanded" : true,
-                    "nullable" : true,
+                    "typeMapper" : "com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper",
                     "name" : "createDate",
+                    "restCreateBodyInclude" : true,
+                    "nullableImplementation" : "OPTIONAL",
+                    "restUpdateBodyRequired" : true,
+                    "restCreateBodyRequired" : true,
                     "id" : "createDate",
-                    "ordinalPosition" : 5,
-                    "enabled" : true
+                    "restVisible" : true
                   },
                   {
                     "databaseType" : "java.lang.Integer",

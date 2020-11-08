@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -312,7 +312,7 @@ public abstract class GeneratedCommentController {
                     }
                 }
                 case "createDate" : {
-                    final Timestamp v = Timestamp.valueOf(value());
+                    final LocalDateTime v = LocalDateTime.parse(value());
                     switch (operator()) {
                         case "eq"   : return Comment.CREATE_DATE.equal(v);
                         case "ne"   : return Comment.CREATE_DATE.notEqual(v);
@@ -444,7 +444,7 @@ public abstract class GeneratedCommentController {
         private final Integer customerId;
         private final Integer movieId;
         private final String comment;
-        private final Timestamp createDate;
+        private final LocalDateTime createDate;
         private final Integer replyOneCustomId;
         private final Integer like;
         private final String emotion;
@@ -455,7 +455,7 @@ public abstract class GeneratedCommentController {
                 @JsonProperty("customerId") Integer customerId,
                 @JsonProperty("movieId") Integer movieId,
                 @JsonProperty("comment") String comment,
-                @JsonProperty("createDate") Timestamp createDate,
+                @JsonProperty("createDate") LocalDateTime createDate,
                 @JsonProperty("replyOneCustomId") Integer replyOneCustomId,
                 @JsonProperty("like") Integer like,
                 @JsonProperty("emotion") String emotion,
@@ -482,7 +482,7 @@ public abstract class GeneratedCommentController {
             return this.comment;
         }
         
-        public Timestamp getCreateDate() {
+        public LocalDateTime getCreateDate() {
             return this.createDate;
         }
         
@@ -510,7 +510,7 @@ public abstract class GeneratedCommentController {
         private final Integer customerId;
         private final Integer movieId;
         private final String comment;
-        private final Timestamp createDate;
+        private final LocalDateTime createDate;
         private final Integer replyOneCustomId;
         private final Integer like;
         private final String emotion;
@@ -521,7 +521,7 @@ public abstract class GeneratedCommentController {
                 @JsonProperty("customerId") Integer customerId,
                 @JsonProperty("movieId") Integer movieId,
                 @JsonProperty("comment") String comment,
-                @JsonProperty("createDate") Timestamp createDate,
+                @JsonProperty("createDate") LocalDateTime createDate,
                 @JsonProperty("replyOneCustomId") Integer replyOneCustomId,
                 @JsonProperty("like") Integer like,
                 @JsonProperty("emotion") String emotion,
@@ -548,7 +548,7 @@ public abstract class GeneratedCommentController {
             return this.comment;
         }
         
-        public Timestamp getCreateDate() {
+        public LocalDateTime getCreateDate() {
             return this.createDate;
         }
         

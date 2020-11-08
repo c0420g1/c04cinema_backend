@@ -13,8 +13,10 @@ import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
+import com.speedment.runtime.typemapper.time.TimestampToLocalDateTimeMapper;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.OptionalInt;
 
@@ -81,11 +83,11 @@ public interface GeneratedComment {
      * This Field corresponds to the {@link Comment} field that can be obtained
      * using the {@link Comment#getCreateDate()} method.
      */
-    ComparableField<Comment, Timestamp, Timestamp> CREATE_DATE = ComparableField.create(
+    ComparableField<Comment, Timestamp, LocalDateTime> CREATE_DATE = ComparableField.create(
         Identifier.CREATE_DATE,
         o -> OptionalUtil.unwrap(o.getCreateDate()),
         Comment::setCreateDate,
-        TypeMapper.identity(),
+        new TimestampToLocalDateTimeMapper(),
         false
     );
     /**
@@ -171,7 +173,7 @@ public interface GeneratedComment {
      * 
      * @return the createDate of this Comment
      */
-    Optional<Timestamp> getCreateDate();
+    Optional<LocalDateTime> getCreateDate();
     
     /**
      * Returns the replyOneCustomId of this Comment. The replyOneCustomId field
@@ -250,7 +252,7 @@ public interface GeneratedComment {
      * @param createDate to set of this Comment
      * @return           this Comment instance
      */
-    Comment setCreateDate(Timestamp createDate);
+    Comment setCreateDate(LocalDateTime createDate);
     
     /**
      * Sets the replyOneCustomId of this Comment. The replyOneCustomId field

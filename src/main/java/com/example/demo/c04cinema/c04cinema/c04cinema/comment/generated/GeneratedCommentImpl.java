@@ -7,7 +7,7 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalInt;
@@ -29,7 +29,7 @@ public abstract class GeneratedCommentImpl implements Comment {
     private Integer customerId;
     private Integer movieId;
     private String comment;
-    private Timestamp createDate;
+    private LocalDateTime createDate;
     private Integer replyOneCustomId;
     private Integer like;
     private String emotion;
@@ -58,7 +58,7 @@ public abstract class GeneratedCommentImpl implements Comment {
     }
     
     @Override
-    public Optional<Timestamp> getCreateDate() {
+    public Optional<LocalDateTime> getCreateDate() {
         return Optional.ofNullable(createDate);
     }
     
@@ -107,7 +107,7 @@ public abstract class GeneratedCommentImpl implements Comment {
     }
     
     @Override
-    public Comment setCreateDate(Timestamp createDate) {
+    public Comment setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
         return this;
     }

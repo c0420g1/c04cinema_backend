@@ -277,4 +277,10 @@ public class CustomerController extends GeneratedCustomerController {
         }
         return null;
     }
+
+    //qg23
+    @GetMapping("/customer/{accId}")
+    public Customer getCustomerByAccountId(@PathVariable int accId){
+        return customerManager.stream().filter(Customer.ACCOUNT_ID.equal(accId)).findFirst().get();
+    }
 }

@@ -3,12 +3,18 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.comment.generated;
 import com.example.demo.c04cinema.c04cinema.c04cinema.comment.Comment;
 import com.example.demo.c04cinema.c04cinema.c04cinema.comment.CommentImpl;
 import com.speedment.common.annotation.GeneratedCode;
+import com.speedment.common.injector.annotation.ExecuteBefore;
+import com.speedment.runtime.config.Project;
 import com.speedment.runtime.config.identifier.TableIdentifier;
+import com.speedment.runtime.core.component.ProjectComponent;
 import com.speedment.runtime.core.component.SqlAdapter;
+import com.speedment.runtime.core.component.sql.SqlTypeMapperHelper;
 import com.speedment.runtime.core.db.SqlFunction;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import static com.speedment.common.injector.State.RESOLVED;
 import static com.speedment.runtime.core.util.ResultSetUtil.*;
@@ -26,6 +32,7 @@ import static com.speedment.runtime.core.util.ResultSetUtil.*;
 public abstract class GeneratedCommentSqlAdapter implements SqlAdapter<Comment> {
     
     private final TableIdentifier<Comment> tableIdentifier;
+    private SqlTypeMapperHelper<Timestamp, LocalDateTime> createDateHelper;
     
     protected GeneratedCommentSqlAdapter() {
         this.tableIdentifier = TableIdentifier.of("c04cinema", "c04cinema", "comment");
@@ -37,7 +44,7 @@ public abstract class GeneratedCommentSqlAdapter implements SqlAdapter<Comment> 
             .setCustomerId(       getInt(resultSet, 2 + offset))
             .setMovieId(          getInt(resultSet, 3 + offset))
             .setComment(          resultSet.getString(4 + offset))
-            .setCreateDate(       resultSet.getTimestamp(5 + offset))
+            .setCreateDate(       createDateHelper.apply(resultSet.getTimestamp(5 + offset)))
             .setReplyOneCustomId( getInt(resultSet, 6 + offset))
             .setLike(             getInt(resultSet, 7 + offset))
             .setEmotion(          resultSet.getString(8 + offset))
@@ -62,5 +69,11 @@ public abstract class GeneratedCommentSqlAdapter implements SqlAdapter<Comment> 
     @Override
     public SqlFunction<ResultSet, Comment> entityMapper(int offset) {
         return rs -> apply(rs, offset);
+    }
+    
+    @ExecuteBefore(RESOLVED)
+    public void createHelpers(ProjectComponent projectComponent) {
+        final Project project = projectComponent.getProject();
+        createDateHelper = SqlTypeMapperHelper.create(project, Comment.CREATE_DATE, Comment.class);
     }
 }
