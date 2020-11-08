@@ -16,21 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `account`
---
-
-DROP TABLE IF EXISTS `account`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `account` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `account`
 --
 
@@ -39,24 +24,6 @@ LOCK TABLES `account` WRITE;
 INSERT INTO `account` VALUES (1,'hdorn0','k63ORno9tkSG'),(2,'gserrell1','IJOc2Nr'),(3,'evicary2','tusSVBjTw'),(4,'mlandsborough3','SctJudtNg03K'),(5,'hpenson4','nyaYKIk'),(6,'bwhayman5','zIJ2IOXL'),(7,'jwoodyear6','M00nOQmx'),(8,'soulett7','PK02HL'),(9,'cstenson8','xo5pfxFgAV'),(10,'jheamus9','OqslUEh9'),(11,'mmaycocka','GlaGO5'),(12,'eschneiderb','SpruwkpBgE'),(13,'mmortlockc','TQN6ulG'),(14,'adubosed','WsYsBEM4Kc5n'),(15,'jbusfielde','EMAeAfj7e'),(16,'egoldspinkf','l4V9LxBW'),(17,'bdykesg','JyGHOmrTl'),(18,'sconrathh','CvUTAjTxx0'),(19,'mgiorgettii','7iTpdtWt8283'),(20,'ibezleyj','SZyUwu5'),(21,'anoodsk','mGPOvymvMauc'),(22,'kivanisovl','nHRQJAEJ6'),(23,'rpilfoldm','zUaLodo1v'),(24,'lmaseresn','eKWIs3D'),(25,'kkitcheno','27dpgxF4h'),(26,'dmetzelp','bfHNobg11v'),(27,'nbonninq','edHihA'),(28,'fklimentr','D6jIz9kWD4'),(29,'tocannavans','viGHZ4ckq3'),(30,'wseczykt','pS6yHZhSLqi'),(31,'fmcelreeu','e8dAP3'),(32,'aeddisforthv','P42U5dFn'),(33,'kpeasemanw','XotQ7pAOk'),(34,'hgannx','SeQiIWDbV'),(35,'cwhiteheady','J1mgB4'),(36,'yruddlesdenz','Bf78o8qR7I0'),(37,'cretchless10','204PLECGDcF'),(38,'daxel11','RFddPG54'),(39,'cridsdale12','RvApw4q'),(40,'drobken13','8FQC5Xt5yjND'),(41,'zsilby14','UWINFc'),(42,'jwoodhouse15','A6P9QnNThsB'),(43,'mmorgen16','bdLE4dWeg'),(44,'msutherby17','E6rwkoKp7W9d'),(45,'tfriel18','pcw3uu57dVv'),(46,'stomson19','I72fEFRGTfx'),(47,'corknay1a','eCREePi'),(48,'wferneyhough1b','D4m4E6yJ'),(49,'ngillbe1c','rQNUgH'),(50,'hmcniff1d','zzmGPcTLfE0a'),(51,'nmay1e','Dc3tOHds5X3U'),(52,'mpflieger1f','6WLfliJ5U'),(53,'gtrodden1g','IMU1pWfoEHU5'),(54,'lhannis1h','GMi3Ajhln'),(55,'shazeman1i','klTzlSp0ILDl'),(56,'slaven1j','D66siVxt5tW'),(57,'njarvis1k','dPpbiERXekn'),(58,'asaylor1l','Tx6AH9M'),(59,'rmillmoe1m','AD656B'),(60,'rbower1n','MkqYvnzz4'),(61,'mmateev1o','3qSqB567p'),(62,'hsandell1p','Sq4CJMZ34s'),(63,'jasken1q','c9FqgQU'),(64,'tdepero1r','QWEuUhTi'),(65,'wavarne1s','yw85S8RXwPhc'),(66,'ccato1t','FrS6ubS'),(67,'egrene1u','kWopOLlBq'),(68,'ttodarini1v','mh532BFIyq'),(69,'bshillaber1w','OC85DsLC'),(70,'cduguid1x','6vOWNLOo'),(71,'sbeaument1y','5HpSQdy5'),(72,'dbengtson1z','xdyUQ5XBIf5'),(73,'nbere20','TwvV5i'),(74,'apontin21','5Ja6tLbznI'),(75,'cdinis22','Nl41ZWNC1FB'),(76,'koglassane23','by5hFdy0y'),(77,'rbarlow24','YWP8x2'),(78,'lciani25','VGPIxf1wZ6'),(79,'ablaker26','y02ORUX0'),(80,'reskrigge27','yVU0E1'),(81,'klassen28','ogqMCKV8i'),(82,'kmundie29','D5MO9XS'),(83,'waiers2a','2gzOh1Wlml'),(84,'scowndley2b','anOyqRdrRIC'),(85,'xmcdiarmid2c','pBCExNsiV'),(86,'lbernardon2d','9JPcuPT'),(87,'jbabb2e','G2hKRnJv'),(88,'jhazael2f','Q5MVl09hDj'),(89,'ddealtry2g','5xl3r8al'),(90,'fgennrich2h','225YHDwrKbty'),(91,'lmottershaw2i','Nmv9VU'),(92,'cbalsdon2j','IWCM07e'),(93,'lbramford2k','yQ2QuPE'),(94,'drentz2l','C4F4xegieN'),(95,'cfilby2m','8wV2D92'),(96,'tkevlin2n','xpBOPchnOl'),(97,'ftidridge2o','Ywn6jmQOota'),(98,'egentle2p','pSreVvn4n'),(99,'wrustman2q','pTASpF7F0bG'),(100,'lgravenall2r','bdh8SFT0HMmC'),(101,'quocnna','$2a$10$mEq7.ULmEtPa.ezyTtM2puZtaXFRJs3gHiwh84IQXEv6qqaovk9Xi'),(102,'test','$2a$10$P2ROeb51EoW8WXzpRiwMqOiHK5piobujeDltWlnUc9YbsF1D3bWKC'),(105,'huy','$2a$10$NsedviRsz8wH4pA/h80Az.IBmXhKp2XkUH5KdSzLs.raWi4PwEn7C'),(106,'huyduong','$2a$10$n7E843XMNrte0FnVLuRN5ekJHAwxvaC9qY35MWdXZK9rHONplmfvK'),(107,'thinh','$2a$10$QtGko0wp1nNaTYRzW54iqe5NrlI1tpL5ZaQMFkIEvj9B1LCfIDvqe');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `banner`
---
-
-DROP TABLE IF EXISTS `banner`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `banner` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) DEFAULT NULL,
-  `url` varchar(250) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  `type` varchar(45) DEFAULT NULL,
-  `isOther` tinyint DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `banner`
@@ -69,44 +36,6 @@ INSERT INTO `banner` VALUES (1,'title','https://thedo.tv/','aaaa','tpe',1),(2,'t
 UNLOCK TABLES;
 
 --
--- Table structure for table `booking_ticket`
---
-
-DROP TABLE IF EXISTS `booking_ticket`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `booking_ticket` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `code` varchar(45) DEFAULT NULL,
-  `show_id` int DEFAULT NULL,
-  `ticket_type_id` int DEFAULT NULL,
-  `seat_id` int DEFAULT NULL,
-  `promotion_id` int DEFAULT NULL,
-  `account_id` int DEFAULT NULL,
-  `payment_id` int DEFAULT NULL,
-  `contact_email` varchar(45) DEFAULT NULL,
-  `contact_phone` varchar(45) DEFAULT NULL,
-  `status` tinyint DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `iscancel` tinyint DEFAULT '0',
-  `booking_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_booking_ticket_payment1_idx` (`payment_id`),
-  KEY `fk_booking_ticket_promotion1_idx` (`promotion_id`),
-  KEY `fk_booking_ticket_show1_idx` (`show_id`),
-  KEY `fk_booking_ticket_seat1_idx` (`seat_id`),
-  KEY `fk_booking_ticket_account1_idx` (`account_id`),
-  KEY `fk_booking_ticket_ticket_type1_idx` (`ticket_type_id`),
-  CONSTRAINT `fk_booking_ticket_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-  CONSTRAINT `fk_booking_ticket_payment1` FOREIGN KEY (`payment_id`) REFERENCES `payment` (`id`),
-  CONSTRAINT `fk_booking_ticket_promotion1` FOREIGN KEY (`promotion_id`) REFERENCES `promotion` (`id`),
-  CONSTRAINT `fk_booking_ticket_seat1` FOREIGN KEY (`seat_id`) REFERENCES `seat` (`id`),
-  CONSTRAINT `fk_booking_ticket_show1` FOREIGN KEY (`show_id`) REFERENCES `show` (`id`),
-  CONSTRAINT `fk_booking_ticket_ticket_type1` FOREIGN KEY (`ticket_type_id`) REFERENCES `ticket_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `booking_ticket`
 --
 
@@ -115,23 +44,6 @@ LOCK TABLES `booking_ticket` WRITE;
 INSERT INTO `booking_ticket` VALUES (1,'67345-0013',71,6,23,16,29,2,'hcronin0@mtv.com','5859577512',1,70,0,'2020-10-10 07:00:00'),(2,'68462-248',63,2,11,19,53,3,'wbuxsy1@rakuten.co.jp','3535525834',0,57,0,'2020-10-10 07:00:00'),(3,'49527-040',80,5,33,3,2,2,'lfache2@canalblog.com','9699316358',0,78,0,'2020-10-10 07:00:00'),(4,'0085-1737',96,5,12,10,63,2,'fcovil3@tinyurl.com','6849231513',1,67,0,'2020-10-10 07:00:00'),(5,'21695-793',6,2,44,15,8,1,'rirons4@ehow.com','3485179508',1,70,0,'2020-10-10 07:00:00'),(6,'45802-368',60,2,49,10,49,3,'rminchin5@deliciousdays.com','8702871996',0,77,0,'2020-10-10 07:00:00'),(7,'41520-130',24,4,3,9,38,3,'mivashintsov6@blogger.com','4811346329',0,94,0,'2020-10-10 07:00:00'),(8,'54868-5337',13,3,49,13,38,3,'mpryde7@sitemeter.com','3678479401',0,72,0,'2020-10-10 07:00:00'),(9,'36987-1240',44,1,34,12,84,1,'kmckerley8@soundcloud.com','5754953172',1,94,0,'2020-10-10 07:00:00'),(10,'55154-9397',2,1,45,13,14,1,'ntejada9@360.cn','2108978608',1,80,0,'2020-10-10 07:00:00'),(11,'0187-5465',93,5,5,16,53,2,'gpuddina@123-reg.co.uk','5163199068',0,94,0,'2020-10-10 07:00:00'),(12,'21695-948',94,5,42,5,27,3,'erowbottomb@hhs.gov','8237841438',0,89,0,'2020-10-10 07:00:00'),(13,'0378-0313',88,6,38,17,62,2,'ffulepc@narod.ru','7975950834',0,51,0,'2020-10-10 07:00:00'),(14,'50544-004',47,2,28,2,58,1,'agounardd@cbslocal.com','2674262198',0,80,0,'2020-10-10 07:00:00'),(15,'55301-226',63,2,11,15,18,3,'somalleye@yelp.com','7984354287',0,70,0,'2020-10-10 07:00:00'),(16,'53329-166',23,3,21,4,62,1,'ballsobrookf@smugmug.com','2704633188',0,79,0,'2020-10-10 07:00:00'),(17,'35356-051',29,3,34,17,55,2,'khenninghamg@youku.com','4076048710',0,98,0,'2020-10-10 07:00:00'),(18,'11673-094',20,4,44,4,79,3,'ftownsendh@un.org','8011324032',0,57,0,'2020-10-10 07:00:00'),(19,'0085-1341',49,4,23,18,74,2,'awestcoti@cbc.ca','5087773813',0,63,0,'2020-10-10 07:00:00'),(20,'53113-108',47,2,34,1,98,1,'lvasyuninj@liveinternet.ru','4104437180',0,65,0,'2020-10-10 07:00:00'),(21,'68788-9529',8,1,22,5,35,3,'cpaddemorek@hubpages.com','1032227442',0,78,0,'2020-10-10 07:00:00'),(22,'98132-881',44,2,45,1,96,1,'jlamswoodl@npr.org','3376146256',0,81,0,'2020-10-10 07:00:00'),(23,'49288-0901',90,1,46,19,43,3,'hdavenportm@hud.gov','6654520588',0,73,0,'2020-10-10 07:00:00'),(24,'68968-2020',41,1,47,11,37,2,'mkonign@github.io','3393260781',0,93,0,'2020-10-10 07:00:00'),(25,'55154-2431',44,5,39,3,90,2,'zgorthyo@icq.com','5689157913',0,74,0,'2020-10-10 07:00:00'),(26,'68462-140',70,6,13,14,10,2,'rvaarp@webnode.com','6337507999',0,90,0,'2020-10-10 07:00:00'),(27,'50436-4326',37,6,17,13,2,1,'azanassiq@ameblo.jp','1092213970',0,96,0,'2020-10-10 07:00:00'),(28,'54868-1978',48,5,31,6,56,1,'amacdaidr@lulu.com','6606781798',0,89,0,'2020-10-10 07:00:00'),(29,'52682-023',42,3,24,12,53,3,'jhanrahans@wired.com','2834118733',0,66,0,'2020-10-10 07:00:00'),(30,'65691-0107',75,5,17,20,42,2,'spondjonest@geocities.com','8441237407',0,93,0,'2020-10-10 07:00:00'),(31,'49035-158',66,2,34,2,2,1,'scubbinelliu@hc360.com','3657329790',0,68,0,'2020-10-10 07:00:00'),(32,'49288-0195',88,5,37,11,44,3,'fwodelandv@ocn.ne.jp','8145207694',0,54,0,'2020-10-10 07:00:00'),(33,'49348-741',79,2,12,12,69,2,'lwrathmellw@acquirethisname.com','9522594474',0,97,0,'2020-10-10 07:00:00'),(34,'55154-4510',22,5,27,17,5,3,'pwoodisonx@merriam-webster.com','9745633428',0,95,0,'2020-10-10 07:00:00'),(35,'51758-004',60,6,33,9,11,2,'fcrowesty@unicef.org','3208892029',1,54,0,'2020-10-10 07:00:00'),(36,'0074-3005',37,6,44,18,73,2,'nnovakz@columbia.edu','3884489974',0,67,0,'2020-10-10 07:00:00'),(37,'67253-147',67,4,5,7,84,2,'mvaux10@eventbrite.com','6474549441',0,56,0,'2020-10-10 07:00:00'),(38,'54973-0621',58,5,2,11,31,1,'dlawtey11@is.gd','7926242425',0,95,0,'2020-10-10 07:00:00'),(39,'10191-1253',40,6,1,14,28,1,'bquilkin12@goodreads.com','4785808886',1,78,0,'2020-10-10 07:00:00'),(40,'55154-3925',81,4,6,1,99,1,'fpurcell13@aboutads.info','7181923990',0,91,0,'2020-10-10 07:00:00'),(41,'64764-310',31,4,8,13,22,2,'dgallaccio14@icio.us','9909901469',0,90,0,'2020-10-10 07:00:00'),(42,'67850-011',74,5,9,7,62,1,'cdubbin15@reuters.com','7327803109',0,59,0,'2020-10-10 07:00:00'),(43,'65862-524',35,4,3,12,1,2,'prumble16@nationalgeographic.com','9662436534',0,91,0,'2020-10-10 07:00:00'),(44,'76237-144',45,1,7,9,19,3,'rgroger17@histats.com','5095923833',0,83,0,'2020-10-10 07:00:00'),(45,'41163-425',80,1,8,18,24,3,'ivalentetti18@friendfeed.com','2099768361',0,78,0,'2020-10-10 07:00:00'),(46,'49035-375',15,4,22,17,51,3,'ekubik19@hibu.com','7823657182',0,77,0,'2020-10-10 07:00:00'),(47,'43857-0302',41,5,45,20,41,1,'dheskins1a@wufoo.com','1872790982',0,71,0,'2020-10-10 07:00:00'),(48,'59667-0052',59,3,3,8,96,2,'rdeangelo1b@woothemes.com','7319945006',0,93,0,'2020-10-10 07:00:00'),(49,'55154-3344',28,2,3,16,71,3,'thugle1c@usda.gov','7807474074',0,52,0,'2020-10-10 07:00:00'),(50,'33261-536',43,6,2,11,99,3,'srawlings1d@mayoclinic.com','7673345391',0,72,0,'2020-10-10 07:00:00'),(51,'0280-1186',84,1,7,1,56,3,'kbishopp1e@pagesperso-orange.fr','6575191837',0,92,0,'2020-10-10 07:00:00'),(52,'62011-0156',18,3,2,18,4,2,'lwolstencroft1f@blogspot.com','6512631587',0,57,0,'2020-10-10 07:00:00'),(53,'55154-4615',76,2,12,15,77,1,'aswyne1g@mlb.com','8234877548',0,73,0,'2020-10-10 07:00:00'),(54,'63629-5073',60,6,9,2,30,3,'twindows1h@odnoklassniki.ru','4489539902',0,78,0,'2020-10-10 07:00:00'),(55,'51672-4011',48,1,7,4,16,2,'mmetherell1i@yahoo.co.jp','5582034519',0,56,0,'2020-10-10 07:00:00'),(56,'61786-000',40,1,9,18,95,3,'pwallenger1j@google.es','5923272773',0,64,0,'2020-10-10 07:00:00'),(57,'51334-0002',90,1,6,11,74,2,'owernham1k@omniture.com','6528447067',0,62,0,'2020-10-10 07:00:00'),(58,'65862-521',91,4,8,9,65,2,'pcoggins1l@last.fm','9451513385',0,73,0,'2020-10-10 07:00:00'),(59,'67296-0586',38,1,9,10,76,3,'tgilham1m@howstuffworks.com','7413167833',0,75,0,'2020-10-10 07:00:00'),(60,'25543-012',38,5,48,13,5,1,'dsparshatt1n@scribd.com','2385626069',0,70,0,'2020-10-10 07:00:00'),(61,'43406-0108',8,6,39,6,20,2,'obutcher1o@google.ca','6175616833',0,92,0,'2020-10-10 07:00:00'),(62,'0186-1090',86,1,21,13,16,2,'kadamowicz1p@joomla.org','9948684328',0,95,0,'2020-10-10 07:00:00'),(63,'23558-6895',41,4,9,13,63,1,'ttome1q@businesswire.com','6149332958',0,92,0,'2020-10-10 07:00:00'),(64,'42254-139',94,1,9,10,51,1,'lkinneir1r@about.me','7375882930',0,86,0,'2020-10-10 07:00:00'),(65,'10631-285',62,4,8,14,82,2,'gtidey1s@free.fr','2314572918',0,79,0,'2020-10-10 07:00:00'),(66,'60505-2530',83,4,9,16,92,1,'skears1t@java.com','3758388032',0,63,0,'2020-10-10 07:00:00'),(67,'49349-480',74,1,9,16,88,3,'hcopley1u@feedburner.com','8492739176',0,85,0,'2020-10-10 07:00:00'),(68,'63323-184',24,6,9,8,85,2,'ldurban1v@1und1.de','2943719279',0,91,0,'2020-10-10 07:00:00'),(69,'51079-235',24,4,9,4,36,1,'blympany1w@upenn.edu','3454560891',0,50,0,'2020-10-10 07:00:00'),(70,'0363-0360',54,2,12,18,57,1,'mdartnall1x@time.com','2632228817',0,99,0,'2020-10-10 07:00:00'),(71,'58414-3042',23,4,9,7,61,2,'sbuzza1y@yolasite.com','3537225478',0,74,0,'2020-10-10 07:00:00'),(72,'66538-501',47,1,9,16,8,1,'korwin1z@umich.edu','7974186921',0,86,0,'2020-10-10 07:00:00'),(73,'67253-181',42,1,9,2,10,3,'kgallard20@boston.com','8523006755',0,98,0,'2020-10-10 07:00:00'),(74,'0338-1025',47,2,34,2,54,3,'mmelding21@blogger.com','9359617468',0,74,0,'2020-10-10 07:00:00'),(75,'41167-1002',98,1,9,6,25,1,'lros22@hp.com','2004136459',0,73,0,'2020-10-10 07:00:00'),(76,'43492-0001',7,5,9,8,85,1,'rmardlin23@washington.edu','4297758541',0,52,0,'2020-10-10 07:00:00'),(77,'41163-478',23,1,9,17,33,1,'wmisk24@japanpost.jp','7424637008',0,89,0,'2020-10-10 07:00:00'),(78,'60505-0839',29,3,12,13,69,3,'lrisbie25@hao123.com','6261542438',0,51,0,'2020-10-10 07:00:00'),(79,'51672-5263',8,5,9,6,57,2,'vmedgewick26@about.me','8541187377',0,59,0,'2020-10-10 07:00:00'),(80,'65954-768',72,6,9,3,86,2,'nkeddy27@merriam-webster.com','5148402974',0,84,0,'2020-10-10 07:00:00'),(81,'49349-429',84,6,9,13,85,2,'crosenau28@comsenz.com','2882425284',0,50,0,'2020-10-10 07:00:00'),(82,'49738-441',38,6,46,7,12,1,'adungee29@netvibes.com','5179872550',0,59,0,'2020-10-10 07:00:00'),(83,'53063-1111',19,5,9,16,21,3,'pratcliff2a@mayoclinic.com','6653749379',0,72,0,'2020-10-10 07:00:00'),(84,'51285-080',45,1,1,6,16,2,'lblazdell2b@livejournal.com','3787392998',0,51,0,'2020-10-10 07:00:00'),(85,'0078-0517',7,5,44,20,14,3,'jthorington2c@icio.us','6367349688',0,58,0,'2020-10-10 07:00:00'),(86,'55316-067',4,6,33,20,91,2,'ldutch2d@php.net','6668047804',0,58,0,'2020-10-10 07:00:00'),(87,'49884-019',54,6,9,10,48,1,'dedward2e@yolasite.com','8755047929',0,86,0,'2020-10-10 07:00:00'),(88,'54473-233',21,2,9,1,100,2,'jbynold2f@wunderground.com','9164225131',0,85,0,'2020-10-10 07:00:00'),(89,'76439-244',43,5,37,18,74,3,'dlindholm2g@furl.net','7411163044',0,96,0,'2020-10-10 07:00:00'),(90,'49852-032',48,4,1,14,94,1,'ghabishaw2h@accuweather.com','2846523056',0,72,0,'2020-10-10 07:00:00'),(91,'53738-0714',12,6,9,4,99,1,'kferriby2i@furl.net','3855109747',0,51,0,'2020-10-10 07:00:00'),(92,'0338-0073',50,5,21,1,30,1,'jbreakspear2j@tamu.edu','6584495034',0,99,0,'2020-10-10 07:00:00'),(93,'76084-1001',24,6,9,15,38,2,'cschrei2k@tamu.edu','4664703554',0,83,0,'2020-10-10 07:00:00'),(94,'34460-6001',6,1,9,8,49,2,'bsyme2l@livejournal.com','5639379821',0,61,0,'2020-10-10 07:00:00'),(95,'51329-1001',29,3,34,13,58,3,'eingerman2m@cam.ac.uk','2709838870',0,75,0,'2020-10-10 07:00:00'),(96,'49884-821',74,6,43,18,74,3,'rbarthelmes2n@reddit.com','2493359005',0,70,0,'2020-10-10 07:00:00'),(97,'55111-279',63,1,29,15,40,2,'rvannini2o@slashdot.org','4968168683',0,94,0,'2020-10-10 07:00:00'),(98,'68382-019',72,6,9,1,86,3,'aloughrey2p@weather.com','2949150529',0,51,0,'2020-10-10 07:00:00'),(99,'64117-235',16,6,18,9,5,1,'swaldera2q@cbsnews.com','5838152506',0,64,0,'2020-10-10 07:00:00'),(100,'37808-332',7,5,49,19,64,3,'bgaskall2r@wiley.com','6906410014',0,97,0,'2020-10-10 07:00:00'),(101,'67345-0iii',71,6,23,16,29,2,'hcronin0@mtv.com','5859577512',1,70,0,'2020-10-10 07:00:00'),(102,'67345',1,6,23,16,29,2,'hcronin0@mtv.com','5859577512',0,70,0,'2020-10-10 07:00:00'),(103,'quoc',1,6,23,16,29,2,'hcronin0@mtv.com','5859577512',0,70,0,'2020-10-10 07:00:00'),(104,'quoc',1,6,23,16,29,2,'hcronin0@mtv.com','5859577512',0,70,0,'2020-10-10 07:00:00'),(105,'quoc',1,6,23,16,29,2,'hcronin0@mtv.com','5859577512',0,70,0,'2020-10-10 07:00:00'),(106,'code',101,1,10,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(107,'code',101,1,9,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(108,'67345-0iii',71,6,23,16,29,2,'hcronin0@mtv.com','5859577512',1,70,0,'2020-10-10 07:00:00'),(109,'67345-0iii',71,6,23,16,29,2,'hcronin0@mtv.com','5859577512',1,70,0,'2020-10-10 07:00:00'),(110,'code',101,1,20,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(111,'code',101,1,19,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(112,'code',101,1,12,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(113,'code',101,1,11,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(114,'code',101,1,53,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(115,'code',101,1,52,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(116,'code',101,1,51,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(117,'code',101,1,6,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(118,'code',101,1,7,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(119,'code',101,1,8,16,2,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(120,'code',101,1,32,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-10-10 07:00:00'),(121,'code',101,1,22,16,102,2,'hcronin0@mtv.com','5859577512',0,45.9,1,'2020-10-10 07:00:00'),(122,'code',101,1,48,16,102,2,'hcronin0@mtv.com','5859577512',0,55.9,1,'2020-10-10 07:00:00'),(123,'code',101,1,4,16,102,2,'hcronin0@mtv.com','5859577512',1,45.9,0,'2020-10-10 07:00:00'),(124,'code',101,1,5,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(125,'code',101,1,56,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(126,'code',101,1,23,16,102,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(127,'code',101,1,24,16,102,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(128,'code',101,1,25,16,102,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-10-10 07:00:00'),(129,'code',191,1,107,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-02 02:30:00'),(130,'code',191,1,110,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-02 02:30:00'),(131,'code',191,1,109,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-02 02:30:00'),(132,'code',191,1,108,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-02 02:30:00'),(133,'code',191,1,112,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:08:00'),(134,'code',191,1,111,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:08:00'),(135,'code',191,1,125,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:13:00'),(136,'code',191,1,113,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:13:00'),(137,'code',191,1,168,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:17:00'),(138,'code',191,1,122,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:18:00'),(139,'code',191,1,121,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:18:00'),(140,'code',191,1,127,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:18:00'),(141,'code',191,1,101,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:18:00'),(142,'code',191,1,114,16,1,2,'hcronin0@mtv.com','5859577512',NULL,45.9,0,'2020-11-02 03:18:00'),(143,'code',191,1,132,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-11-02 04:34:00'),(144,'code',191,1,134,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-11-02 04:34:00'),(145,'code',191,1,133,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-11-02 04:34:00'),(146,'code',191,1,154,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-02 04:36:00'),(147,'code',191,1,153,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-02 04:36:00'),(148,'code',191,1,152,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-02 04:36:00'),(149,'code',266,1,308,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-01 18:27:00'),(150,'code',266,1,309,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-01 18:27:00'),(151,'code',266,1,310,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-01 18:27:00'),(152,'code',191,1,155,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-01 19:12:00'),(153,'code',191,1,156,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-01 19:12:00'),(154,'code',191,1,157,16,1,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-01 19:12:00'),(155,'code',191,1,187,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-11-01 19:18:00'),(156,'code',191,1,185,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-11-01 19:18:00'),(157,'code',191,1,186,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-11-01 19:18:00'),(158,'code',191,1,184,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-11-01 19:18:00'),(159,'code',191,1,188,16,1,2,'hcronin0@mtv.com','5859577512',0,50.9,0,'2020-11-01 19:18:00'),(160,'code',191,1,171,16,107,2,'hcronin0@mtv.com','5859577512',1,45.9,0,'2020-11-01 19:53:00'),(161,'code',191,1,169,16,107,2,'hcronin0@mtv.com','5859577512',0,45.9,1,'2020-11-01 19:53:00'),(162,'code',191,1,170,16,107,2,'hcronin0@mtv.com','5859577512',0,45.9,0,'2020-11-01 19:53:00');
 /*!40000 ALTER TABLE `booking_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `buy_combo`
---
-
-DROP TABLE IF EXISTS `buy_combo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `buy_combo` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `combo_id` int DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_buy_combo_combo1_idx` (`combo_id`),
-  CONSTRAINT `fk_buy_combo_combo1` FOREIGN KEY (`combo_id`) REFERENCES `combo` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `buy_combo`
@@ -143,26 +55,6 @@ LOCK TABLES `buy_combo` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `buy_food_drink`
---
-
-DROP TABLE IF EXISTS `buy_food_drink`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `buy_food_drink` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `food_drink_id` int DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
-  `customer_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_buy_food_drink_food_drink1_idx` (`food_drink_id`),
-  KEY `fk_buy_food_drink_customer1_idx` (`customer_id`),
-  CONSTRAINT `fk_buy_food_drink_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `fk_buy_food_drink_food_drink1` FOREIGN KEY (`food_drink_id`) REFERENCES `food_drink` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `buy_food_drink`
 --
 
@@ -170,23 +62,6 @@ LOCK TABLES `buy_food_drink` WRITE;
 /*!40000 ALTER TABLE `buy_food_drink` DISABLE KEYS */;
 /*!40000 ALTER TABLE `buy_food_drink` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `combo`
---
-
-DROP TABLE IF EXISTS `combo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `combo` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `imge_url` varchar(250) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `combo`
@@ -199,31 +74,6 @@ INSERT INTO `combo` VALUES (1,'1 corn & 1 drink',21.5,NULL,NULL),(2,'1 corn & 2 
 UNLOCK TABLES;
 
 --
--- Table structure for table `comment`
---
-
-DROP TABLE IF EXISTS `comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comment` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `customer_id` int DEFAULT NULL,
-  `movie_id` int DEFAULT NULL,
-  `comment` varchar(450) DEFAULT NULL,
-  `createDate` datetime DEFAULT NULL,
-  `reply_one_custom_id` int DEFAULT NULL,
-  `like` int DEFAULT NULL,
-  `emotion` varchar(45) DEFAULT NULL,
-  `reply_two_custom_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_comment_customer1_idx` (`customer_id`),
-  KEY `fk_comment_movie1_idx` (`movie_id`),
-  CONSTRAINT `fk_comment_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `fk_comment_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `comment`
 --
 
@@ -232,36 +82,6 @@ LOCK TABLES `comment` WRITE;
 INSERT INTO `comment` VALUES (1,1,1,'first','2020-10-10 00:00:00',NULL,NULL,NULL,NULL),(2,2,1,'second','2020-10-10 00:00:00',NULL,NULL,NULL,NULL),(3,1,1,'3','2020-10-10 00:00:00',1,NULL,NULL,1),(4,1,1,'third','2020-10-10 00:00:00',NULL,NULL,NULL,NULL),(5,1,1,'def','2020-10-10 00:00:00',3,NULL,NULL,1),(6,3,1,'fourth','2020-10-10 00:00:00',NULL,NULL,NULL,NULL),(7,1,1,'fiveth','2020-10-10 00:30:00',NULL,NULL,NULL,NULL),(8,2,1,'aaa','2020-10-10 00:00:00',3,NULL,NULL,2),(11,103,100,'eee','2020-11-07 09:41:48',NULL,NULL,NULL,NULL),(12,103,100,'test','2020-11-07 10:00:41',NULL,NULL,NULL,NULL),(13,103,100,'zzzz','2020-11-07 10:06:46',NULL,NULL,NULL,NULL),(14,103,100,'ddd','2020-11-07 10:06:55',NULL,NULL,NULL,NULL),(15,103,100,'ssss','2020-11-07 10:07:23',NULL,NULL,NULL,NULL),(16,103,100,'fffff','2020-11-07 10:07:28',NULL,NULL,NULL,NULL),(17,103,100,'ttttt','2020-11-07 10:07:32',NULL,NULL,NULL,NULL),(18,103,100,'hello quoc','2020-11-07 10:08:02',NULL,NULL,NULL,NULL),(19,103,100,'a','2020-11-08 00:06:48',101,NULL,NULL,18),(20,103,100,'b','2020-11-08 00:09:20',101,NULL,NULL,18),(21,103,100,'c','2020-11-08 00:10:33',101,NULL,NULL,11),(22,103,100,'abc','2020-11-08 00:26:08',101,NULL,NULL,11),(23,103,100,'hello test','2020-11-08 00:44:59',101,NULL,NULL,11),(24,103,100,'comment 14','2020-11-08 00:47:16',NULL,NULL,NULL,NULL),(25,103,100,'reply14','2020-11-08 00:47:38',101,NULL,NULL,24),(26,103,100,'hello142','2020-11-08 00:50:33',101,NULL,NULL,24),(27,103,100,'new Comment','2020-11-08 00:52:33',101,NULL,NULL,12),(28,103,100,'abcccc','2020-11-08 00:52:44',101,NULL,NULL,13),(29,103,100,'hhhh','2020-11-08 00:52:59',101,NULL,NULL,15),(30,103,100,'uuuu','2020-11-08 00:53:52',101,NULL,NULL,18),(31,103,100,'abc','2020-11-08 01:30:48',NULL,NULL,NULL,NULL),(32,101,100,'hello world','2020-11-08 01:51:48',NULL,NULL,NULL,NULL),(33,101,100,'test time','2020-11-08 02:33:47',NULL,NULL,NULL,NULL),(34,101,97,'hello new','2020-11-08 03:10:37',NULL,NULL,NULL,NULL),(35,101,97,'dddd','2020-11-08 03:11:20',NULL,NULL,NULL,NULL),(36,101,97,'abcccc','2020-11-08 03:11:50',103,NULL,NULL,35),(37,101,97,'quoc','2020-11-08 03:12:12',101,NULL,NULL,35),(38,101,96,'eeee','2020-11-08 03:12:39',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `customer`
---
-
-DROP TABLE IF EXISTS `customer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customer` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `address` varchar(45) DEFAULT NULL,
-  `customer_type_id` int DEFAULT NULL,
-  `current_bonus_point` int DEFAULT '0',
-  `account_id` int DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
-  `phone` varchar(45) DEFAULT NULL,
-  `isactive` tinyint DEFAULT '1',
-  `gender` varchar(45) DEFAULT NULL,
-  `cardid` varchar(45) DEFAULT NULL,
-  `code` varchar(45) DEFAULT NULL,
-  `image_url` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_customer_account1_idx` (`account_id`),
-  KEY `fk_customer_customer_type1_idx` (`customer_type_id`),
-  CONSTRAINT `fk_customer_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-  CONSTRAINT `fk_customer_customer_type1` FOREIGN KEY (`customer_type_id`) REFERENCES `customer_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `customer`
@@ -274,20 +94,6 @@ INSERT INTO `customer` VALUES (1,'Anica Celli','24196 Mccormick Center',3,90,9,'
 UNLOCK TABLES;
 
 --
--- Table structure for table `customer_type`
---
-
-DROP TABLE IF EXISTS `customer_type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customer_type` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `customer_type`
 --
 
@@ -296,23 +102,6 @@ LOCK TABLES `customer_type` WRITE;
 INSERT INTO `customer_type` VALUES (1,'standard'),(2,'silver'),(3,'gold'),(4,'platium'),(5,'diamond');
 /*!40000 ALTER TABLE `customer_type` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `food_drink`
---
-
-DROP TABLE IF EXISTS `food_drink`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `food_drink` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  `image_url` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `food_drink`
@@ -325,26 +114,6 @@ INSERT INTO `food_drink` VALUES (1,'iCombo 2 Small ',5,'1 popcorn + 2 drink','as
 UNLOCK TABLES;
 
 --
--- Table structure for table `hall`
---
-
-DROP TABLE IF EXISTS `hall`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hall` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `hall_type_id` int DEFAULT NULL,
-  `theatre_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_hall_hall_type1_idx` (`hall_type_id`),
-  KEY `fk_hall_theatre1_idx` (`theatre_id`),
-  CONSTRAINT `fk_hall_hall_type1` FOREIGN KEY (`hall_type_id`) REFERENCES `hall_type` (`id`),
-  CONSTRAINT `fk_hall_theatre1` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `hall`
 --
 
@@ -353,21 +122,6 @@ LOCK TABLES `hall` WRITE;
 INSERT INTO `hall` VALUES (1,'H1TK Grand Cherokee',5,1),(2,'H2TK Morning',4,1),(3,'H3TK Sportage',1,1),(4,'H4TK Firefly',5,1),(5,'H1TK Forver',5,1),(6,'H1HN CX-7',1,2),(7,'H2HN Grand Prix',1,2),(8,'H3HN Reno',1,2),(9,'H4HN Dakota',1,2),(10,'H5HN 911',2,2),(11,'H1SI Echo',1,3),(12,'H2SI Super Duty',4,3),(13,'H3SI 300CE',3,3),(14,'H4SI Develop',2,3),(15,'H5SI F-Series',3,3),(16,'H1NY California',5,6),(17,'H2NY Payment',4,6),(18,'H3NY QA',1,6),(19,'H4NY Raul',5,6),(20,'H5NY ABCDE',5,6),(21,'H1BE Viera',1,7),(22,'H2BE Henry',1,7),(23,'H3BE Totamham',1,7),(24,'H4BE Arsenal',1,7),(25,'H5BE MU',2,7),(26,'Hall Test 1',1,8),(27,'Hall Test 2',4,8),(28,'Hall Test 3',3,8),(29,'Hall Test 4',2,8),(30,'Hall Test 5',3,8),(31,'SingHall1',2,11),(32,'SingHall1',2,11),(33,'SingHall12',2,12),(34,'SingHall13',2,13),(35,'SingHall14',2,14),(36,'SingHall15',2,15),(37,'SingHall16',2,16),(38,'SingHall17',2,17),(39,'SingHall18',2,18),(40,'SingHall19',2,19),(41,'SingHall20',2,20),(42,'SingHall21',2,21),(43,'new hall',3,1),(44,'NewHall',4,1),(45,'TrungHall',5,1);
 /*!40000 ALTER TABLE `hall` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `hall_type`
---
-
-DROP TABLE IF EXISTS `hall_type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hall_type` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `hall_type`
@@ -380,20 +134,6 @@ INSERT INTO `hall_type` VALUES (1,'Terrain','pede lobortis ligula sit amet eleif
 UNLOCK TABLES;
 
 --
--- Table structure for table `location`
---
-
-DROP TABLE IF EXISTS `location`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `location` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `location`
 --
 
@@ -402,35 +142,6 @@ LOCK TABLES `location` WRITE;
 INSERT INTO `location` VALUES (1,'Tokyo'),(2,'Ha Noi'),(3,'Singapore'),(4,'New York'),(5,'Beijing');
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `movie`
---
-
-DROP TABLE IF EXISTS `movie`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `movie` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `director` varchar(45) DEFAULT NULL,
-  `actor` varchar(45) DEFAULT NULL,
-  `is_sub` tinyint DEFAULT '1',
-  `is_2d` tinyint DEFAULT '1',
-  `poster_url` varchar(300) DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `duration` int DEFAULT NULL,
-  `trailer_url` varchar(250) DEFAULT NULL,
-  `star_rating` int DEFAULT NULL,
-  `movie_rated_age_id` int DEFAULT NULL,
-  `description` varchar(1000) DEFAULT NULL,
-  `entertainment` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_movie_movie_rated_age1_idx` (`movie_rated_age_id`),
-  CONSTRAINT `fk_movie_movie_rated_age1` FOREIGN KEY (`movie_rated_age_id`) REFERENCES `movie_rated_age` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `movie`
@@ -443,25 +154,6 @@ INSERT INTO `movie` VALUES (1,'Underwater','De Pozzi','Zach Cuddehy',0,0,'https:
 UNLOCK TABLES;
 
 --
--- Table structure for table `movie_genre_associate`
---
-
-DROP TABLE IF EXISTS `movie_genre_associate`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `movie_genre_associate` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `movie_id` int DEFAULT NULL,
-  `movie_genre_type_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_movie_genre_associate_movie1_idx` (`movie_id`),
-  KEY `fk_movie_genre_associate_movie_genre_type1_idx` (`movie_genre_type_id`),
-  CONSTRAINT `fk_movie_genre_associate_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`),
-  CONSTRAINT `fk_movie_genre_associate_movie_genre_type1` FOREIGN KEY (`movie_genre_type_id`) REFERENCES `movie_genre_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `movie_genre_associate`
 --
 
@@ -470,21 +162,6 @@ LOCK TABLES `movie_genre_associate` WRITE;
 INSERT INTO `movie_genre_associate` VALUES (1,46,7),(2,63,3),(3,41,1),(4,66,2),(5,72,3),(6,85,2),(7,83,5),(8,39,7),(9,92,5),(10,29,2),(11,90,5),(12,77,1),(13,72,4),(14,10,6),(15,34,7),(16,34,7),(17,48,4),(18,38,1),(19,2,6),(20,92,5),(21,38,7),(22,37,5),(23,36,3),(24,77,2),(25,46,7),(26,87,6),(27,83,5),(28,73,2),(29,96,3),(30,16,3),(31,35,2),(32,2,4),(33,84,2),(34,46,7),(35,33,4),(36,66,2),(37,7,5),(38,43,3),(39,15,3),(40,58,4),(41,65,2),(42,72,2),(43,37,6),(44,58,4),(45,75,4),(46,1,1),(47,42,5),(48,90,3),(49,32,4),(50,26,2),(51,1,3),(52,51,4),(53,61,2),(54,78,5),(55,48,3),(56,22,4),(57,75,4),(58,69,7),(59,21,5),(60,55,5),(61,9,5),(62,93,4),(63,63,6),(64,47,6),(65,89,6),(66,14,1),(67,81,6),(68,82,5),(69,54,4),(70,18,2),(71,44,1),(72,100,1),(73,88,3),(74,2,6),(75,78,2),(76,98,2),(77,87,6),(78,52,3),(79,59,5),(80,41,1),(81,10,3),(82,75,2),(83,33,7),(84,81,3),(85,64,1),(86,98,6),(87,97,7),(88,52,1),(89,78,4),(90,62,5),(91,43,4),(92,25,6),(93,27,4),(94,10,3),(95,40,2),(96,60,7),(97,100,2),(98,9,1),(99,76,5),(100,99,4),(101,100,3),(102,100,5),(103,100,2),(104,100,1),(105,100,4),(106,100,6);
 /*!40000 ALTER TABLE `movie_genre_associate` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `movie_genre_type`
---
-
-DROP TABLE IF EXISTS `movie_genre_type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `movie_genre_type` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `description` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `movie_genre_type`
@@ -497,21 +174,6 @@ INSERT INTO `movie_genre_type` VALUES (1,'Crime|Thriller','vitae consectetuer eg
 UNLOCK TABLES;
 
 --
--- Table structure for table `movie_rated_age`
---
-
-DROP TABLE IF EXISTS `movie_rated_age`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `movie_rated_age` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `movie_rated_age`
 --
 
@@ -520,24 +182,6 @@ LOCK TABLES `movie_rated_age` WRITE;
 INSERT INTO `movie_rated_age` VALUES (1,'G','General Audiences'),(2,'PG','Parental Guidance Suggested'),(3,'PG-13','Parents Strongly Cautioned'),(4,'R','Restricted'),(5,'CR','Children');
 /*!40000 ALTER TABLE `movie_rated_age` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `other`
---
-
-DROP TABLE IF EXISTS `other`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `other` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `type` varchar(45) DEFAULT NULL,
-  `description` varchar(1000) DEFAULT NULL,
-  `isOther` tinyint DEFAULT NULL,
-  `image_url` varchar(300) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `other`
@@ -550,20 +194,6 @@ INSERT INTO `other` VALUES (1,'Scallet Johanson','news','公的な人物とし�
 UNLOCK TABLES;
 
 --
--- Table structure for table `payment`
---
-
-DROP TABLE IF EXISTS `payment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `payment` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `payment`
 --
 
@@ -572,21 +202,6 @@ LOCK TABLES `payment` WRITE;
 INSERT INTO `payment` VALUES (1,'Visa'),(2,'Cash'),(3,'Paypal');
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `position`
---
-
-DROP TABLE IF EXISTS `position`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `position` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `position`
@@ -599,22 +214,6 @@ INSERT INTO `position` VALUES (1,'Director','Giám Đốc'),(2,'Manager','Quản
 UNLOCK TABLES;
 
 --
--- Table structure for table `promo_point`
---
-
-DROP TABLE IF EXISTS `promo_point`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `promo_point` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `bonus_point` int DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `promo_point`
 --
 
@@ -623,42 +222,6 @@ LOCK TABLES `promo_point` WRITE;
 INSERT INTO `promo_point` VALUES (1,'PFSS',5,'Promotion for Standard seat'),(2,'PFVS',10,'Promotion for vip seat'),(3,'PFLS',15,'Promotion for lovers seat'),(4,'PFCS',15,'Promotion for couple seat'),(5,'PFBC',25,'Promotion for birthday customer');
 /*!40000 ALTER TABLE `promo_point` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `promotion`
---
-
-DROP TABLE IF EXISTS `promotion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `promotion` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `code` varchar(45) DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `discount` double DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `startDate` date DEFAULT NULL,
-  `endDate` date DEFAULT NULL,
-  `show_id` int DEFAULT NULL,
-  `move_id` int DEFAULT NULL,
-  `theatre_id` int DEFAULT NULL,
-  `customer_id` int DEFAULT NULL,
-  `staff_id` int DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `picture` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_promotion_show1_idx` (`show_id`),
-  KEY `fk_promotion_theatre1_idx` (`theatre_id`),
-  KEY `fk_promotion_movie1_idx` (`move_id`),
-  KEY `fk_promotion_customer1_idx` (`customer_id`),
-  KEY `fk_promotion_staff1_idx` (`staff_id`),
-  CONSTRAINT `fk_promotion_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `fk_promotion_movie1` FOREIGN KEY (`move_id`) REFERENCES `movie` (`id`),
-  CONSTRAINT `fk_promotion_show1` FOREIGN KEY (`show_id`) REFERENCES `show` (`id`),
-  CONSTRAINT `fk_promotion_staff1` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`),
-  CONSTRAINT `fk_promotion_theatre1` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `promotion`
@@ -671,26 +234,6 @@ INSERT INTO `promotion` VALUES (1,'50242-040','XOLAIR',7,'925-53-3869','2020-04-
 UNLOCK TABLES;
 
 --
--- Table structure for table `promotion_customer`
---
-
-DROP TABLE IF EXISTS `promotion_customer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `promotion_customer` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `promotion_id` int DEFAULT NULL,
-  `customer_id` int DEFAULT NULL,
-  `promotion_code` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_promotion_customer_promotion1_idx` (`promotion_id`),
-  KEY `fk_promotion_customer_customer1_idx` (`customer_id`),
-  CONSTRAINT `fk_promotion_customer_customer1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
-  CONSTRAINT `fk_promotion_customer_promotion1` FOREIGN KEY (`promotion_id`) REFERENCES `promotion` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `promotion_customer`
 --
 
@@ -699,20 +242,6 @@ LOCK TABLES `promotion_customer` WRITE;
 INSERT INTO `promotion_customer` VALUES (1,1,1,'ABC'),(2,2,2,'AAA'),(3,2,1,'9rebiq'),(8,1,101,'abcde'),(9,1,103,'qazxsw'),(10,2,1,'R8u1MY'),(11,6,1,'LdKWM0'),(12,1,103,'Q1gwzv'),(13,2,107,'XahJi9');
 /*!40000 ALTER TABLE `promotion_customer` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `role`
---
-
-DROP TABLE IF EXISTS `role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `role`
@@ -725,25 +254,6 @@ INSERT INTO `role` VALUES (1,'customer'),(2,'staff'),(3,'manager'),(4,'admin'),(
 UNLOCK TABLES;
 
 --
--- Table structure for table `role_account`
---
-
-DROP TABLE IF EXISTS `role_account`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role_account` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `role_id` int DEFAULT NULL,
-  `account_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_role_account_role_idx` (`role_id`),
-  KEY `fk_role_account_account1_idx` (`account_id`),
-  CONSTRAINT `fk_role_account_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-  CONSTRAINT `fk_role_account_role` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `role_account`
 --
 
@@ -752,26 +262,6 @@ LOCK TABLES `role_account` WRITE;
 INSERT INTO `role_account` VALUES (1,4,101),(3,1,102),(4,1,102),(6,1,106),(7,1,107);
 /*!40000 ALTER TABLE `role_account` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `seat`
---
-
-DROP TABLE IF EXISTS `seat`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `seat` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `hall_id` int DEFAULT NULL,
-  `seat_type_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_seat_hall1_idx` (`hall_id`),
-  KEY `fk_seat_seat_type1_idx` (`seat_type_id`),
-  CONSTRAINT `fk_seat_hall1` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
-  CONSTRAINT `fk_seat_seat_type1` FOREIGN KEY (`seat_type_id`) REFERENCES `seat_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=424 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `seat`
@@ -784,26 +274,6 @@ INSERT INTO `seat` VALUES (1,'A1',1,1),(2,'A2',1,2),(3,'A3',1,1),(4,'A4',1,1),(5
 UNLOCK TABLES;
 
 --
--- Table structure for table `seat_type`
---
-
-DROP TABLE IF EXISTS `seat_type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `seat_type` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `promo_point_id` int DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `color` varchar(45) DEFAULT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_seat_type_promo_point1_idx` (`promo_point_id`),
-  CONSTRAINT `fk_seat_type_promo_point1` FOREIGN KEY (`promo_point_id`) REFERENCES `promo_point` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `seat_type`
 --
 
@@ -812,29 +282,6 @@ LOCK TABLES `seat_type` WRITE;
 INSERT INTO `seat_type` VALUES (1,'Standard seat',1,5,'yellow','ghe thuong'),(2,'Vip seat',2,10,'blue','ghe vip'),(3,'SweatBox',3,15,'green','super vip');
 /*!40000 ALTER TABLE `seat_type` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `show`
---
-
-DROP TABLE IF EXISTS `show`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `show` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `start_time` datetime DEFAULT NULL,
-  `hall_id` int NOT NULL,
-  `movie_id` int DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `isearly` tinyint DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_show_hall1_idx` (`hall_id`),
-  KEY `fk_show_movie1_idx` (`movie_id`),
-  CONSTRAINT `fk_show_hall1` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
-  CONSTRAINT `fk_show_movie1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `show`
@@ -847,39 +294,6 @@ INSERT INTO `show` VALUES (1,'2020-11-20 00:00:00',8,30,25.4,'vitae nisi nam ult
 UNLOCK TABLES;
 
 --
--- Table structure for table `staff`
---
-
-DROP TABLE IF EXISTS `staff`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `staff` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL,
-  `account_id` int DEFAULT NULL,
-  `theatre_id` int DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `phone` varchar(45) DEFAULT NULL,
-  `cardid` varchar(45) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
-  `salary` double DEFAULT NULL,
-  `position_id` int DEFAULT NULL,
-  `isactive` tinyint DEFAULT '1',
-  `code` varchar(45) DEFAULT NULL,
-  `image_url` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_employee_account1_idx` (`account_id`),
-  KEY `fk_staff_theatre1_idx` (`theatre_id`),
-  KEY `fk_staff_position1_idx` (`position_id`),
-  CONSTRAINT `fk_employee_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-  CONSTRAINT `fk_staff_position1` FOREIGN KEY (`position_id`) REFERENCES `position` (`id`),
-  CONSTRAINT `fk_staff_theatre1` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`),
-  CONSTRAINT `fk_staff_theatre2` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `staff`
 --
 
@@ -890,24 +304,6 @@ INSERT INTO `staff` VALUES (1,'Harlene','6 Warbler Place',55,9,'hgodbolt0@xrea.c
 UNLOCK TABLES;
 
 --
--- Table structure for table `theatre`
---
-
-DROP TABLE IF EXISTS `theatre`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `theatre` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `location_id` int DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `admin_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_theatre_location1_idx` (`location_id`),
-  CONSTRAINT `fk_theatre_location1` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `theatre`
 --
 
@@ -916,22 +312,6 @@ LOCK TABLES `theatre` WRITE;
 INSERT INTO `theatre` VALUES (1,1,'TK1 Accord',19),(2,1,'TK2 Range',22),(3,1,'TK3 Frontier',6),(4,1,'TK4 Mazda6',12),(5,1,'TK5 Golf',19),(6,2,'HN1 900',11),(7,2,'HN2 Corvette',10),(8,2,'HN3 Silverado',19),(9,2,'HN4 S4',14),(10,2,'HN5 Trooper',13),(11,3,'SI CLK-Class',18),(12,3,'SI Ram Wagon',4),(13,3,'SIGrand Prix',24),(14,3,'SI H3T',16),(15,3,'SI TT',18),(16,4,'NY MKS',11),(17,4,'NY 4Runner',22),(18,4,'NYSuburban 2500',21),(19,4,'NY 2500 Club Coupe',16),(20,4,'NY Aerostar',13),(21,5,'BE Justy',20),(22,5,'BE 57',3),(23,5,'BE Rendezvous',2),(24,5,'BE S60',4),(25,5,'BE Sportvan G20',13);
 /*!40000 ALTER TABLE `theatre` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `ticket_type`
---
-
-DROP TABLE IF EXISTS `ticket_type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ticket_type` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `price_percent` double DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `ticket_type`
@@ -952,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-08 17:17:15
+-- Dump completed on 2020-11-08 17:17:46
