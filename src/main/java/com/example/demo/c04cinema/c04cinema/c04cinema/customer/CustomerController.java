@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicketManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.promotion_customer.PromotionCustomer;
 import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
@@ -38,6 +39,9 @@ public class CustomerController extends GeneratedCustomerController {
 
     @Autowired
     private AccountManager accountManager;
+
+    @Autowired
+    private BookingTicketManager bookingTicketManager;
 
     Regex regex = new Regex();
 
@@ -271,6 +275,24 @@ public class CustomerController extends GeneratedCustomerController {
             } else {
                 errors.add(new Error("error", "password error"));
             }
+            return errors;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    @GetMapping("/editTicket/{id}")
+    public  List<Error> postPoint(@PathVariable int id,@RequestParam(value = "idTicker") String idTicker) {
+        try {
+            List<Error> errors = new ArrayList<>();
+            BookingTicket bookingTicket = bookingTicketManager.stream().filter(BookingTicket.ACCOUNT_ID.equal(id).and(BookingTicket.ID.equal(Integer.valueOf(idTicker)))).findFirst().get();
+            Customer cus = customerManager.stream().filter(Customer.ACCOUNT_ID.equal(id)).findFirst().get();
+            bookingTicket.setIscancel((byte) 1);
+            cus.setCurrentBonusPoint(cus.getCurrentBonusPoint().getAsInt() + 100);
+            bookingTicketManager.update(bookingTicket);
+            customerManager.update(cus);
+
             return errors;
         } catch (Exception e) {
             System.out.println(e);
