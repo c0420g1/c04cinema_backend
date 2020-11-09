@@ -37,10 +37,12 @@ public class AccountController extends GeneratedAccountController {
     public Account getAllAccount(){
         return accountManager.stream().sorted(Account.ID.reversed()).findFirst().get();
     }
+
     @GetMapping("/customerIdFirst")
     public Customer getAllCustomer(){
         return customerManager.stream().sorted(Customer.ID.reversed()).findFirst().get();
     }
+
     @PostMapping("/checkAccount")
     public Account checkAccount(@RequestBody AccountDTO accountDTO){
         Account account = null;
@@ -79,7 +81,8 @@ public class AccountController extends GeneratedAccountController {
                     .innerJoinOn(Role.ID).equal(RoleAccount.ROLE_ID).build(Tuples::of);
             String roleName =join.stream().findFirst().get().get2().getName().get();
             String token = TokenAuthenticator.addAuthentication( accountDTO.getUsername(),roleName);
-            return new JwtDTO(token,account.getUsername().get(),roleName,account.getId());
+            Customer customer = customerManager.stream().filter(Customer.ACCOUNT_ID.equal(account.getId())).findFirst().get();
+            return new JwtDTO(token,account.getUsername().get(),roleName,account.getId(),customer.getImageUrl().get());
         }
         return null;
     }

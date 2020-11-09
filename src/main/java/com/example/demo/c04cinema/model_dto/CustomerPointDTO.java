@@ -15,11 +15,17 @@ public class CustomerPointDTO {
     private final String movieName;
     private final LocalDateTime dayPut;
     private final int point;
+    private final Byte isCancel;
 
     public CustomerPointDTO(Account account, BookingTicket bookingTicket, Seat seat, SeatType seatType, PromoPoint promoPoint, Show show, Movie movie){
         this.movieName= movie.getName().get();
         this.dayPut= bookingTicket.getBookingDate().get();
         this.point = promoPoint.getBonusPoint().getAsInt();
+        this.isCancel = bookingTicket.getIscancel().get();
+    }
+
+    public Byte getIsCancel() {
+        return isCancel;
     }
 
     public String getMovieName() {

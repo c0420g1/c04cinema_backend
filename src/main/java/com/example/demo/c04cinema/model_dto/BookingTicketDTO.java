@@ -7,6 +7,7 @@ import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
 import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
 import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class BookingTicketDTO {
 
@@ -97,5 +98,21 @@ public class BookingTicketDTO {
 
     public Byte getStatus() {
         return status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookingTicketDTO)) return false;
+        BookingTicketDTO that = (BookingTicketDTO) o;
+        return getCodeCustomer().equals(that.getCodeCustomer()) &&
+                getNameCustomer().equals(that.getNameCustomer()) &&
+                getMovieName().equals(that.getMovieName()) &&
+                getHallName().equals(that.getHallName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCodeCustomer(), getNameCustomer(), getMovieName(), getHallName());
     }
 }
