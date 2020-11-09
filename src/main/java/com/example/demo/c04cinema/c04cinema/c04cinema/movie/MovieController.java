@@ -2,14 +2,25 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.movie;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
+import com.example.demo.c04cinema.c04cinema.c04cinema.comment.Comment;
+import com.example.demo.c04cinema.c04cinema.c04cinema.comment.CommentManager;
+import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie_rated_age.MovieRatedAge;
+import com.example.demo.c04cinema.model_dto.CommentDTO;
+import com.speedment.common.tuple.Tuple2;
+import com.speedment.common.tuple.Tuples;
 import com.speedment.runtime.core.manager.Manager;
+import com.speedment.runtime.join.Join;
+import com.speedment.runtime.join.JoinComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +38,9 @@ import com.example.demo.c04cinema.model_dto.MovieDTO;
 
 @RestController
 public class MovieController extends GeneratedMovieController {
+
+    @Autowired
+    private JoinComponent joinComponent;
 
     @Autowired
     private MovieManager movieManager;
@@ -437,4 +451,62 @@ public class MovieController extends GeneratedMovieController {
         }
         return errors;
     };
+
+    // qg23
+    @GetMapping("/comments/{movieId}")
+    public List<CommentDTO> getComments(@PathVariable int movieId){
+        Join<Tuple2<Comment, Customer>> join= joinComponent.from(CommentManager.IDENTIFIER).where(Comment.MOVIE_ID.equal(movieId))
+                .innerJoinOn(Customer.ID).equal(Comment.CUSTOMER_ID).build(Tuples::of);
+
+        List<CommentDTO> res= new ArrayList<>();
+        int sumComment= (int)join.stream().count();
+        join.stream().forEach(e->{
+            if(!e.get0().getReplyOneCustomId().isPresent()){
+            int id= e.get0().getId();
+            int customerId= e.get1().getId();
+            String customerName= e.get1().getName().get();
+            String customerImgUrl= e.get1().getImageUrl().get();
+            String time=convetDate(e.get0().getCreateDate().get());
+            String comment= e.get0().getComment().get();
+
+            List<CommentDTO> c= new ArrayList<>();
+            Join<Tuple2<Comment, Customer>> ele= joinComponent.from(CommentManager.IDENTIFIER).where(Comment.MOVIE_ID.equal(movieId)).where(Comment.CUSTOMER_ID.equal(customerId))
+            .innerJoinOn(Customer.ID).equal(Comment.REPLY_ONE_CUSTOM_ID).build(Tuples::of);
+
+            ele.stream().forEach(f->{
+                if(f.get0().getReplyOneCustomId().isPresent()) {
+                    if(f.get0().getReplyTwoCustomId().getAsInt()== id){
+                        int ids= f.get0().getId();
+                        int i = f.get1().getId();
+                        String n = f.get1().getName().get();
+                        String u = f.get1().getImageUrl().get();
+                        String t = convetDate(f.get0().getCreateDate().get());
+                        String co = f.get0().getComment().get();
+                        CommentDTO com = new CommentDTO(ids, movieId, i, n, u, t, co, 0, null);
+                        c.add(com);
+                    }
+
+                }
+            });
+
+            CommentDTO commentDTO= new CommentDTO(id, movieId, customerId, customerName, customerImgUrl, time, comment, sumComment, c);
+            res.add(commentDTO);
+            }
+
+        });
+        return res;
+    }
+
+    private String convetDate(LocalDateTime date){
+        LocalDateTime dateNow= LocalDateTime.now();
+        LocalDateTime dateComment= date.plusHours(7);
+
+        if(dateNow.toLocalDate().equals(dateComment.toLocalDate())){
+            int hour= dateNow.getHour() - dateComment.getHour();
+            int minute= dateNow.getMinute()- dateComment.getMinute();
+            return hour >0 ? hour + " hour ago" : minute + " minutes ago";
+        }
+
+        return dateComment.toLocalDate().toString();
+    }
 }

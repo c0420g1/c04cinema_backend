@@ -43,10 +43,12 @@ public class AccountController extends GeneratedAccountController {
     public Account getAllAccount(){
         return accountManager.stream().sorted(Account.ID.reversed()).findFirst().get();
     }
+
     @GetMapping("/customerIdFirst")
     public Customer getAllCustomer(){
         return customerManager.stream().sorted(Customer.ID.reversed()).findFirst().get();
     }
+
     @PostMapping("/checkAccount")
     public Account checkAccount(@RequestBody AccountDTO accountDTO){
         Account account = null;
