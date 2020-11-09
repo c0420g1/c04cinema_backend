@@ -215,8 +215,8 @@ public class CustomerController extends GeneratedCustomerController {
     // update thông tin customer
     @PatchMapping("/editCustomer/{id}")
     public List<Error> postCombo(@RequestBody PathCusDTO customer, @PathVariable int id) {
+        List<Error> errors = new ArrayList<>();
         try {
-            List<Error> errors = new ArrayList<>();
             Customer cus = customerManager.stream().filter(Customer.ID.equal(id)).findFirst().get();
 
             if (!regex.regexEmail(customer.getEmail())) {
@@ -254,8 +254,9 @@ public class CustomerController extends GeneratedCustomerController {
             return errors;
         } catch (Exception e) {
             System.out.println(e);
+            errors.add(new Error("nullPoint", "Please input all information before edit Avatar !"));
+            return errors;
         }
-        return null;
     }
 
     @PatchMapping("/editPassWord/{id}")
