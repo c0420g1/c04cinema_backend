@@ -2,14 +2,16 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.movie;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
-import com.example.demo.c04cinema.c04cinema.c04cinema.movie_rated_age.MovieRatedAge;
-import com.speedment.runtime.core.manager.Manager;
+import com.example.demo.c04cinema.c04cinema.c04cinema.show.Show;
+import com.example.demo.c04cinema.c04cinema.c04cinema.show.ShowManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +35,9 @@ public class MovieController extends GeneratedMovieController {
 
     @Autowired
     private MovieGenreAssociateManager movieGenreAssociateManager;
+
+    @Autowired
+    private ShowManager showManager;
 
     Regex regex = new Regex();
     // creator Vu Le Tuong
@@ -178,7 +183,7 @@ public class MovieController extends GeneratedMovieController {
                     .filter(Movie.START_DATE.greaterThan(Date.valueOf(a))).collect(Collectors.toList());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }   
+        }
 
         return movies.size();
     }
@@ -295,12 +300,9 @@ public class MovieController extends GeneratedMovieController {
         if (movie.getTrailerUrl().length()>250){
             errors.add(new Error("trailerUrl","Trailer Url must be less than 251 characters"));
         }
-        if (!regex.regexTrailerUrl(movie.getTrailerUrl())){
-            errors.add(new Error("trailerUrl", "Trailer Url must be link starts with: https://www.youtube.com"));
-        }
         //movieRatedAgeId
-        if (movie.getMovieRatedAgeId()<1 || movie.getMovieRatedAgeId()>5){
-            errors.add(new Error("movieRatedAgeId","Movie Rated Age must be number from: 1 to 5"));
+        if (movie.getMovieRatedAgeId()<1 || movie.getMovieRatedAgeId()>12){
+            errors.add(new Error("movieRatedAgeId","Movie Rated Age must be number from: 1 to 12"));
         }
         //starRating
         if (movie.getStarRating()<1 || movie.getStarRating()>5){
@@ -330,8 +332,8 @@ public class MovieController extends GeneratedMovieController {
         return errors;
     }
 //     creator Vu Le Tuong
-    @PostMapping("/movie")
-    public List<Error> addMovie(MovieDTO movie){
+        @PostMapping("/movieTuong")
+    public List<Error> addMovie(@RequestBody MovieDTO movie){
 
         List<Error> errors = new ArrayList<>();
         //posterUrl
@@ -399,11 +401,8 @@ public class MovieController extends GeneratedMovieController {
         if (movie.getTrailerUrl().length()>250){
             errors.add(new Error("trailerUrl","Trailer Url must be less than 251 characters"));
         }
-        if (!regex.regexTrailerUrl(movie.getTrailerUrl())){
-            errors.add(new Error("trailerUrl", "Trailer Url must be link starts with: https://www.youtube.com"));
-        }
         //movieRatedAgeId
-        if (movie.getMovieRatedAgeId()<1 || movie.getMovieRatedAgeId()>5){
+        if (movie.getMovieRatedAgeId()<1 || movie.getMovieRatedAgeId()>12){
             errors.add(new Error("movieRatedAgeId","Movie Rated Age must be number from: 1 to 5"));
         }
         //starRating
@@ -413,6 +412,10 @@ public class MovieController extends GeneratedMovieController {
         //description
         if (movie.getDescription().length() > 1000){
             errors.add(new Error("description", "Description is less than 1000 characters"));
+        }
+
+        if (movie.getStartDate().getTime() < System.currentTimeMillis()){
+            errors.add(new Error("date", "aaaaa"));
         }
 
         Movie movie1 = new MovieImpl();
@@ -431,10 +434,30 @@ public class MovieController extends GeneratedMovieController {
         movie1.setStarRating(movie.getStarRating());
         movie1.setDescription(movie.getDescription());
 
-        
+
         if (errors.isEmpty()){
             movieManager.persist(movie1);
         }
         return errors;
     };
+
+    public static boolean validateDates(String start, String end) {
+        try {
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate startDate = LocalDate.parse(start, dateFormat);
+            LocalDate endDate = LocalDate.parse(end, dateFormat);
+            LocalDate current = LocalDate.now();
+            return (startDate.isEqual(current) || startDate.isAfter(current)) && endDate.isAfter(startDate);
+        }catch(DateTimeParseException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    @GetMapping("/findShowsByStartTimeAndHallId/{hallId}/{startTime}")
+    public List<Show> findShowsByStartTimeAndHallId( @PathVariable ("hallId") int hallId,@PathVariable ("startTime") LocalDateTime startTime){
+        List<Show> shows;
+        shows = showManager.stream().filter(e -> e.getHallId() == hallId && e.getStartTime().equals(startTime)).collect(Collectors.toList());
+        return shows;
+    }
 }

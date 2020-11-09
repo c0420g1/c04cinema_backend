@@ -19,26 +19,6 @@ public class MovieDTO {
     private String description;
     private String entertainment;
 
-    public MovieDTO(int id, String name, String director, String actor, Byte isSub, Byte is2d, String posterUrl,
-                    Date startDate, Date endDate, Integer duration, String trailerUrl, Integer starRating,
-                    Integer movieRatedAgeId, String description, String entertainment) {
-        this.id = id;
-        this.name = name;
-        this.director = director;
-        this.actor = actor;
-        this.isSub = isSub;
-        this.is2d = is2d;
-        this.posterUrl = posterUrl;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.duration = duration;
-        this.trailerUrl = trailerUrl;
-        this.starRating = starRating;
-        this.movieRatedAgeId = movieRatedAgeId;
-        this.description = description;
-        this.entertainment = entertainment;
-    }
-
     public MovieDTO(String name, String director, String actor, Byte isSub, Byte is2d, String posterUrl, Date startDate,
                     Date endDate, Integer duration, String trailerUrl, Integer starRating, Integer movieRatedAgeId,
                     String description, String entertainment) {
