@@ -75,8 +75,23 @@ public class SeatController extends GeneratedSeatController {
     }
 
     @GetMapping("/getSeatNameById/{id}")
-    public String getSeatNameById(@PathVariable int id){
-      return  seatManager.stream().filter(Seat.ID.equal(id)).findFirst().get().getName().get();
+    public Seat getSeatById(@PathVariable int id){
+      return  seatManager.stream().filter(Seat.ID.equal(id)).findFirst().get();
+    }
+
+    @GetMapping("/seat/create")
+    public void addSeats(@RequestParam int hallId, @RequestParam int noOfSeats){
+        try {
+            for (int i = 0 ; i < noOfSeats ; i++){
+                Seat seat = new SeatImpl();
+                seat.setName("");
+                seat.setHallId(hallId);
+                seat.setSeatTypeId(1);
+                seatManager.persist(seat);
+            }
+        }catch (Exception e){
+            e.getMessage();
+        }
     }
 
 }

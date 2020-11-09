@@ -18,8 +18,9 @@ public class PathCusDTO {
     private String gender;
     private String cardid;
     private String code;
+    private String imageUrl;
 
-    public PathCusDTO(int id, String name, String address, Integer customerTypeId, Integer currentBonusPoint, Integer accountId, String email, Date birthday, String phone, Byte isactive, String gender, String cardid, String code) {
+    public PathCusDTO(int id, String name, String address, Integer customerTypeId, Integer currentBonusPoint, Integer accountId, String email, Date birthday, String phone, Byte isactive, String gender, String cardid, String code,String imageUrl) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -33,6 +34,15 @@ public class PathCusDTO {
         this.gender = gender;
         this.cardid = cardid;
         this.code = code;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {

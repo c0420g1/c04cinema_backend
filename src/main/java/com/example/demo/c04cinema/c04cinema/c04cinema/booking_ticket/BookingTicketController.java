@@ -13,11 +13,9 @@ import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.generated.GeneratedBookingTicketController;
 import com.example.demo.c04cinema.c04cinema.c04cinema.customer.Customer;
 import com.example.demo.c04cinema.c04cinema.c04cinema.movie.Movie;
@@ -49,6 +47,7 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                                                       @RequestParam(defaultValue = "") String search) throws Exception {
         int pageSize =10;
         String tempTest ="";
+        List<BookingTicketDTO> res= new ArrayList<>();
         try{
             Join<BookingTicketDTO> join = joinComponent.from(BookingTicketManager.IDENTIFIER)
                     .innerJoinOn(Customer.ACCOUNT_ID).equal(BookingTicket.ACCOUNT_ID)
@@ -58,17 +57,24 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                     .innerJoinOn(Hall.ID).equal(Show.HALL_ID)
                     .build(BookingTicketDTO::new);
             if (tempTest.equals(search)){
-                return join.stream().skip((pageNum-1)*pageSize).limit(pageSize)
+                 join.stream().skip((pageNum-1)*pageSize).limit(pageSize)
                         .filter(e-> e.getNameCustomer().contains(search)
                         || e.getBookingCode().contains(search)
                         || e.getCardIdCustomer().contains(search)
                         || e.getPhoneCustomer().contains(search))
-                        .collect(toList());
+                        .collect(toList()).forEach(e ->{
+                     if(!res.contains(e))
+                         res.add(e);
+                 });
             }
-            return join.stream().filter(e-> e.getNameCustomer().contains(search)
+             join.stream().filter(e-> e.getNameCustomer().contains(search)
                     || e.getBookingCode().contains(search) || e.getCardIdCustomer().contains(search)
                     || e.getPhoneCustomer().contains(search)).skip((pageNum-1)*pageSize).limit(pageSize).
-                    collect(toList());
+                    collect(toList()).forEach(e-> {
+                 if(!res.contains(e))
+                     res.add(e);
+             });
+            return res;
         }catch (NullPointerException e){
             throw new Exception(e.getMessage());
         } catch (Exception ex){
@@ -87,9 +93,16 @@ public class BookingTicketController extends GeneratedBookingTicketController {
                     .innerJoinOn(Seat.ID).equal(BookingTicket.SEAT_ID)
                     .innerJoinOn(Hall.ID).equal(Show.HALL_ID)
                     .build(BookingTicketDTO::new);
-            return join.stream().filter(e-> e.getNameCustomer().contains(search)
+
+            List<BookingTicketDTO> res= new ArrayList<>();
+            join.stream().filter(e-> e.getNameCustomer().contains(search)
                     || e.getBookingCode().contains(search) || e.getCardIdCustomer().contains(search)
-                    || e.getPhoneCustomer().contains(search)).collect(toList());
+                    || e.getPhoneCustomer().contains(search)).forEach(e->{
+                        if(!res.contains(e))
+                            res.add(e);
+                    }
+            );
+            return res;
         } catch (NullPointerException e){
             throw new Exception(e.getMessage());
         } catch (Exception ex){

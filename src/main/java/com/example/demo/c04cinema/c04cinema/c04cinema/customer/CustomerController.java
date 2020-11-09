@@ -4,11 +4,13 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.demo.c04cinema.c04cinema.c04cinema.booking_ticket.BookingTicketManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.promotion_customer.PromotionCustomer;
 import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.c04cinema.c04cinema.c04cinema.account.Account;
 import com.example.demo.c04cinema.c04cinema.c04cinema.account.AccountManager;
@@ -37,6 +39,9 @@ public class CustomerController extends GeneratedCustomerController {
 
     @Autowired
     private AccountManager accountManager;
+
+    @Autowired
+    private BookingTicketManager bookingTicketManager;
 
     Regex regex = new Regex();
 
@@ -159,8 +164,12 @@ public class CustomerController extends GeneratedCustomerController {
                     .innerJoinOn(PromotionCustomer.CUSTOMER_ID).equal(Customer.ID).where(PromotionCustomer.CUSTOMER_ID.equal(id))
                     .innerJoinOn(Promotion.ID).equal(PromotionCustomer.PROMOTION_ID)
                     .build(CustomerPointUseDTO::new);
-
-            return join.stream().skip((pageNum - 1) * pageSize).limit(pageSize).collect(Collectors.toList());
+            List<CustomerPointUseDTO> res = new ArrayList<>();
+            join.stream().forEach(e -> {
+                if (!res.contains(e))
+                    res.add(e);
+            });
+            return res;
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -206,8 +215,8 @@ public class CustomerController extends GeneratedCustomerController {
     // update thông tin customer
     @PatchMapping("/editCustomer/{id}")
     public List<Error> postCombo(@RequestBody PathCusDTO customer, @PathVariable int id) {
+        List<Error> errors = new ArrayList<>();
         try {
-            List<Error> errors = new ArrayList<>();
             Customer cus = customerManager.stream().filter(Customer.ID.equal(id)).findFirst().get();
 
             if (!regex.regexEmail(customer.getEmail())) {
@@ -238,8 +247,35 @@ public class CustomerController extends GeneratedCustomerController {
             cus.setEmail(customer.getEmail());
             cus.setGender(customer.getGender());
             cus.setName(customer.getName());
+            cus.setImageUrl(customer.getImageUrl());
             if (errors.isEmpty()) {
                 customerManager.update(cus);
+            }
+            return errors;
+        } catch (Exception e) {
+            System.out.println(e);
+            errors.add(new Error("nullPoint", "Please input all information before edit Avatar !"));
+            return errors;
+        }
+    }
+
+    @PatchMapping("/editPassWord/{id}")
+    public List<Error> postCombo(@RequestParam(value = "passOld") String passOld, @RequestParam(value = "newPass") String newPass, @PathVariable int id) {
+        try {
+            List<Error> errors = new ArrayList<>();
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String newPassEnd = passwordEncoder.encode(newPass);
+
+            Account account = accountManager.stream().filter(Account.ID.equal(id)).findFirst().get();
+            if (!(regex.regexPass(newPass))) {
+                errors.add(new Error("error", "new Pass not format Abcd1234 !"));
+                return errors;
+            } else if (passwordEncoder.matches(passOld,account.getPassword().get())) {
+                account.setPassword(newPassEnd);
+                accountManager.update(account);
+                errors.add(new Error("success", "PassWord update success !"));
+            } else {
+                errors.add(new Error("error", "password error"));
             }
             return errors;
         } catch (Exception e) {
@@ -248,23 +284,23 @@ public class CustomerController extends GeneratedCustomerController {
         return null;
     }
 
-    @PatchMapping("/editPassWord/{id}")
-    public List<Error> postCombo(@RequestParam(value = "passOld") String passOld, @RequestParam(value = "newPass") String newPass, @PathVariable int id) {
+    //qg23
+    @GetMapping("/customer/{accId}")
+    public Customer getCustomerByAccountId(@PathVariable int accId){
+        return customerManager.stream().filter(Customer.ACCOUNT_ID.equal(accId)).findFirst().get();
+    }
+
+    @GetMapping("/editTicket/{id}")
+    public  List<Error> postPoint(@PathVariable int id,@RequestParam(value = "idTicker") String idTicker) {
         try {
             List<Error> errors = new ArrayList<>();
-//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//            String newPassEnd = passwordEncoder.encode(newPass);
-            Account account = accountManager.stream().filter(Account.ID.equal(id)).findFirst().get();
-            if (!(regex.regexPass(newPass))) {
-                errors.add(new Error("error", "new Pass not format Abcd1234 !"));
-                return errors;
-            } else if (account.getPassword().get().equals(passOld)) {
-                account.setPassword(newPass);
-                accountManager.update(account);
-                errors.add(new Error("success", "PassWord update success !"));
-            } else {
-                errors.add(new Error("error", "password error"));
-            }
+            BookingTicket bookingTicket = bookingTicketManager.stream().filter(BookingTicket.ACCOUNT_ID.equal(id).and(BookingTicket.ID.equal(Integer.valueOf(idTicker)))).findFirst().get();
+            Customer cus = customerManager.stream().filter(Customer.ACCOUNT_ID.equal(id)).findFirst().get();
+            bookingTicket.setIscancel((byte) 1);
+            cus.setCurrentBonusPoint(cus.getCurrentBonusPoint().getAsInt() + 100);
+            bookingTicketManager.update(bookingTicket);
+            customerManager.update(cus);
+
             return errors;
         } catch (Exception e) {
             System.out.println(e);

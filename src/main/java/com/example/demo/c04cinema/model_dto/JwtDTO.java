@@ -7,11 +7,20 @@ public class JwtDTO {
     private int accountId;
     private String imageUrl;
 
-    public JwtDTO(String accessToken, String username, String authorities, int accountId) {
+    public JwtDTO(String accessToken, String username, String authorities, int accountId, String imageUrl) {
         this.accessToken = accessToken;
         this.username = username;
         this.authorities = authorities;
         this.accountId = accountId;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getAccountId() {
