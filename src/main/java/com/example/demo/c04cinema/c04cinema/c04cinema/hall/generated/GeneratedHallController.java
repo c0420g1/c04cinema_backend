@@ -3,9 +3,6 @@ package com.example.demo.c04cinema.c04cinema.c04cinema.hall.generated;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.Hall;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.HallManager;
 import com.example.demo.c04cinema.c04cinema.c04cinema.hall.generated.GeneratedHall.Identifier;
-import com.example.demo.c04cinema.c04cinema.c04cinema.seat.Seat;
-import com.example.demo.c04cinema.c04cinema.c04cinema.seat.SeatImpl;
-import com.example.demo.c04cinema.c04cinema.c04cinema.seat.SeatManager;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -64,7 +61,6 @@ public abstract class GeneratedHallController {
     
     protected @Autowired JsonComponent jsonComponent;
     protected @Autowired HallManager manager;
-    protected @Autowired SeatManager managerSeat;
     protected JsonEncoder<Hall> encoder;
     
     @PostConstruct
@@ -101,14 +97,6 @@ public abstract class GeneratedHallController {
             .setHallTypeId(createBody.getHallTypeId())
             .setTheatreId(createBody.getTheatreId())
         );
-        int hallId= manager.stream().sorted(Hall.ID.reversed()).findFirst().get().getId();
-        for (int i = 1 ; i <= 100 ; i++){
-            Seat seat = new SeatImpl();
-            seat.setName("A" + i);
-            seat.setHallId(hallId);
-            seat.setSeatTypeId(1);
-            managerSeat.persist(seat);
-        }
     }
     
     @ResponseStatus(code = HttpStatus.OK)
