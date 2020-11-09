@@ -258,8 +258,24 @@ public class CustomerController extends GeneratedCustomerController {
             return errors;
         }
     }
+    @PatchMapping("/editImageUrl/{id}")
+    public List<Error> postImageUrl(@RequestBody PathCusDTO customer, @PathVariable int id) {
+        List<Error> errors = new ArrayList<>();
+        try {
+            Customer cus = customerManager.stream().filter(Customer.ID.equal(id)).findFirst().get();
+            cus.setImageUrl(customer.getImageUrl());
+            if (errors.isEmpty()) {
+                customerManager.update(cus);
+            }
+            return errors;
+        } catch (Exception e) {
+            System.out.println(e);
+            errors.add(new Error("nullPoint", "Please input all information before edit Avatar !"));
+            return errors;
+        }
+    }
 
-    @PatchMapping("/editPassWord/{id}")
+            @PatchMapping("/editPassWord/{id}")
     public List<Error> postCombo(@RequestParam(value = "passOld") String passOld, @RequestParam(value = "newPass") String newPass, @PathVariable int id) {
         try {
             List<Error> errors = new ArrayList<>();
