@@ -303,7 +303,13 @@ public class CustomerController extends GeneratedCustomerController {
     //qg23
     @GetMapping("/customer/{accId}")
     public Customer getCustomerByAccountId(@PathVariable int accId){
-        return customerManager.stream().filter(Customer.ACCOUNT_ID.equal(accId)).findFirst().get();
+        Customer customer = null;
+        try{
+             customer = customerManager.stream().filter(Customer.ACCOUNT_ID.equal(accId)).findFirst().get();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return customer;
     }
 
     @GetMapping("/editTicket/{id}")
