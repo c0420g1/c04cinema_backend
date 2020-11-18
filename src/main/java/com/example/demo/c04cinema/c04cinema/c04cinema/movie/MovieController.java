@@ -504,7 +504,7 @@ public class MovieController extends GeneratedMovieController {
         if(dateNow.toLocalDate().equals(dateComment.toLocalDate())){
             int hour= dateNow.getHour() - dateComment.getHour();
             int minute= dateNow.getMinute()- dateComment.getMinute();
-            return hour >0 ? hour + " hour ago" : minute + " minutes ago";
+            return hour >0 ? hour + " hour ago" : minute > 0? minute +" minutes ago" : "1 minute ago";
         }
 
         return dateComment.toLocalDate().toString();
